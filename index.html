@@ -203,6 +203,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			.carousel .item {
 				height: 480px;
+				overflow: hidden;
+			}
+
+			.carousel .item img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
 			}
 
 			.panel>.panel-heading {
@@ -237,6 +245,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				.carousel .item {
 					height: 130px;
+				}
+
+				.carousel .item img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
 				}
 
 				#footer {

@@ -34,7 +34,60 @@
 <link rel="apple-touch-icon" href="https://carisolusi.biz.id/uploads/favicon54.png">
 
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="/WIu4mo+prgyQDtZ/yygFA" async></script>
-<script type="application/ld+json">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarHeader = document.querySelector(".navbar-header");
+
+  if (navbarHeader) {
+    // Buat element <a>
+    const brandLink = document.createElement("a");
+    brandLink.className = "navbar-brand";
+    brandLink.href = "https://carisolusi.biz.id/";
+
+    // Buat element <img>
+    const logo = document.createElement("img");
+    logo.src = "https://dongkrakusaha.com/gambarbebas/1526720260226-031715_maskot.webp";
+    logo.alt = "Logo";
+    logo.style.height = "80px";
+
+    // Masukkan img ke dalam a
+    brandLink.appendChild(logo);
+
+    // Sisipkan sebelum tombol (agar urutannya sama seperti contoh)
+    const toggleButton = navbarHeader.querySelector(".navbar-toggle");
+    if (toggleButton) {
+      navbarHeader.insertBefore(brandLink, toggleButton);
+    } else {
+      navbarHeader.appendChild(brandLink);
+    }
+  }
+});
+</script>
+
+<style>
+
+@media (max-width: 576px) {
+  .product-item {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+
+	.navbar-default .navbar-brand {
+				display: flex;
+				align-items: center;
+				padding: 0 15px;
+			}
+
+			.navbar-brand img {
+				display: block;
+			}
+
+.navbar-default .navbar-toggle {
+				border-color: transparent !important;
+			}
+
+</style><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -106,16 +159,6 @@
 				color: #ffffff;
 			}
 
-			.navbar-default .navbar-brand {
-				display: flex;
-				align-items: center;
-				padding: 0 15px;
-			}
-
-			.navbar-brand img {
-				display: block;
-			}
-
 			.navbar-default .navbar-brand:hover,
 			.navbar-default .navbar-brand:focus,
 			.navbar-default .navbar-nav>li>a:hover,
@@ -141,7 +184,7 @@
 			}
 
 			.navbar-default .navbar-toggle {
-				border-color: transparent;
+				border-color: #ffffff;
 			}
 
 			.navbar-default .navbar-toggle .icon-bar {
@@ -193,44 +236,28 @@
 				#footer .text-right {
 					text-align: left;
 				}
-
-			.product-thumb {
-			twidth: 100% !important;
-			theight: auto !important;
-			taspect-ratio: 1 / 1 !important;
-			tbackground-size: cover !important;
-			tbackground-position: center !important;
 			}
 
-			.product_image {
-			twidth: 100% !important;
+			.kategor {
+				width: 100%;
+				text-align: right;
+				padding: 10px 15px 9px 15px;
+				background: #0064e0;
 			}
 
-			.product-item {
-				width: 100% !important;
-				float: none !important;
+			.tutuik {
+				position: absolute;
+				right: 0;
+				top: 0;
 			}
 
-			.product-thumb {
-				width: 100% !important;
-				height: auto !important;
-				aspect-ratio: 1 / 1 !important;
-				background-size: cover !important;
-				background-position: center !important;
-			}
-
-			.product_image {
-				width: 100% !important;
-			}
-		}
-
-		.page-header,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
+			.page-header,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
 				margin-top: 0;
 			}
 		</style>
@@ -260,9 +287,6 @@
 		<nav class='navbar navbar-default navbar-static-top' id='menu-atas' role='navigation'>
 			<div  class='container-fluid'>
 				<div class='navbar-header'>
-					<a class='navbar-brand' href='https://carisolusi.biz.id/'>
-						<img src='https://carisolusi.biz.id/gambarbebas/20260416-092547_Pullet%20pro%20logo%20only.webp' alt='Logo' style='height: 40px;'>
-					</a>
 					<button title='Klik here to open the menu' type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'>
 						<span class='sr-only'>Toggle navigation</span>
 						<span class='icon-bar'></span>
@@ -311,13 +335,6 @@
 					<img alt="Bisnis mau tampil di page one google" src="https://carisolusi.biz.id/uploads/slider-20260217-114332Cepat Page one google.webp">
 					<div class="container">
 						<div class="carousel-caption">
-						<p>&nbsp;</p>
-
-<h2><br />
-<span style="font-family:Courier New,Courier,monospace"><strong>Dapatkan GRATIS Voucher SEO Google Hari Ini</strong></span></h2>
-							<p>
-								<a class="btn btn-large btn-primary" href="https://api.whatsapp.com/send?phone=6281384072641&text=Hallo%20Admin%20CariSolusi,%20Saya%20mau%20GRATIS%20belajar%20SEO%20Google,%20tolong%20info%20selengkapnya." title='https://api.whatsapp.com/send?phone=6281384072641&text=Hallo%20Admin%20CariSolusi,%20Saya%20mau%20GRATIS%20belajar%20SEO%20Google,%20tolong%20info%20selengkapnya.'>Selengkapnya</a>
-							</p>
 												</div>
 					</div>
 				</div>
@@ -325,10 +342,6 @@
 					<img alt="Special CariSolusi. Akses ratusan penyedia jasa dan produk dalam satu website." src="https://carisolusi.biz.id/uploads/slider-20260201-100820Special cari solusi.webp">
 					<div class="container">
 						<div class="carousel-caption">
-						<h3><span style="font-family:monospace"><strong>Klaim Voucher GRATIS 40x Pertemuan Belajar Digital Marketing</strong></span></h3>
-							<p>
-								<a class="btn btn-large btn-primary" href="https://chat.whatsapp.com/EV4kgYkp4VyGEeoEDOuFhL" title='https://chat.whatsapp.com/EV4kgYkp4VyGEeoEDOuFhL'>Selengkapnya</a>
-							</p>
 												</div>
 					</div>
 				</div>
@@ -381,6 +394,11 @@
 #primary_nav_wrap ul li.current-menu-item
 {
     background:#ddd;
+}
+
+#primary_nav_wrap ul li:hover
+{
+    
 }
 
 #primary_nav_wrap ul ul
@@ -961,7 +979,7 @@ body {
 	<header class='page-header'><h1><small>PRODUK TERBARU</small></h1></header>	</article>
 			
 		<div class="row product-container">
-					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -978,7 +996,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 138 Kali</span>
+							<span><i class="fa fa-eye"></i> 141 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=6281384072641&amp;text=Halo, saya dapat info dari website CariSolusi dan tertarik join grup belajar coding premium bisa dibantu?" title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -987,7 +1005,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1004,7 +1022,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 137 Kali</span>
+							<span><i class="fa fa-eye"></i> 150 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=6281384072641&amp;text=Halo, saya dapat info dari website CariSolusi dan berminat dengan WSP harga promo bs dibantu?" title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1013,7 +1031,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1030,7 +1048,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 102 Kali</span>
+							<span><i class="fa fa-eye"></i> 107 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=6281384072641&amp;text=Halo, saya dapat info dari website CariSolusi dan berminat Join Komunitas SEO Subuh" title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1039,7 +1057,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1056,7 +1074,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 112 Kali</span>
+							<span><i class="fa fa-eye"></i> 114 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=6281384072641&amp;text=Halo, saya dapat info dari website carisolusi, apa benar bisa melayani charter private Jet JETINDO? " title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1065,7 +1083,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1082,7 +1100,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 104 Kali</span>
+							<span><i class="fa fa-eye"></i> 123 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=628119950205&amp;text=Halo, saya dapat info dari website CariSolusi, tentang aplikasi SEO todolist .... " title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1091,7 +1109,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1108,7 +1126,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 216 Kali</span>
+							<span><i class="fa fa-eye"></i> 224 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=6281384072641&amp;text=Halo, saya dapat info dari website CariSolusi, apa benar menyediakan Jasa Pembuatan Website Company Profile? " title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1117,7 +1135,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1143,7 +1161,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1169,7 +1187,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1186,7 +1204,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 54 Kali</span>
+							<span><i class="fa fa-eye"></i> 55 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=628119950205&amp;text=Halo, saya dapat info dari website CariSolusi dan tertarik Desain Kitchen Set Minimalis di Tapos Depok" title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1195,7 +1213,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1212,7 +1230,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 56 Kali</span>
+							<span><i class="fa fa-eye"></i> 57 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=628119950205&amp;text=Halo, saya dapat info dari website carisolusi, saya mau copy script carousel bisa dibantu? " title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1221,7 +1239,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1247,7 +1265,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1273,7 +1291,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1299,7 +1317,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1316,7 +1334,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 44 Kali</span>
+							<span><i class="fa fa-eye"></i> 45 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=628119950205&amp;text=Halo, saya dapat info dari website CariSolusi, apa benar bisa melayani ​Jasa Tambal Ban Mobil Panggilan di Tapos Depok? " title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1325,7 +1343,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1342,7 +1360,7 @@ body {
 											</div>
 					<div class="product-footer">
 						<div class="red_button_kiri add_to_cart_button_kiri">
-							<span><i class="fa fa-eye"></i> 74 Kali</span>
+							<span><i class="fa fa-eye"></i> 75 Kali</span>
 						</div>
 												<div class="red_button_kanan add_to_cart_button_kanan pull-right">
 							<a href="https://api.whatsapp.com/send?phone=628119950205&amp;text=Halo, saya dapat info dari website CariSolusi, apa benar jasa Dokter Hewan Panggilan Vaksin di Tapos Depok? " title="Pesan Rp "><i class="fa fa-whatsapp"></i> Pesan</a>
@@ -1351,7 +1369,7 @@ body {
 				</div>
 			</div>
 			<div class="clearfix visible-md visible-lg"></div>
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-item">
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-item">
 				<div class="product-wrap">
 					<div class="product_image">
 											<div class='img-container'>
@@ -1390,7 +1408,7 @@ body {
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/39/dari-nol-berapa-omset-jasa-website-dalam-1-tahun-angkanya-bikin-kaget">Dari Nol Berapa Omset Jasa Website dalam 1 Tahun? Angkanya Bikin Kaget</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/39/dari-nol-berapa-omset-jasa-website-dalam-1-tahun-angkanya-bikin-kaget">Dari Nol Berapa Omset Jasa Website dalam 1 Tahun? Angkanya Bikin Kaget</h4></a>
     						</h4>
 							<small>oleh: admin pada: 15/04/2026 16:58</small>
     						<p>Mengapa Bisnis Jasa Website Tidak Akan Mati (Perspektif Pebisnis Sistem)
@@ -1410,7 +1428,7 @@ Bisnis digital terus berkembang, tetapi tidak semua model bisnis memiliki daya t
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/38/rahasia-digital-marketer-cara-tracking-ranking-google-pakai-spreadsheet">Rahasia Digital Marketer: Cara Tracking Ranking Google Pakai Spreadsheet</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/38/rahasia-digital-marketer-cara-tracking-ranking-google-pakai-spreadsheet">Rahasia Digital Marketer: Cara Tracking Ranking Google Pakai Spreadsheet</h4></a>
     						</h4>
 							<small>oleh: admin pada: 14/04/2026 12:14</small>
     						<p>GOOGLE RANKING Dashboard Template: Cara Praktis Monitoring Posisi Website di Google (Gratis &amp; Siap Pakai)
@@ -1432,16 +1450,16 @@ Dalam dunia digital marketing modern, memahami posisi website di mesin pencari b
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/37/roadmap-network-engineer-2026-dari-nol-sampai-gaji-20-juta">Roadmap Network Engineer 2026: Dari Nol Sampai Gaji 20 Juta+</a>
-    						
+    							<a href="https://carisolusi.biz.id/2/NEWS/37/roadmap-network-engineer-2026-dari-nol-sampai-gaji-20-juta">Roadmap Network Engineer 2026: Dari Nol Sampai Gaji 20 Juta+</h4></a>
+    						</h4>
 							<small>oleh: admin pada: 13/04/2026 12:18</small>
     						<p>Network Engineer Roadmap 2026: Panduan Lengkap dari Pemula hingga Profesional
 
 Networking memungkinkan perangkat, individu, dan organisasi untuk saling terhubung tanpa batas geografis. Di balik sistem ini, peran network engineer menjadi sangat krusial&mdash; ...</p>
     					</div>
-    				</div>
-    			</div>
-    		</article>
+				    </div>
+				</div>
+			</article>
 					<article>
 				<div class='col-sm-12'>
 				    <div class='row'>
@@ -1450,9 +1468,9 @@ Networking memungkinkan perangkat, individu, dan organisasi untuk saling terhubu
     							<img alt="33 Penyebab Lulusan SMA/Universitas Sulit Dapat Kerja & Menjadi Investasi Gagal Orang Tua" src="https://carisolusi.biz.id/thumbs/IPK20260412-115235-33 sullit kerja sm.webp"/>
     						</a>
     					</div>
-    				    					<div class='col-sm-16'>
+    				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/36/ipk-tinggi-tapi-nganggur-ini-penyebab-utama-yang-sering-diabaikan">IPK Tinggi Tapi Nganggur? Ini Penyebab Utama yang Sering Diabaikan</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/36/ipk-tinggi-tapi-nganggur-ini-penyebab-utama-yang-sering-diabaikan">IPK Tinggi Tapi Nganggur? Ini Penyebab Utama yang Sering Diabaikan</h4></a>
     						</h4>
 							<small>oleh: admin pada: 12/04/2026 11:52</small>
     						<p>33 Kesalahan Fatal Lulusan SMA &amp; Sarjana yang Bikin Susah Dapat Kerja
@@ -1472,7 +1490,7 @@ Fenomena lulusan SMA maupun universitas yang sulit mendapatkan pekerjaan dengan 
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/35/bukti-nyata-website-baru-bisa-datangkan-customer-setiap-hari">Bukti Nyata Website Baru Bisa Datangkan Customer Setiap Hari</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/35/bukti-nyata-website-baru-bisa-datangkan-customer-setiap-hari">Bukti Nyata Website Baru Bisa Datangkan Customer Setiap Hari</h4></a>
     						</h4>
 							<small>oleh: admin pada: 12/04/2026 08:51</small>
     						<p>Contoh Performa WSP 3 Bulan Pertama Mendatangkan Leads
@@ -1492,7 +1510,7 @@ Dalam era digital yang semakin kompetitif, memiliki website saja tidak cukup. Di
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/34/strategi-dan-kesalahan-seo-2026-yang-jarang-diketahui">Strategi dan Kesalahan SEO 2026 yang Jarang Diketahui</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/34/strategi-dan-kesalahan-seo-2026-yang-jarang-diketahui">Strategi dan Kesalahan SEO 2026 yang Jarang Diketahui</h4></a>
     						</h4>
 							<small>oleh: admin pada: 10/04/2026 11:24</small>
     						<p>Strategi SEO Posting Sebanyak Banyaknya dengan Teknik Randomisasi Sinonim Per Kata, Mitos atau Fakta?
@@ -1515,7 +1533,7 @@ Dalam beberapa tahun terakhir, banyak praktisi SEO&mdash;terutama yang bermain d
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/33/apa-itu-domain-rating-dr-panduan-lengkap-untuk-seo">Apa Itu Domain Rating (DR)? Panduan Lengkap untuk SEO</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/33/apa-itu-domain-rating-dr-panduan-lengkap-untuk-seo">Apa Itu Domain Rating (DR)? Panduan Lengkap untuk SEO</h4></a>
     						</h4>
 							<small>oleh: admin pada: 06/04/2026 22:37</small>
     						<p>Apa Itu Domain Rating (DR)? Panduan Lengkap untuk SEO
@@ -1535,7 +1553,7 @@ Dalam dunia SEO modern, metrik otoritas website menjadi salah satu indikator pen
     					</div>
     				    					<div class='col-sm-8'>
     						<h4>
-    							<a href="https://carisolusi.biz.id/2/NEWS/32/cara-mulai-digitalisasi-bisnis-dari-nol">Cara Mulai Digitalisasi Bisnis (Dari Nol)</a>
+    							<a href="https://carisolusi.biz.id/2/NEWS/32/cara-mulai-digitalisasi-bisnis-dari-nol">Cara Mulai Digitalisasi Bisnis (Dari Nol)</h4></a>
     						</h4>
 							<small>oleh: admin pada: 04/04/2026 16:30</small>
     						<p>Cara Mulai Digitalisasi Bisnis (Dari Nol)
@@ -2025,50 +2043,50 @@ margin-bottom: 30px;
 		<div class='panel panel-default'>
 			<div class='panel-heading'>PRODUK TERPOPULER</div>
 			<div class="panel-body">
-							<a href="https://carisolusi.biz.id/produk/1/bengkel-mobil-panggilan-di-cibubur-gratis-belajar-digital-marketing" style="color:#ccc; font-size:12px;">Bengkel Mobil Panggilan di Cibubur Gratis Belajar Digital Marketing* </a>
-							<a href="https://carisolusi.biz.id/produk/35/supplier-telur-cerdas-omega3-herbal-di-tapos-depok" style="color:#666; font-size:16px;">Supplier Telur Cerdas Omega3 Herbal di Tapos Depok  </a>
-							<a href="https://carisolusi.biz.id/produk/37/jasa-pembuatan-website-company-profile-modern-desain-premium-cepat-pixel-perfect" style="color:#333; font-size:8px;">Jasa Pembuatan Website Company Profile Modern Desain Premium, Cepat & Pixel Perfect  </a>
-							<a href="https://carisolusi.biz.id/produk/30/apartemen-sakura-garden-city-dijual-di-bawah-harga-pasaran" style="color:#666; font-size:8px;">Apartemen Sakura Garden City Dijual di Bawah Harga Pasaran  </a>
-							<a href="https://carisolusi.biz.id/produk/5/kelas-clipper-landing-page-1" style="color:#333; font-size:20px;">Kelas CLIPPER Landing Page 1  </a>
-							<a href="https://carisolusi.biz.id/produk/36/jasa-buat-website-perusahaan-profesional-di-cempaka-putih-jakarta" style="color:#999; font-size:12px;">Jasa Buat Website Perusahaan Profesional di Cempaka Putih Jakarta  </a>
-							<a href="https://carisolusi.biz.id/produk/14/design-interior-profesional-tapos-depok-harga-masuk-akal" style="color:#ccc; font-size:20px;">Design Interior Profesional Tapos Depok Harga Masuk Akal  </a>
-							<a href="https://carisolusi.biz.id/produk/46/belajar-coding-digital-marketing-dari-nol-sampai-bisa-bikin-project-nyata-bukan-sekedar-teori" style="color:#ccc; font-size:16px;">Belajar Coding & Digital Marketing dari Nol Sampai Bisa Bikin Project Nyata (Bukan Sekedar Teori)  </a>
-							<a href="https://carisolusi.biz.id/produk/44/website-seo-praktis-wsp-ini-bisa-datangkan-customer-tiap-hari" style="color:#666; font-size:16px;">Website SEO Praktis WSP Ini Bisa Datangkan Customer Tiap Hari  </a>
-							<a href="https://carisolusi.biz.id/produk/26/desain-interior-profesional-harga-sesuai-budget-di-tapos-depok" style="color:#999; font-size:20px;">Desain Interior Profesional Harga Sesuai Budget di Tapos Depok  </a>
+							<a href="https://carisolusi.biz.id/produk/1/bengkel-mobil-panggilan-di-cibubur-gratis-belajar-digital-marketing" style="color:#ccc; font-size:20px;">Bengkel Mobil Panggilan di Cibubur Gratis Belajar Digital Marketing* </a>
+							<a href="https://carisolusi.biz.id/produk/35/supplier-telur-cerdas-omega3-herbal-di-tapos-depok" style="color:#ccc; font-size:20px;">Supplier Telur Cerdas Omega3 Herbal di Tapos Depok  </a>
+							<a href="https://carisolusi.biz.id/produk/37/jasa-pembuatan-website-company-profile-modern-desain-premium-cepat-pixel-perfect" style="color:#ccc; font-size:16px;">Jasa Pembuatan Website Company Profile Modern Desain Premium, Cepat & Pixel Perfect  </a>
+							<a href="https://carisolusi.biz.id/produk/30/apartemen-sakura-garden-city-dijual-di-bawah-harga-pasaran" style="color:#ccc; font-size:8px;">Apartemen Sakura Garden City Dijual di Bawah Harga Pasaran  </a>
+							<a href="https://carisolusi.biz.id/produk/5/kelas-clipper-landing-page-1" style="color:#999; font-size:20px;">Kelas CLIPPER Landing Page 1  </a>
+							<a href="https://carisolusi.biz.id/produk/36/jasa-buat-website-perusahaan-profesional-di-cempaka-putih-jakarta" style="color:#666; font-size:8px;">Jasa Buat Website Perusahaan Profesional di Cempaka Putih Jakarta  </a>
+							<a href="https://carisolusi.biz.id/produk/44/website-seo-praktis-wsp-ini-bisa-datangkan-customer-tiap-hari" style="color:#999; font-size:8px;">Website SEO Praktis WSP Ini Bisa Datangkan Customer Tiap Hari  </a>
+							<a href="https://carisolusi.biz.id/produk/14/design-interior-profesional-tapos-depok-harga-masuk-akal" style="color:#999; font-size:16px;">Design Interior Profesional Tapos Depok Harga Masuk Akal  </a>
+							<a href="https://carisolusi.biz.id/produk/46/belajar-coding-digital-marketing-dari-nol-sampai-bisa-bikin-project-nyata-bukan-sekedar-teori" style="color:#333; font-size:20px;">Belajar Coding & Digital Marketing dari Nol Sampai Bisa Bikin Project Nyata (Bukan Sekedar Teori)  </a>
+							<a href="https://carisolusi.biz.id/produk/26/desain-interior-profesional-harga-sesuai-budget-di-tapos-depok" style="color:#ccc; font-size:12px;">Desain Interior Profesional Harga Sesuai Budget di Tapos Depok  </a>
 						</div>
 		</div>
 	<div class='singitan'>		<article class="media">
 			<div class="media-body">
 				<h3 class="media-heading">
-					<a href="https://carisolusi.biz.id/produk/35/Supplier-Telur-Cerdas-Omega3-Herbal-di-Tapos-Depok" title="Supplier Telur Cerdas Omega3 Herbal di Tapos Depok">Supplier Telur Cerdas Omega3 Herbal di Tapos Depok<br/><br/></a>
+					<a href="https://carisolusi.biz.id/produk/12/Jual-Mic-Podcast-XLR-Andalan-Podcaster-Hemat-Budget-Shure-Original" title="Jual Mic Podcast XLR Andalan Podcaster Hemat Budget Shure Original">Jual Mic Podcast XLR Andalan Podcaster Hemat Budget<br/>Shure Original<br/></a>
 				</h3>
 			</div>
 		</article>
 			<article class="media">
 			<div class="media-body">
 				<h3 class="media-heading">
-					<a href="https://carisolusi.biz.id/produk/46/Belajar-Coding---Digital-Marketing-dari-Nol-Sampai-Bisa-Bikin-Project-Nyata--Bukan-Sekedar-Teori-" title="Belajar Coding & Digital Marketing dari Nol Sampai Bisa Bikin Project Nyata (Bukan Sekedar Teori)">Belajar Coding & Digital Marketing dari Nol Sampai Bisa Bikin Project Nyata (Bukan Sekedar Teori)<br/><br/></a>
+					<a href="https://carisolusi.biz.id/produk/28/Animasi-teks-berjalan-website-modern-style" title="Animasi teks berjalan website modern style">Animasi teks berjalan website modern style<br/><br/></a>
 				</h3>
 			</div>
 		</article>
 			<article class="media">
 			<div class="media-body">
 				<h3 class="media-heading">
-					<a href="https://carisolusi.biz.id/produk/14/Design-Interior-Profesional-Tapos-Depok-Harga-Masuk-Akal" title="Design Interior Profesional Tapos Depok Harga Masuk Akal">Design Interior Profesional Tapos Depok Harga Masuk Akal<br/><br/></a>
+					<a href="https://carisolusi.biz.id/produk/26/Desain-Interior-Profesional-Harga-Sesuai-Budget-di-Tapos-Depok" title="Desain Interior Profesional Harga Sesuai Budget di Tapos Depok">Desain Interior Profesional Harga Sesuai Budget di Tapos Depok<br/><br/></a>
 				</h3>
 			</div>
 		</article>
 			<article class="media">
 			<div class="media-body">
 				<h3 class="media-heading">
-					<a href="https://carisolusi.biz.id/produk/23/Optimasi-Website---Sosmed-Halaman-1-Google-Khusus-Travel-Umroh" title="Optimasi Website & Sosmed Halaman 1 Google Khusus Travel Umroh">Optimasi Website & Sosmed Halaman 1 Google Khusus Travel Umroh<br/><br/></a>
+					<a href="https://carisolusi.biz.id/produk/9/PROGRAM-LEVEL-2-ASET-DIGITAL-MULTIPRODUK--teratif-" title="PROGRAM LEVEL 2 ASET DIGITAL MULTIPRODUK (teratif)">PROGRAM LEVEL 2 ASET DIGITAL MULTIPRODUK (teratif)<br/><br/></a>
 				</h3>
 			</div>
 		</article>
 			<article class="media">
 			<div class="media-body">
 				<h3 class="media-heading">
-					<a href="https://carisolusi.biz.id/produk/33/Desain-Kitchen-Set-Minimalis-Profesional-Budget-Minimal-di-Cibubur" title="Desain Kitchen Set Minimalis Profesional Budget Minimal di Cibubur">Desain Kitchen Set Minimalis Profesional Budget Minimal di Cibubur<br/><br/></a>
+					<a href="https://carisolusi.biz.id/produk/15/Jual-Rumah-Sejuk-View-Gunung-di-Babakan-Sentul--Hunian-Nyaman---Bernilai-Investasi" title="Jual Rumah Sejuk View Gunung di Babakan Sentul  Hunian Nyaman & Bernilai Investasi">Jual Rumah Sejuk View Gunung di Babakan Sentul <br/>Hunian Nyaman & Bernilai Investasi<br/></a>
 				</h3>
 			</div>
 		</article>

@@ -240,12 +240,51 @@ document.addEventListener("DOMContentLoaded", function () {
 				background: #ffffff;
 			}
 
+			.navbar-default {
+				min-height: 70px !important;
+			}
+
+			.navbar-nav > li > a {
+				line-height: 20px !important;
+				padding-top: 25px !important;
+				padding-bottom: 25px !important;
+				height: 70px !important;
+				vertical-align: middle;
+			}
+
+			.navbar-form {
+				margin-top: 10px !important;
+				margin-bottom: 10px !important;
+				padding-top: 8px !important;
+				padding-bottom: 8px !important;
+			}
+
 			.carousel .item {
 				height: 480px;
 			}
 
 			.panel>.panel-heading {
 				background-image: none;
+			}
+
+			@media (max-width: 768px) {
+				.navbar-default {
+					min-height: auto !important;
+				}
+
+				.navbar-nav > li > a {
+					line-height: inherit !important;
+					padding-top: 10px !important;
+					padding-bottom: 10px !important;
+					height: auto !important;
+				}
+
+				.navbar-form {
+					margin-top: 15px !important;
+					margin-bottom: 0 !important;
+					padding-top: 0 !important;
+					padding-bottom: 0 !important;
+				}
 			}
 
 			.btn-primary {

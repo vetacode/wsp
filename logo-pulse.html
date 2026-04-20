@@ -1,0 +1,32 @@
+document.addEventListener("DOMContentLoaded", function () { const navbarHeader =
+document.querySelector(".navbar-header"); if (navbarHeader) { // Inject CSS
+animation const style = document.createElement("style"); style.innerHTML = `
+@keyframes logoPulse { 0% { transform: scale(1); } 50% { transform: scale(1.08);
+} 100% { transform: scale(1); } } `; document.head.appendChild(style); const
+brandLink = document.createElement("a"); brandLink.className = "navbar-brand";
+brandLink.href = "https://carisolusi.biz.id/"; brandLink.style.float = "left";
+brandLink.style.margin = "0"; brandLink.style.padding = "5px 15px";
+brandLink.style.height = "auto"; brandLink.style.display = "block"; const logo =
+document.createElement("img"); logo.src =
+"https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp";
+logo.alt = "Logo"; logo.style.height = "60px"; logo.style.display = "block"; //
+APPLY ANIMATION (elegan & smooth) logo.style.animation = "logoPulse 3s
+ease-in-out infinite"; logo.style.transformOrigin = "center";
+brandLink.appendChild(logo); const toggleButton =
+navbarHeader.querySelector(".navbar-toggle"); if (toggleButton) {
+navbarHeader.insertBefore(brandLink, toggleButton); } else {
+navbarHeader.appendChild(brandLink); } } }); //
+document.addEventListener("DOMContentLoaded", function () { const navbarHeader =
+document.querySelector(".navbar-header"); if (navbarHeader) { const brandLink =
+document.createElement("a"); brandLink.className = "navbar-brand";
+brandLink.href = "https://carisolusi.biz.id/"; // FIX: kembalikan ke default
+bootstrap (kiri) brandLink.style.float = "left"; brandLink.style.margin = "0";
+brandLink.style.padding = "5px 15px"; brandLink.style.height = "auto";
+brandLink.style.display = "block"; // jangan flex const logo =
+document.createElement("img"); logo.src =
+"https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp";
+logo.alt = "Logo"; logo.style.height = "60px"; // sesuaikan biar ga terlalu
+besar di mobile logo.style.display = "block"; brandLink.appendChild(logo); const
+toggleButton = navbarHeader.querySelector(".navbar-toggle"); if (toggleButton) {
+navbarHeader.insertBefore(brandLink, toggleButton); } else {
+navbarHeader.appendChild(brandLink); } } });

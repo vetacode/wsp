@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CariSolusi - Marketplace Solusi Terbaik</title>
+    <meta
+      name="description"
+      content="CariSolusi - Temukan solusi terbaik untuk kebutuhan Anda. Belajar coding, jasa profesional, dan produk terbaik dalam satu platform."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://carisolusi.biz.id/gambarbebas/20260325-025448_csicon740.webp"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                DEFAULT: '#0D0D0D',
+                accent: '#E8FF00',
+                warm: '#F5F0EB',
+                muted: '#6B6B6B',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      .nav-hidden {
+        transform: translateY(-100%);
+      }
+      .nav-visible {
+        transform: translateY(0);
+      }
+      .card-hover:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      }
+      .card-hover {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.3) 50%,
+          transparent 100%
+        );
+      }
+      .marquee {
+        animation: marquee 25s linear infinite;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .img-zoom:hover img {
+        transform: scale(1.08);
+      }
+      .img-zoom img {
+        transition: transform 0.5s ease;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #0d0d0d;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-brand antialiased">
+    <!-- Top Banner -->
+    <div
+      class="bg-brand text-white text-xs md:text-sm py-2 overflow-hidden relative"
+      id="topBanner"
+    >
+      <div class="flex whitespace-nowrap marquee">
+        <span class="mx-8"
+          >🔥 PROMO SPESIAL — DISKON HINGGA 50% UNTUK SEMUA KATEGORI</span
+        >
+        <span class="mx-8">✨ GRATIS ONGKIR SELURUH INDONESIA</span>
+        <span class="mx-8">🎯 TEMUKAN SOLUSI TERBAIK DI CARISOLUSI</span>
+        <span class="mx-8"
+          >🔥 PROMO SPESIAL — DISKON HINGGA 50% UNTUK SEMUA KATEGORI</span
+        >
+        <span class="mx-8">✨ GRATIS ONGKIR SELURUH INDONESIA</span>
+        <span class="mx-8">🎯 TEMUKAN SOLUSI TERBAIK DI CARISOLUSI</span>
+      </div>
+      <button
+        onclick="document.getElementById('topBanner').remove()"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-transform duration-300 nav-visible"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16 md:h-20">
+          <!-- Logo -->
+          <a href="#home" class="flex items-center gap-2 shrink-0">
+            <img
+              src="https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp"
+              alt="CariSolusi"
+              class="h-9 md:h-11 w-auto"
+            />
+          </a>
+          <!-- Desktop Nav -->
+          <div
+            class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide"
+          >
+            <a
+              href="#home"
+              class="hover:text-brand-accent transition-colors uppercase"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="hover:text-brand-accent transition-colors uppercase"
+              >About</a
+            >
+            <a
+              href="https://carisolusi.biz.id/kategori"
+              class="hover:text-brand-accent transition-colors uppercase"
+              >Kategori</a
+            >
+            <a
+              href="https://carisolusi.biz.id/2/news"
+              class="hover:text-brand-accent transition-colors uppercase"
+              >News</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-brand-accent transition-colors uppercase"
+              >Kontak</a
+            >
+          </div>
+          <!-- Right Icons -->
+          <div class="flex items-center gap-3">
+            <a href="https://carisolusi.biz.id/cari/">
+              <button
+                class="hidden md:flex w-9 h-9 items-center justify-center rounded-full hover:bg-gray-100 transition"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </a>
+            <a
+              href="https://wa.me/6281384072641?text=Halo,%20Saya%20tertarik%20dengan%20produk%20jasa%20CariSolusi,%20bisa%20dibantu?"
+              target="_blank"
+              class="hidden md:inline-flex items-center gap-2 bg-brand text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand/90 transition"
+            >
+              <i class="fab fa-whatsapp text-base"></i> Hubungi Kami
+            </a>
+            <!-- Mobile Menu Button -->
+            <button
+              id="menuBtn"
+              class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden border-t border-gray-100 bg-white"
+      >
+        <div class="px-4 py-4 space-y-1">
+          <a
+            href="#home"
+            class="block py-3 px-4 rounded-lg hover:bg-gray-50 font-medium"
+            onclick="closeMobile()"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="block py-3 px-4 rounded-lg hover:bg-gray-50 font-medium"
+            onclick="closeMobile()"
+            >About</a
+          >
+          <a
+            href="#category"
+            class="block py-3 px-4 rounded-lg hover:bg-gray-50 font-medium"
+            onclick="closeMobile()"
+            >Kategori</a
+          >
+          <a
+            href="#news"
+            class="block py-3 px-4 rounded-lg hover:bg-gray-50 font-medium"
+            onclick="closeMobile()"
+            >News</a
+          >
+          <a
+            href="#contact"
+            class="block py-3 px-4 rounded-lg hover:bg-gray-50 font-medium"
+            onclick="closeMobile()"
+            >Kontak</a
+          >
+          <a
+            href="https://wa.me/6281384072641?text=Halo,%20Saya%20tertarik%20dengan%20produk%&%20jasa%20CariSolusi,%20bisa%20dibantu?"
+            target="_blank"
+            class="flex items-center justify-center gap-2 mt-3 bg-brand text-white py-3 rounded-full font-semibold"
+          >
+            <i class="fab fa-whatsapp"></i> Hubungi Kami
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section
+      id="home"
+      class="relative min-h-[85vh] md:min-h-screen flex items-end overflow-hidden"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1463171379579-3fdfb86d6285?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Hero"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="hero-overlay absolute inset-0"></div>
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-16 md:pb-24 w-full"
+      >
+        <div class="max-w-xl">
+          <span
+            class="inline-block bg-brand-accent text-brand text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest"
+            >Marketplace #1</span
+          >
+          <h1
+            class="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.05] mb-6"
+          >
+            TEMUKAN<br />SOLUSI<br />TERBAIK
+          </h1>
+          <p class="text-white/80 text-base md:text-lg mb-8 max-w-md">
+            Marketplace terpercaya dengan ribuan produk & layanan berkualitas
+            untuk kebutuhan Anda.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="#category"
+              class="bg-white text-brand px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-brand-accent transition inline-flex items-center gap-2"
+            >
+              Jelajahi Sekarang
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a
+              href="#about"
+              class="border-2 border-white text-white px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-white hover:text-brand transition"
+            >
+              Tentang Kami
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUAL BANNER -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <!-- Banner 1 -->
+        <div
+          class="relative rounded-2xl overflow-hidden h-64 md:h-80 img-zoom group cursor-pointer"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+            alt="Promo"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          ></div>
+          <div class="absolute bottom-0 left-0 p-6 md:p-8">
+            <h3
+              class="font-display text-xl md:text-2xl font-bold text-white mb-1"
+            >
+              PRODUK PILIHAN<br />MINGGU INI
+            </h3>
+            <a
+              href="#category"
+              class="inline-flex items-center gap-1 text-white text-sm font-semibold border-b border-white pb-0.5 hover:text-brand-accent hover:border-brand-accent transition mt-3"
+            >
+              LIHAT SEKARANG
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Banner 2 -->
+        <div
+          class="relative rounded-2xl overflow-hidden h-64 md:h-80 img-zoom group cursor-pointer"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80"
+            alt="Koleksi"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          ></div>
+          <div class="absolute bottom-0 left-0 p-6 md:p-8">
+            <h3
+              class="font-display text-xl md:text-2xl font-bold text-white mb-1"
+            >
+              JASA PROFESIONAL<br />YANG ANDA BUTUHKAN
+            </h3>
+            <a
+              href="#category"
+              class="inline-flex items-center gap-1 text-white text-sm font-semibold border-b border-white pb-0.5 hover:text-brand-accent hover:border-brand-accent transition mt-3"
+            >
+              LIHAT SEKARANG
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Sub banners -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+        <div
+          class="relative rounded-2xl overflow-hidden h-64 md:h-80 img-zoom group cursor-pointer"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+            alt="Digital"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          ></div>
+          <div class="absolute bottom-0 left-0 p-6 md:p-8">
+            <h3
+              class="font-display text-xl md:text-2xl font-bold text-white mb-1"
+            >
+              BELAJAR CODING DARI NOL<br />& DIGITAL MARKETING
+            </h3>
+            <a
+              href="#category"
+              class="inline-flex items-center gap-1 text-white text-sm font-semibold border-b border-white pb-0.5 hover:text-brand-accent hover:border-brand-accent transition mt-3"
+            >
+              LIHAT SEKARANG
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div
+          class="relative rounded-2xl overflow-hidden h-64 md:h-80 img-zoom group cursor-pointer"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=800&q=80"
+            alt="Konsultan"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          ></div>
+          <div class="absolute bottom-0 left-0 p-6 md:p-8">
+            <h3
+              class="font-display text-xl md:text-2xl font-bold text-white mb-1"
+            >
+              KONSULTAN<br />PROFESIONAL
+            </h3>
+            <a
+              href="#category"
+              class="inline-flex items-center gap-1 text-white text-sm font-semibold border-b border-white pb-0.5 hover:text-brand-accent hover:border-brand-accent transition mt-3"
+            >
+              LIHAT SEKARANG
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ITEMS -->
+    <section
+      id="category"
+      class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 fade-up"
+    >
+      <div class="text-center mb-10 md:mb-14">
+        <span
+          class="text-xs font-bold tracking-[0.3em] uppercase text-brand-muted"
+          >Koleksi Terbaik</span
+        >
+        <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+          PRODUK UNGGULAN
+        </h2>
+        <div class="w-16 h-1 bg-brand mx-auto mt-4"></div>
+      </div>
+      <!-- Product Grid Row 1 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-4 md:mb-5">
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80"
+              alt="Smart Watch"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Elektronik
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Smart Watch Premium
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 1.299.000</p>
+          </div>
+        </div>
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80"
+              alt="Headphone"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Audio
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Headphone Wireless Pro
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 2.450.000</p>
+          </div>
+        </div>
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&q=80"
+              alt="Kamera"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Fotografi
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Kamera Retro Klasik
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 3.750.000</p>
+          </div>
+        </div>
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&q=80"
+              alt="Sneakers"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Fashion
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Sneakers Limited Edition
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 1.899.000</p>
+          </div>
+        </div>
+      </div>
+      <!-- Product Grid Row 2 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=500&q=80"
+              alt="Parfum"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Kecantikan
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Parfum Eksklusif
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 890.000</p>
+          </div>
+        </div>
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80"
+              alt="Tas"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Aksesoris
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Tas Ransel Premium
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 1.150.000</p>
+          </div>
+        </div>
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80"
+              alt="Sepatu"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Olahraga
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Sepatu Running Ultra
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 2.100.000</p>
+          </div>
+        </div>
+        <div class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1701252374715-b5d8ab0b5f2c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3DD"
+              alt="Kacamata"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-3 px-1">
+            <p class="text-xs text-brand-muted uppercase tracking-wider">
+              Gaya Hidup
+            </p>
+            <h4 class="font-semibold text-sm md:text-base mt-0.5 truncate">
+              Kacamata Sunglasses
+            </h4>
+            <p class="font-bold text-sm md:text-base mt-1">Rp 750.000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIG STATEMENT -->
+    <section class="relative py-20 md:py-32 overflow-hidden fade-up">
+      <img
+        src="https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=1920&q=80"
+        alt="Statement"
+        class="absolute inset-0 w-full h-full object-cover opacity-15"
+      />
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <h2
+          class="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight"
+        >
+          DENGAN DESAIN MODERN,<br />KAMI JADIKAN
+          <span class="text-brand-accent bg-brand px-3 py-1 inline-block"
+            >SOLUSI ANDA</span
+          ><br />PUSAT PERHATIAN
+        </h2>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section
+      id="about"
+      class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 fade-up"
+    >
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center"
+      >
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=800&q=80"
+              alt="About CariSolusi"
+              class="w-full h-[400px] md:h-[550px] object-cover"
+            />
+          </div>
+          <div
+            class="absolute -bottom-6 -right-4 md:-right-8 bg-brand text-white p-6 md:p-8 rounded-2xl max-w-[200px]"
+          >
+            <p class="font-display text-3xl md:text-4xl font-bold">5+</p>
+            <p class="text-sm mt-1 text-white/80">Tahun Melayani Indonesia</p>
+          </div>
+        </div>
+        <div>
+          <span
+            class="text-xs font-bold tracking-[0.3em] uppercase text-brand-muted"
+            >Tentang Kami</span
+          >
+          <h2 class="font-display text-3xl md:text-5xl font-bold mt-3 mb-6">
+            TEMUKAN GAYA UNIK ANDA BERSAMA CARISOLUSI
+          </h2>
+          <p class="text-brand-muted leading-relaxed mb-6">
+            CariSolusi hadir sebagai marketplace terpercaya yang menghubungkan
+            Anda dengan ribuan produk dan layanan berkualitas. Kami percaya
+            setiap orang berhak mendapatkan solusi terbaik untuk setiap
+            kebutuhannya.
+          </p>
+          <p class="text-brand-muted leading-relaxed mb-8">
+            Dengan kurasi produk yang ketat dan layanan pelanggan 24/7, kami
+            memastikan pengalaman berbelanja yang aman, nyaman, dan memuaskan.
+          </p>
+          <div class="grid grid-cols-3 gap-6 mb-8">
+            <div>
+              <p class="font-display text-2xl md:text-3xl font-bold">10K+</p>
+              <p class="text-xs text-brand-muted mt-1">Produk Tersedia</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl md:text-3xl font-bold">50K+</p>
+              <p class="text-xs text-brand-muted mt-1">Pelanggan Puas</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl md:text-3xl font-bold">99%</p>
+              <p class="text-xs text-brand-muted mt-1">Rating Positif</p>
+            </div>
+          </div>
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 bg-brand text-white px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-brand/90 transition"
+          >
+            Pelajari Lebih Lanjut
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section
+      class="relative h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden fade-up"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1557821552-17105176677c?w=1920&q=80"
+        alt="CTA"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative z-10 text-center px-4">
+        <h2
+          class="font-display text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-6"
+        >
+          TEMUKAN KOLEKSI UNIK<br />DI CARISOLUSI
+        </h2>
+        <a
+          href="https://wa.me/6281384072641?text=Halo,%20Saya%20tertarik%20dengan%20produk%20&%20jasa%20CariSolusi,%20bisa%20dibantu?"
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-brand-accent text-brand px-8 py-4 rounded-full font-bold text-sm hover:brightness-110 transition"
+        >
+          <i class="fab fa-whatsapp text-lg"></i> HUBUNGI KAMI
+        </a>
+      </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section
+      id="news"
+      class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 fade-up"
+    >
+      <div class="text-center mb-10 md:mb-14">
+        <span
+          class="text-xs font-bold tracking-[0.3em] uppercase text-brand-muted"
+          >Blog & Artikel</span
+        >
+        <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">
+          BERITA TERKINI
+        </h2>
+        <div class="w-16 h-1 bg-brand mx-auto mt-4"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[16/10] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80"
+              alt="News 1"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-4">
+            <span
+              class="text-xs font-semibold text-brand-muted uppercase tracking-wider"
+              >Tips & Trik • 20 Apr 2026</span
+            >
+            <h3
+              class="font-semibold text-lg mt-2 group-hover:text-brand-accent transition-colors"
+            >
+              5 Cara Cerdas Berbelanja Online di Era Digital
+            </h3>
+            <p class="text-sm text-brand-muted mt-2 line-clamp-2">
+              Pelajari strategi berbelanja online yang aman dan hemat dengan
+              panduan lengkap dari tim CariSolusi.
+            </p>
+          </div>
+        </article>
+        <article class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[16/10] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
+              alt="News 2"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-4">
+            <span
+              class="text-xs font-semibold text-brand-muted uppercase tracking-wider"
+              >Teknologi • 18 Apr 2026</span
+            >
+            <h3
+              class="font-semibold text-lg mt-2 group-hover:text-brand-accent transition-colors"
+            >
+              Tren E-Commerce 2026: Masa Depan Belanja Online
+            </h3>
+            <p class="text-sm text-brand-muted mt-2 line-clamp-2">
+              Inovasi terbaru dalam dunia marketplace yang akan mengubah cara
+              Anda berbelanja selamanya.
+            </p>
+          </div>
+        </article>
+        <article class="card-hover group cursor-pointer">
+          <div
+            class="aspect-[16/10] rounded-xl overflow-hidden bg-gray-100 img-zoom"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&q=80"
+              alt="News 3"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-4">
+            <span
+              class="text-xs font-semibold text-brand-muted uppercase tracking-wider"
+              >Inspirasi • 15 Apr 2026</span
+            >
+            <h3
+              class="font-semibold text-lg mt-2 group-hover:text-brand-accent transition-colors"
+            >
+              Panduan Memilih Produk Berkualitas di Marketplace
+            </h3>
+            <p class="text-sm text-brand-muted mt-2 line-clamp-2">
+              Tips dari para ahli untuk memastikan Anda mendapatkan produk
+              terbaik dengan harga terjangkau.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-brand text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8"
+        >
+          <!-- Brand -->
+          <div class="lg:col-span-1">
+            <a href="#home">
+              <img
+                src="https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp"
+                alt="CariSolusi"
+                class="h-12 w-auto mb-4"
+              />
+            </a>
+            <p class="text-white/60 text-sm leading-relaxed mb-6">
+              Kreatif dengan solusi: inspirasi terbaik untuk setiap kebutuhan
+              Anda.
+            </p>
+            <a
+              href="https://wa.me/6281384072641?text=Halo,%20Saya%20tertarik%20dengan%20produk%20jasa%20CariSolusi,%20bisa%20dibantu?"
+              target="_blank"
+              class="inline-flex items-center gap-2 border border-white/30 px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white hover:text-brand transition"
+            >
+              <i class="fab fa-whatsapp"></i> Hubungi Kami
+            </a>
+          </div>
+          <!-- Navigation -->
+          <div>
+            <h4 class="font-semibold text-sm uppercase tracking-wider mb-5">
+              Navigasi
+            </h4>
+            <ul class="space-y-3 text-sm text-white/60">
+              <li>
+                <a href="#home" class="hover:text-white transition">Home</a>
+              </li>
+              <li>
+                <a href="#about" class="hover:text-white transition"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li>
+                <a href="#category" class="hover:text-white transition"
+                  >Kategori</a
+                >
+              </li>
+              <li>
+                <a href="#news" class="hover:text-white transition">Berita</a>
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-white transition"
+                  >Kontak</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Info -->
+          <div>
+            <h4 class="font-semibold text-sm uppercase tracking-wider mb-5">
+              Informasi
+            </h4>
+            <ul class="space-y-3 text-sm text-white/60">
+              <li>Syarat & Ketentuan</li>
+              <li>Kebijakan Privasi</li>
+              <li>FAQ</li>
+            </ul>
+          </div>
+          <!-- Contact -->
+          <div>
+            <h4 class="font-semibold text-sm uppercase tracking-wider mb-5">
+              Kontak
+            </h4>
+            <ul class="space-y-3 text-sm text-white/60">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-map-pin mt-0.5 shrink-0"></i>
+                Indonesia
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-phone mt-0.5 shrink-0"></i> +62 813 8407 2641
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-envelope mt-0.5 shrink-0"></i>
+                carisolusibisnis@gmail.com
+              </li>
+            </ul>
+            <div class="flex gap-3 mt-6">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand transition"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand transition"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand transition"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand transition"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom -->
+        <div
+          class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40"
+        >
+          <p>&copy; 2026 CariSolusi. All rights reserved.</p>
+          <p>
+            WebDev by:
+            <a
+              href="https://diamantdigital.vercel.app"
+              target="_blank"
+              class="text-white/60 hover:text-white font-semibold transition"
+              >Diamant Digital</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a
+      href="https://wa.me/6281384072641?text=Halo,%20Saya%20tertarik%20dengan%20produk%20jasa%20CariSolusi,%20bisa%20dibantu?"
+      target="_blank"
+      class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 hover:scale-110 transition-all duration-300"
+    >
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+      // Navbar show/hide on scroll
+      let lastScroll = 0;
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+          return;
+        }
+        if (currentScroll > lastScroll && currentScroll > 80) {
+          navbar.classList.add('nav-hidden');
+          navbar.classList.remove('nav-visible');
+        } else {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+        }
+        lastScroll = currentScroll;
+      });
+
+      // Mobile menu
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn.addEventListener('click', () =>
+        mobileMenu.classList.toggle('hidden'),
+      );
+      function closeMobile() {
+        mobileMenu.classList.add('hidden');
+      }
+
+      // Scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll('.fade-up')
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

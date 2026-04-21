@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CariSolusi — Marketplace Solusi Terpercaya</title>
+    <meta
+      name="description"
+      content="CariSolusi adalah marketplace untuk menemukan solusi, produk, dan layanan terpercaya di Indonesia."
+    />
+    <link
+      rel="icon"
+      href="https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+              display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#eef6ff',
+                100: '#d9eaff',
+                200: '#b6d6ff',
+                300: '#85b8ff',
+                400: '#4f93ff',
+                500: '#2670ff',
+                600: '#1554e6',
+                700: '#1142b4',
+                800: '#123a8c',
+                900: '#13346f',
+              },
+              accent: {
+                500: '#ff8a3d',
+                600: '#f0701f',
+              },
+              ink: '#0b1220',
+            },
+            boxShadow: {
+              soft: '0 6px 24px -8px rgba(15,23,42,0.12)',
+              card: '0 10px 30px -12px rgba(15,23,42,0.18)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        color: #0b1220;
+      }
+      .font-display {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      .hide-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .navlink {
+        position: relative;
+      }
+      .navlink::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        height: 2px;
+        width: 0;
+        background: #1554e6;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      .navlink:hover::after,
+      .navlink.active::after {
+        width: 100%;
+      }
+      .card-hover {
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px -16px rgba(15, 23, 42, 0.25);
+      }
+      .img-zoom img {
+        transition: transform 0.6s ease;
+      }
+      .img-zoom:hover img {
+        transform: scale(1.06);
+      }
+    </style>
+  </head>
+  <body class="bg-white antialiased">
+    <!-- Top announcement bar -->
+    <div class="bg-ink text-white text-xs sm:text-sm">
+      <div
+        class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-center gap-2 text-center"
+      >
+        <i data-lucide="sparkles" class="w-4 h-4 text-accent-500"></i>
+        <span
+          >Promo spesial bulan ini — diskon hingga
+          <b class="text-accent-500">40%</b> untuk layanan pilihan.</span
+        >
+        <a
+          href="#category"
+          class="underline underline-offset-2 hover:text-accent-500 hidden sm:inline"
+          >Lihat Sekarang</a
+        >
+      </div>
+    </div>
+
+    <!-- NAVBAR (dynamic show/hide) -->
+    <header
+      id="navbar"
+      class="fixed inset-x-0 top-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100 transition-transform duration-300"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+      >
+        <a href="#home" class="flex items-center gap-2">
+          <img
+            src="https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp"
+            alt="CariSolusi"
+            class="h-9 w-auto"
+          />
+          <span
+            class="hidden sm:block font-display font-extrabold text-lg text-ink"
+            >Cari<span class="text-brand-600">Solusi</span></span
+          >
+        </a>
+
+        <ul
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700"
+        >
+          <li><a href="#home" class="navlink active">Home</a></li>
+          <li><a href="#about" class="navlink">About</a></li>
+          <li><a href="#category" class="navlink">Category</a></li>
+          <li><a href="#news" class="navlink">News</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <button
+            class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-slate-100"
+            aria-label="Cari"
+          >
+            <i data-lucide="search" class="w-5 h-5 text-slate-700"></i>
+          </button>
+          <a
+            href="https://wa.me/628119950205"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-soft"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="hidden sm:inline">Hubungi Kami</span>
+          </a>
+          <button
+            id="menuBtn"
+            class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-slate-100"
+            aria-label="Menu"
+          >
+            <i data-lucide="menu" class="w-6 h-6 text-ink"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden border-t border-slate-100 bg-white"
+      >
+        <ul class="px-4 py-3 space-y-1 text-slate-800 font-medium">
+          <li>
+            <a
+              href="#home"
+              class="block px-3 py-2 rounded-lg hover:bg-slate-100"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="block px-3 py-2 rounded-lg hover:bg-slate-100"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#category"
+              class="block px-3 py-2 rounded-lg hover:bg-slate-100"
+              >Category</a
+            >
+          </li>
+          <li>
+            <a
+              href="#news"
+              class="block px-3 py-2 rounded-lg hover:bg-slate-100"
+              >News</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="pt-16">
+      <!-- HERO -->
+      <section
+        id="home"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10"
+      >
+        <div class="relative rounded-3xl overflow-hidden shadow-card">
+          <img
+            src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=1600&q=80"
+            alt="Marketplace Solusi"
+            class="w-full h-[420px] sm:h-[520px] object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/40 to-transparent"
+          ></div>
+
+          <div class="absolute inset-0 flex">
+            <div
+              class="max-w-xl m-auto sm:m-0 sm:my-auto sm:ml-10 lg:ml-16 px-6 sm:px-0 text-white"
+            >
+              <span
+                class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold"
+              >
+                <i
+                  data-lucide="badge-check"
+                  class="w-4 h-4 text-accent-500"
+                ></i>
+                Marketplace #1 untuk Solusi Bisnis & Personal
+              </span>
+              <h1
+                class="font-display font-extrabold text-3xl sm:text-5xl leading-tight mt-4"
+              >
+                Temukan <span class="text-accent-500">Solusi Terbaik</span
+                ><br />untuk Setiap Kebutuhan Anda
+              </h1>
+              <p class="mt-4 text-white/85 text-sm sm:text-base max-w-md">
+                Ribuan layanan, produk, dan jasa profesional terverifikasi —
+                semuanya dalam satu tempat. Mulai dari Rp 50.000.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="#category"
+                  class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-3 rounded-full shadow-soft"
+                >
+                  Mulai Belanja
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a
+                  href="https://wa.me/628119950205"
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur text-white font-semibold px-5 py-3 rounded-full"
+                >
+                  <i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur rounded-2xl px-4 py-3 hidden sm:flex items-center gap-3 shadow-card"
+          >
+            <div class="flex -space-x-2">
+              <img
+                class="w-8 h-8 rounded-full border-2 border-white"
+                src="https://i.pravatar.cc/40?img=12"
+                alt=""
+              />
+              <img
+                class="w-8 h-8 rounded-full border-2 border-white"
+                src="https://i.pravatar.cc/40?img=32"
+                alt=""
+              />
+              <img
+                class="w-8 h-8 rounded-full border-2 border-white"
+                src="https://i.pravatar.cc/40?img=47"
+                alt=""
+              />
+            </div>
+            <div class="text-xs">
+              <div class="font-semibold text-ink">12.500+ pelanggan</div>
+              <div class="text-slate-500 flex items-center gap-1">
+                <span class="text-yellow-500"
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                ></span>
+                4.9/5 rating
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust strip -->
+        <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
+            >
+              <i data-lucide="shield-check"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">100% Terverifikasi</div>
+              <div class="text-xs text-slate-500">Mitra terpercaya</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
+            >
+              <i data-lucide="truck"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Cepat & Tepat</div>
+              <div class="text-xs text-slate-500">Respon &lt; 1 jam</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
+            >
+              <i data-lucide="wallet"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Harga Transparan</div>
+              <div class="text-xs text-slate-500">Tanpa biaya tersembunyi</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
+            >
+              <i data-lucide="headset"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Dukungan 24/7</div>
+              <div class="text-xs text-slate-500">Selalu siap membantu</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED COLLAGE (4 cards seperti referensi) -->
+      <section
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14 reveal"
+      >
+        <div class="flex items-end justify-between mb-5">
+          <div>
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl">
+              Pilihan Unggulan
+            </h2>
+            <p class="text-slate-500 text-sm">
+              Layanan paling banyak dicari minggu ini
+            </p>
+          </div>
+          <a
+            href="#category"
+            class="text-sm font-semibold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1"
+          >
+            Lihat semua <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <a
+            href="#"
+            class="group relative img-zoom rounded-2xl overflow-hidden card-hover bg-slate-100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80"
+              alt=""
+              class="w-full h-56 sm:h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+            ></div>
+            <div class="absolute left-5 top-5 text-white max-w-[70%]">
+              <div class="text-[11px] uppercase tracking-wider text-white/80">
+                Konsultasi Bisnis
+              </div>
+              <div
+                class="font-display font-bold text-lg sm:text-xl leading-snug"
+              >
+                Strategi Bertumbuh untuk UMKM
+              </div>
+            </div>
+            <div
+              class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
+            >
+              BELANJA SEKARANG <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="group relative img-zoom rounded-2xl overflow-hidden card-hover bg-slate-100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=80"
+              alt=""
+              class="w-full h-56 sm:h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+            ></div>
+            <div class="absolute left-5 top-5 text-white max-w-[70%]">
+              <div class="text-[11px] uppercase tracking-wider text-white/80">
+                Pendidikan
+              </div>
+              <div
+                class="font-display font-bold text-lg sm:text-xl leading-snug"
+              >
+                Kursus Online Bersertifikat
+              </div>
+            </div>
+            <div
+              class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
+            >
+              BELANJA SEKARANG <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="group relative img-zoom rounded-2xl overflow-hidden card-hover bg-slate-100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80"
+              alt=""
+              class="w-full h-56 sm:h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+            ></div>
+            <div class="absolute left-5 top-5 text-white max-w-[70%]">
+              <div class="text-[11px] uppercase tracking-wider text-white/80">
+                Jasa Profesional
+              </div>
+              <div
+                class="font-display font-bold text-lg sm:text-xl leading-snug"
+              >
+                Tim Ahli untuk Proyek Anda
+              </div>
+            </div>
+            <div
+              class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
+            >
+              BELANJA SEKARANG <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="group relative img-zoom rounded-2xl overflow-hidden card-hover bg-slate-100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1556742400-b5b7c5121f9b?auto=format&fit=crop&w=900&q=80"
+              alt=""
+              class="w-full h-56 sm:h-64 object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+            ></div>
+            <div class="absolute left-5 top-5 text-white max-w-[70%]">
+              <div class="text-[11px] uppercase tracking-wider text-white/80">
+                Teknologi
+              </div>
+              <div
+                class="font-display font-bold text-lg sm:text-xl leading-snug"
+              >
+                Solusi Digital End-to-End
+              </div>
+            </div>
+            <div
+              class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
+            >
+              BELANJA SEKARANG <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section
+        id="about"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 reveal"
+      >
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="relative">
+            <img
+              src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=1100&q=80"
+              alt="Tentang CariSolusi"
+              class="rounded-3xl shadow-card w-full h-[420px] object-cover"
+            />
+            <div
+              class="absolute -bottom-6 -left-2 sm:-left-6 bg-white rounded-2xl shadow-card p-4 sm:p-5 w-56"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center"
+                >
+                  <i data-lucide="users"></i>
+                </div>
+                <div>
+                  <div class="font-display font-extrabold text-xl">12K+</div>
+                  <div class="text-xs text-slate-500">Pelanggan puas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span
+              class="text-xs font-semibold text-brand-600 uppercase tracking-widest"
+              >Tentang Kami</span
+            >
+            <h2
+              class="font-display font-extrabold text-3xl sm:text-4xl leading-tight mt-2"
+            >
+              Dengan desain modern, kami jadikan
+              <span class="text-brand-600">solusi Anda</span> sebagai prioritas
+              utama.
+            </h2>
+            <p class="text-slate-600 mt-4">
+              CariSolusi adalah marketplace yang menghubungkan Anda dengan
+              ribuan penyedia layanan profesional terverifikasi di seluruh
+              Indonesia. Mulai dari konsultasi bisnis, edukasi, hingga jasa
+              teknologi — semua tersedia dengan harga transparan.
+            </p>
+            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+              <div class="flex gap-3 p-4 rounded-2xl bg-slate-50">
+                <i
+                  data-lucide="check-circle-2"
+                  class="w-6 h-6 text-brand-600 shrink-0"
+                ></i>
+                <div>
+                  <div class="font-semibold">Mitra Terverifikasi</div>
+                  <div class="text-sm text-slate-500">
+                    Setiap penyedia melalui proses kurasi ketat.
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-3 p-4 rounded-2xl bg-slate-50">
+                <i
+                  data-lucide="check-circle-2"
+                  class="w-6 h-6 text-brand-600 shrink-0"
+                ></i>
+                <div>
+                  <div class="font-semibold">Pembayaran Aman</div>
+                  <div class="text-sm text-slate-500">
+                    Dana ditahan hingga pekerjaan selesai.
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-3 p-4 rounded-2xl bg-slate-50">
+                <i
+                  data-lucide="check-circle-2"
+                  class="w-6 h-6 text-brand-600 shrink-0"
+                ></i>
+                <div>
+                  <div class="font-semibold">Dukungan Penuh</div>
+                  <div class="text-sm text-slate-500">
+                    Tim support siap membantu 24/7.
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-3 p-4 rounded-2xl bg-slate-50">
+                <i
+                  data-lucide="check-circle-2"
+                  class="w-6 h-6 text-brand-600 shrink-0"
+                ></i>
+                <div>
+                  <div class="font-semibold">Jaminan Kualitas</div>
+                  <div class="text-sm text-slate-500">
+                    Garansi pengembalian dana 100%.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a
+                href="#category"
+                class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-3 rounded-full"
+              >
+                Jelajahi Kategori
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+              <a
+                href="https://wa.me/628119950205"
+                target="_blank"
+                class="inline-flex items-center gap-2 border border-slate-200 hover:border-brand-600 hover:text-brand-700 text-slate-700 font-semibold px-5 py-3 rounded-full"
+              >
+                <i class="fa-brands fa-whatsapp"></i> Tanya Tim Kami
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORY (FEATURED ITEMS GRID) -->
+      <section
+        id="category"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 reveal"
+      >
+        <div class="text-center">
+          <span
+            class="text-xs font-semibold text-brand-600 uppercase tracking-widest"
+            >Kategori Pilihan</span
+          >
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-2">
+            Semua Solusi yang Anda Butuhkan
+          </h2>
+          <p class="text-slate-500 mt-2 max-w-xl mx-auto">
+            Pilih kategori — atau telusuri produk dan layanan unggulan di bawah
+            ini.
+          </p>
+        </div>
+
+        <!-- Category chips -->
+        <div class="mt-6 flex gap-2 overflow-x-auto hide-scroll pb-2">
+          <button
+            data-cat="all"
+            class="cat-chip active whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-ink text-white"
+          >
+            Semua
+          </button>
+          <button
+            data-cat="bisnis"
+            class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
+          >
+            Bisnis
+          </button>
+          <button
+            data-cat="teknologi"
+            class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
+          >
+            Teknologi
+          </button>
+          <button
+            data-cat="edukasi"
+            class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
+          >
+            Edukasi
+          </button>
+          <button
+            data-cat="kesehatan"
+            class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
+          >
+            Kesehatan
+          </button>
+          <button
+            data-cat="rumah"
+            class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
+          >
+            Rumah
+          </button>
+          <button
+            data-cat="kreatif"
+            class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
+          >
+            Kreatif
+          </button>
+        </div>
+
+        <!-- Product Grid -->
+        <div
+          id="productGrid"
+          class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5"
+        >
+          <!-- products injected by JS -->
+        </div>
+
+        <div class="text-center mt-8">
+          <a
+            href="https://wa.me/628119950205"
+            target="_blank"
+            class="inline-flex items-center gap-2 border border-ink/10 hover:border-brand-600 hover:text-brand-700 text-slate-800 font-semibold px-6 py-3 rounded-full"
+          >
+            Muat Lebih Banyak <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- BIG STATEMENT -->
+      <section
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 reveal"
+      >
+        <div
+          class="relative bg-slate-50 rounded-3xl p-6 sm:p-12 overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=400&q=80"
+            alt=""
+            class="hidden sm:block absolute left-6 bottom-6 w-32 h-40 object-cover rounded-2xl shadow-card"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80"
+            alt=""
+            class="hidden sm:block absolute right-6 top-6 w-32 h-40 object-cover rounded-2xl shadow-card"
+          />
+          <h3
+            class="font-display font-extrabold text-3xl sm:text-5xl text-center leading-tight max-w-3xl mx-auto"
+          >
+            Dengan pendekatan modern, kami jadikan
+            <span class="text-brand-600">kebutuhan Anda</span> pusat dari
+            segalanya.
+          </h3>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section
+        id="news"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 reveal"
+      >
+        <div class="flex items-end justify-between mb-6">
+          <div>
+            <span
+              class="text-xs font-semibold text-brand-600 uppercase tracking-widest"
+              >Berita & Insight</span
+            >
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-1">
+              Kabar Terbaru dari CariSolusi
+            </h2>
+          </div>
+          <a
+            href="#"
+            class="hidden sm:inline-flex text-sm font-semibold text-brand-600 hover:text-brand-700 items-center gap-1"
+          >
+            Semua artikel <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <article
+            class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=900&q=80"
+                class="w-full h-52 object-cover"
+                alt=""
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-2 text-xs text-slate-500">
+                <span
+                  class="px-2 py-1 rounded-full bg-brand-50 text-brand-700 font-semibold"
+                  >Bisnis</span
+                >
+                <span>· 18 April 2026</span>
+              </div>
+              <h3 class="font-display font-bold text-lg mt-3 leading-snug">
+                5 Strategi UMKM Naik Kelas di Era Digital
+              </h3>
+              <p class="text-sm text-slate-500 mt-2">
+                Pelajari langkah praktis untuk memperluas jangkauan bisnis Anda
+                secara online.
+              </p>
+              <a
+                href="#"
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600"
+                >Baca selengkapnya
+                <i data-lucide="arrow-right" class="w-4 h-4"></i
+              ></a>
+            </div>
+          </article>
+
+          <article
+            class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80"
+                class="w-full h-52 object-cover"
+                alt=""
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-2 text-xs text-slate-500">
+                <span
+                  class="px-2 py-1 rounded-full bg-brand-50 text-brand-700 font-semibold"
+                  >Teknologi</span
+                >
+                <span>· 12 April 2026</span>
+              </div>
+              <h3 class="font-display font-bold text-lg mt-3 leading-snug">
+                Tren AI yang Mengubah Cara Kerja Tim Modern
+              </h3>
+              <p class="text-sm text-slate-500 mt-2">
+                Bagaimana AI mempercepat produktivitas tanpa mengorbankan
+                kualitas.
+              </p>
+              <a
+                href="#"
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600"
+                >Baca selengkapnya
+                <i data-lucide="arrow-right" class="w-4 h-4"></i
+              ></a>
+            </div>
+          </article>
+
+          <article
+            class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=900&q=80"
+                class="w-full h-52 object-cover"
+                alt=""
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-2 text-xs text-slate-500">
+                <span
+                  class="px-2 py-1 rounded-full bg-brand-50 text-brand-700 font-semibold"
+                  >Edukasi</span
+                >
+                <span>· 02 April 2026</span>
+              </div>
+              <h3 class="font-display font-bold text-lg mt-3 leading-snug">
+                Skill Paling Dicari di Tahun 2026
+              </h3>
+              <p class="text-sm text-slate-500 mt-2">
+                Daftar keterampilan strategis untuk profesional masa depan.
+              </p>
+              <a
+                href="#"
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600"
+                >Baca selengkapnya
+                <i data-lucide="arrow-right" class="w-4 h-4"></i
+              ></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 reveal"
+      >
+        <div class="relative rounded-3xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80"
+            alt=""
+            class="w-full h-72 object-cover"
+          />
+          <div class="absolute inset-0 bg-ink/70"></div>
+          <div
+            class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6"
+          >
+            <h3
+              class="font-display font-extrabold text-2xl sm:text-4xl max-w-2xl"
+            >
+              Temukan Gaya Solusi Anda Bersama CariSolusi
+            </h3>
+            <p class="text-white/80 mt-2 max-w-xl">
+              Konsultasikan kebutuhan Anda — gratis — lewat WhatsApp kami.
+            </p>
+            <a
+              href="https://wa.me/628119950205"
+              target="_blank"
+              class="mt-5 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3 rounded-full shadow-soft"
+            >
+              <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp Sekarang
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 bg-ink text-slate-300">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-10"
+      >
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2">
+            <img
+              src="https://carisolusi.biz.id/gambarbebas/20260420-010158_carisolusi-trans-bubble-hd.webp"
+              alt="CariSolusi"
+              class="h-10 w-auto"
+            />
+            <span class="font-display font-extrabold text-xl text-white"
+              >Cari<span class="text-accent-500">Solusi</span></span
+            >
+          </div>
+          <p class="text-sm text-slate-400 mt-4">
+            Marketplace solusi terpercaya di Indonesia. Menghubungkan Anda
+            dengan ribuan penyedia layanan profesional.
+          </p>
+          <div class="flex items-center gap-3 mt-5">
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="w-9 h-9 rounded-full bg-white/5 hover:bg-accent-500 flex items-center justify-center transition"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="w-9 h-9 rounded-full bg-white/5 hover:bg-accent-500 flex items-center justify-center transition"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              aria-label="TikTok"
+              class="w-9 h-9 rounded-full bg-white/5 hover:bg-accent-500 flex items-center justify-center transition"
+              ><i class="fa-brands fa-tiktok"></i
+            ></a>
+            <a
+              href="#"
+              aria-label="YouTube"
+              class="w-9 h-9 rounded-full bg-white/5 hover:bg-accent-500 flex items-center justify-center transition"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a
+              href="https://wa.me/628119950205"
+              target="_blank"
+              aria-label="WhatsApp"
+              class="w-9 h-9 rounded-full bg-white/5 hover:bg-accent-500 flex items-center justify-center transition"
+              ><i class="fa-brands fa-whatsapp"></i
+            ></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Navigasi</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#home" class="hover:text-white">Home</a></li>
+            <li><a href="#about" class="hover:text-white">About</a></li>
+            <li><a href="#category" class="hover:text-white">Category</a></li>
+            <li><a href="#news" class="hover:text-white">News</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Layanan</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Konsultasi Bisnis</a></li>
+            <li><a href="#" class="hover:text-white">Jasa Teknologi</a></li>
+            <li><a href="#" class="hover:text-white">Edukasi & Kursus</a></li>
+            <li><a href="#" class="hover:text-white">Layanan Rumah</a></li>
+            <li><a href="#" class="hover:text-white">Kebutuhan Kreatif</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Kontak</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2">
+              <i
+                data-lucide="map-pin"
+                class="w-4 h-4 mt-0.5 text-accent-500"
+              ></i>
+              Jakarta, Indonesia
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="mail" class="w-4 h-4 mt-0.5 text-accent-500"></i>
+              hello@carisolusi.biz.id
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-brands fa-whatsapp text-accent-500 mt-0.5"></i>
+              <a
+                href="https://wa.me/628119950205"
+                target="_blank"
+                class="hover:text-white"
+                >+62 811-9950-205</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400"
+        >
+          <div>© 2026 CariSolusi. Hak cipta dilindungi.</div>
+          <div>
+            WebDev by:
+            <a href="#" class="text-white font-semibold hover:text-accent-500"
+              >Diamant Digital</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a
+      href="https://wa.me/628119950205"
+      target="_blank"
+      rel="noopener"
+      class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-card transition active:scale-95"
+      aria-label="WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+      // Init lucide icons
+      lucide.createIcons();
+
+      // ===== Mobile menu =====
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn?.addEventListener('click', () =>
+        mobileMenu.classList.toggle('hidden'),
+      );
+      mobileMenu
+        ?.querySelectorAll('a')
+        .forEach((a) =>
+          a.addEventListener('click', () => mobileMenu.classList.add('hidden')),
+        );
+
+      // ===== Dynamic navbar (show/hide on scroll) =====
+      const navbar = document.getElementById('navbar');
+      let lastY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > lastY && y > 120) {
+          navbar.style.transform = 'translateY(-100%)';
+        } else {
+          navbar.style.transform = 'translateY(0)';
+        }
+        navbar.classList.toggle('shadow-soft', y > 8);
+        lastY = y;
+
+        // Active link based on section in view
+        document.querySelectorAll('section[id]').forEach((sec) => {
+          const top = sec.getBoundingClientRect().top;
+          const id = sec.getAttribute('id');
+          if (top < 120 && top > -sec.offsetHeight + 120) {
+            document
+              .querySelectorAll('.navlink')
+              .forEach((l) =>
+                l.classList.toggle(
+                  'active',
+                  l.getAttribute('href') === '#' + id,
+                ),
+              );
+          }
+        });
+      });
+
+      // ===== Reveal on scroll =====
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      // ===== Products =====
+      const IDR = (n) => 'Rp ' + n.toLocaleString('id-ID');
+      const products = [
+        {
+          cat: 'bisnis',
+          title: 'Konsultasi Strategi UMKM',
+          vendor: 'Mitra Bisnis ID',
+          price: 299000,
+          old: 399000,
+          rating: 4.9,
+          img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'teknologi',
+          title: 'Pembuatan Website Profesional',
+          vendor: 'Diamant Digital',
+          price: 2500000,
+          old: 3500000,
+          rating: 5.0,
+          img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'edukasi',
+          title: 'Kursus Digital Marketing',
+          vendor: 'Akademi Solusi',
+          price: 499000,
+          old: 799000,
+          rating: 4.8,
+          img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'kesehatan',
+          title: 'Konsultasi Gizi Online',
+          vendor: 'NutriCare',
+          price: 150000,
+          old: 225000,
+          rating: 4.7,
+          img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'rumah',
+          title: 'Jasa Bersih Rumah Profesional',
+          vendor: 'CleanPro',
+          price: 175000,
+          old: 250000,
+          rating: 4.8,
+          img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'kreatif',
+          title: 'Desain Logo & Branding',
+          vendor: 'Studio Visual',
+          price: 850000,
+          old: 1200000,
+          rating: 4.9,
+          img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'teknologi',
+          title: 'Audit Keamanan IT',
+          vendor: 'CyberGuard',
+          price: 1750000,
+          old: 2250000,
+          rating: 4.9,
+          img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          cat: 'bisnis',
+          title: 'Pendaftaran Legalitas Usaha',
+          vendor: 'LegalKu',
+          price: 1200000,
+          old: 1500000,
+          rating: 4.8,
+          img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+        },
+      ];
+
+      const grid = document.getElementById('productGrid');
+      function renderProducts(filter = 'all') {
+        const list =
+          filter === 'all'
+            ? products
+            : products.filter((p) => p.cat === filter);
+        grid.innerHTML = list
+          .map(
+            (p) => `
+      <article class="group bg-white rounded-2xl overflow-hidden border border-slate-100 card-hover">
+        <div class="relative img-zoom overflow-hidden">
+          <img src="${p.img}" alt="${p.title}" class="w-full h-40 sm:h-48 object-cover" />
+          <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft" aria-label="Wishlist">
+            <i data-lucide="heart" class="w-4 h-4"></i>
+          </button>
+          <span class="absolute top-3 left-3 text-[10px] font-bold uppercase bg-accent-500 text-white px-2 py-1 rounded-full">${Math.round((1 - p.price / p.old) * 100)}% OFF</span>
+        </div>
+        <div class="p-4">
+          <div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${p.vendor}</div>
+          <h3 class="font-semibold text-sm sm:text-base text-ink mt-1 line-clamp-2 min-h-[2.6rem]">${p.title}</h3>
+          <div class="flex items-center gap-1 text-xs text-slate-500 mt-1">
+            <i class="fa-solid fa-star text-yellow-500"></i> ${p.rating} <span class="text-slate-300">·</span> Terjual 1k+
+          </div>
+          <div class="mt-2 flex items-end justify-between">
+            <div>
+              <div class="text-brand-700 font-extrabold text-sm sm:text-base">${IDR(p.price)}</div>
+              <div class="text-[11px] text-slate-400 line-through">${IDR(p.old)}</div>
+            </div>
+            <a href="https://wa.me/628119950205" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white" aria-label="Beli">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+    `,
+          )
+          .join('');
+        lucide.createIcons();
+      }
+      renderProducts();
+
+      document.querySelectorAll('.cat-chip').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cat-chip').forEach((b) => {
+            b.classList.remove('active', 'bg-ink', 'text-white');
+            b.classList.add('bg-slate-100', 'text-slate-700');
+          });
+          btn.classList.add('active', 'bg-ink', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-slate-700');
+          renderProducts(btn.dataset.cat);
+        });
+      });
+    </script>
+  </body>
+</html>

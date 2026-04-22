@@ -81,6 +81,136 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      /* ===== Hero Animation Keyframes ===== */
+      @keyframes heroImageSlideIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95) translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      @keyframes heroBadgeSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes heroTitleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+          clip-path: inset(0 0 100% 0);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      @keyframes heroParagraphFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes heroButtonStaggerIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes heroStatsSlideIn {
+        from {
+          opacity: 0;
+          transform: translateX(40px) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) translateY(0);
+        }
+      }
+
+      @keyframes heroTrustItemFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== Hero Animation Application ===== */
+      .hero-image {
+        animation: heroImageSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)
+          forwards;
+      }
+
+      .hero-badge {
+        animation: heroBadgeSlideIn 0.6s ease-out 0.1s forwards;
+        opacity: 0;
+      }
+
+      .hero-title {
+        animation: heroTitleReveal 0.8s ease-out 0.3s forwards;
+        opacity: 0;
+      }
+
+      .hero-paragraph {
+        animation: heroParagraphFadeIn 0.8s ease-out 0.5s forwards;
+        opacity: 0;
+      }
+
+      .hero-button-group {
+        animation: heroParagraphFadeIn 0.8s ease-out 0.7s forwards;
+        opacity: 0;
+      }
+
+      .hero-stats {
+        animation: heroStatsSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s
+          forwards;
+        opacity: 0;
+      }
+
+      .trust-item {
+        animation: heroTrustItemFadeIn 0.6s ease-out backwards;
+      }
+
+      .trust-item:nth-child(1) {
+        animation-delay: 1.2s;
+      }
+      .trust-item:nth-child(2) {
+        animation-delay: 1.35s;
+      }
+      .trust-item:nth-child(3) {
+        animation-delay: 1.5s;
+      }
+      .trust-item:nth-child(4) {
+        animation-delay: 1.65s;
+      }
+
       .reveal {
         opacity: 0;
         transform: translateY(16px);
@@ -92,6 +222,7 @@
         opacity: 1;
         transform: translateY(0);
       }
+
       .navlink {
         position: relative;
       }
@@ -156,7 +287,7 @@
       >
         <a href="#home" class="flex items-center gap-2">
           <img
-            src="https://carisolusi.biz.id/gambarbebas/20260422-100433_carisolusi-hd.webp"
+            src="https://carisolusi.biz.id/gambarbebas/20260422-081208_carisolusi.webp"
             alt="CariSolusi"
             class="h-14 w-auto"
           />
@@ -252,7 +383,7 @@
           <img
             src="https://images.unsplash.com/photo-1674027392887-751d6396b710?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Marketplace Solusi"
-            class="w-full h-[420px] sm:h-[520px] object-cover"
+            class="hero-image w-full h-[420px] sm:h-[520px] object-cover"
           />
           <div
             class="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/40 to-transparent"
@@ -263,7 +394,7 @@
               class="max-w-xl m-auto sm:m-0 sm:my-auto sm:ml-10 lg:ml-16 px-6 sm:px-0 text-white"
             >
               <span
-                class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold"
+                class="hero-badge inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold"
               >
                 <i
                   data-lucide="badge-check"
@@ -272,18 +403,20 @@
                 Marketplace Jasa Digital & Solusi Bisnis
               </span>
               <h1
-                class="font-display font-extrabold text-3xl sm:text-5xl leading-tight mt-4"
+                class="hero-title font-display font-extrabold text-3xl sm:text-5xl leading-tight mt-4"
               >
                 Jasa Digital Marketing,
                 <span class="text-accent-500"> SEO & Website UMKM</span
                 ><br />Terlengkap di Indonesia
               </h1>
-              <p class="mt-4 text-white/85 text-sm sm:text-base max-w-md">
+              <p
+                class="hero-paragraph mt-4 text-white/85 text-sm sm:text-base max-w-md"
+              >
                 Mulai dari pembuatan landing page, optimasi google SEO, hingga
                 konsultasi bisnis untuk membantu meningkatkan traffic, leads,
                 dan penjualan Anda.
               </p>
-              <div class="mt-6 flex flex-wrap gap-3">
+              <div class="hero-button-group mt-6 flex flex-wrap gap-3">
                 <a
                   href="#category"
                   class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-3 rounded-full shadow-soft"
@@ -304,7 +437,7 @@
           </div>
 
           <div
-            class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur rounded-2xl px-4 py-3 hidden sm:flex items-center gap-3 shadow-card"
+            class="hero-stats absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur rounded-2xl px-4 py-3 hidden sm:flex items-center gap-3 shadow-card"
           >
             <div class="flex -space-x-2">
               <img
@@ -341,7 +474,9 @@
 
         <!-- Trust strip -->
         <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+          <div
+            class="trust-item flex items-center gap-3 bg-slate-50 rounded-2xl p-4"
+          >
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
@@ -352,7 +487,9 @@
               <div class="text-xs text-slate-500">Mitra terpercaya</div>
             </div>
           </div>
-          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+          <div
+            class="trust-item flex items-center gap-3 bg-slate-50 rounded-2xl p-4"
+          >
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
@@ -363,7 +500,9 @@
               <div class="text-xs text-slate-500">Respon &lt; 1 jam</div>
             </div>
           </div>
-          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+          <div
+            class="trust-item flex items-center gap-3 bg-slate-50 rounded-2xl p-4"
+          >
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
@@ -374,7 +513,9 @@
               <div class="text-xs text-slate-500">Tanpa biaya tersembunyi</div>
             </div>
           </div>
-          <div class="flex items-center gap-3 bg-slate-50 rounded-2xl p-4">
+          <div
+            class="trust-item flex items-center gap-3 bg-slate-50 rounded-2xl p-4"
+          >
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
@@ -571,7 +712,9 @@
             <h2
               class="font-display text-rose-500 font-extrabold text-3xl sm:text-4xl leading-tight mt-2"
             >
-              Kenapa Memilih <span class="text-brand-600">CariSolusi</span> ?
+              Kenapa Memilih
+              <span class="text-brand-600">CariSolusi</span> untuk Mengembangkan
+              Bisnis Anda?
             </h2>
             <h2
               class="font-display font-extrabold text-3xl sm:text-4xl leading-tight mt-2"
@@ -581,11 +724,11 @@
               utama.
             </h2>
             <p class="text-slate-600 mt-4">
-              CariSolusi adalah marketplace yang menghubungkan Anda dengan
-              ribuan penyedia layanan profesional terverifikasi di seluruh
-              Indonesia. Mulai dari belajar coding, pembuatan landing page,
-              website, produk hingga jasa. Semua tersedia dengan harga
-              transparan.
+              CariSolusi membantu bisnis Anda tumbuh melalui layanan jasa SEO,
+              pembuatan website, dan digital marketing yang terbukti
+              meningkatkan traffic dan penjualan. Semua layanan tersedia dalam
+              satu platform yang mudah digunakan dan didukung oleh penyedia jasa
+              profesional terpercaya.
             </p>
             <div class="mt-6 grid sm:grid-cols-2 gap-4">
               <div class="flex gap-3 p-4 rounded-2xl bg-slate-50">
@@ -942,7 +1085,7 @@
         <div class="md:col-span-1">
           <div class="flex items-center gap-2">
             <img
-              src="https://carisolusi.biz.id/gambarbebas/20260422-100433_carisolusi-hd.webp"
+              src="https://carisolusi.biz.id/gambarbebas/20260422-081208_carisolusi.webp"
               alt="CariSolusi"
               class="h-14 w-auto"
             />

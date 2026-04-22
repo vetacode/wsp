@@ -1,0 +1,1802 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CariSolusi - Platform Digital Marketing & Website Profesional</title>
+    <meta
+      name="description"
+      content="Solusi lengkap untuk website, digital marketing, dan jasa profesional. Ratusan klien telah mempercayai CariSolusi untuk mengembangkan bisnis mereka."
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', sans-serif;
+        background: white;
+        color: #111827;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 2rem;
+        }
+      }
+
+      /* Navbar */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        z-index: 50;
+        transition: all 300ms ease;
+      }
+
+      nav.scrolled {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (min-width: 768px) {
+        nav {
+          padding: 0 2rem;
+        }
+      }
+
+      .nav-content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.125rem;
+      }
+
+      .logo-text {
+        font-weight: bold;
+        font-size: 1.25rem;
+        color: #111827;
+        display: none;
+      }
+
+      @media (min-width: 640px) {
+        .logo-text {
+          display: inline;
+        }
+      }
+
+      .nav-menu {
+        display: none;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      @media (min-width: 768px) {
+        .nav-menu {
+          display: flex;
+        }
+      }
+
+      .nav-menu a {
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: color 200ms ease;
+      }
+
+      .nav-menu a:hover {
+        color: #2563eb;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .search-btn {
+        background: transparent;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: background-color 200ms ease;
+        border-radius: 50%;
+      }
+
+      .search-btn:hover {
+        background-color: #f3f4f6;
+      }
+
+      .cta-btn {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 9999px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 200ms ease;
+        display: none;
+      }
+
+      @media (min-width: 640px) {
+        .cta-btn {
+          display: block;
+        }
+      }
+
+      .cta-btn:hover {
+        background: #1d4ed8;
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        transform: scale(1.05);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      @media (max-width: 767px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-top: 1px solid #e5e7eb;
+        padding: 1rem;
+      }
+
+      .mobile-menu.active {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .mobile-menu a,
+      .mobile-menu button {
+        width: 100%;
+        text-align: left;
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: color 200ms ease;
+      }
+
+      .mobile-menu a:hover {
+        color: #2563eb;
+      }
+
+      .mobile-menu button.cta-btn {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      /* Hero Section */
+      section {
+        position: relative;
+      }
+
+      .hero {
+        padding-top: 70px;
+        padding-bottom: 5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background: linear-gradient(
+          135deg,
+          #eff6ff 0%,
+          white 50%,
+          #faf5ff 100%
+        );
+      }
+
+      @media (min-width: 768px) {
+        .hero {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        align-items: center;
+        min-height: calc(100vh - 70px - 80px);
+        padding: 3rem 0;
+      }
+
+      @media (min-width: 768px) {
+        .hero-content {
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+        }
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .hero-left {
+          gap: 2rem;
+        }
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        width: fit-content;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #111827;
+        line-height: 1.2;
+      }
+
+      @media (min-width: 768px) {
+        .hero-title {
+          font-size: 3rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .hero-title {
+          font-size: 3.75rem;
+        }
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #2563eb, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-desc {
+        font-size: 1.125rem;
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+
+      @media (min-width: 640px) {
+        .hero-buttons {
+          flex-direction: row;
+        }
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: all 200ms ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: #2563eb;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #1d4ed8;
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        transform: scale(1.05);
+      }
+
+      .btn-secondary {
+        border: 2px solid #2563eb;
+        color: #2563eb;
+        background: transparent;
+      }
+
+      .btn-secondary:hover {
+        background: #eff6ff;
+      }
+
+      .hero-badges {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 1rem;
+        font-size: 0.875rem;
+        color: #4b5563;
+      }
+
+      .badge-divider {
+        width: 1px;
+        height: 2rem;
+        background: #d1d5db;
+      }
+
+      .badge-item strong {
+        color: #111827;
+        display: block;
+      }
+
+      .hero-right {
+        position: relative;
+        height: 24rem;
+      }
+
+      @media (min-width: 768px) {
+        .hero-right {
+          height: 100%;
+          min-height: 24rem;
+        }
+      }
+
+      .hero-illustration {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.2),
+          rgba(168, 85, 247, 0.2)
+        );
+        border-radius: 1.5rem;
+        blur-filter: blur(2px);
+        opacity: 0.2;
+        z-index: 1;
+      }
+
+      .hero-box {
+        position: relative;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.2),
+          rgba(168, 85, 247, 0.2)
+        );
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(0.5rem);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .hero-box-content {
+        text-align: center;
+      }
+
+      .hero-emoji {
+        font-size: 4.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-box-text {
+        color: #4b5563;
+        font-weight: 500;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 1rem;
+        background: #f9fafb;
+      }
+
+      @media (min-width: 768px) {
+        .features {
+          padding: 4rem 2rem;
+        }
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .features-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .features-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .feature-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 300ms ease;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .feature-card:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: scale(1.05);
+      }
+
+      .feature-icon {
+        width: 2rem;
+        height: 2rem;
+        color: #2563eb;
+      }
+
+      .feature-card h3 {
+        font-weight: bold;
+        color: #111827;
+      }
+
+      .feature-card p {
+        font-size: 0.875rem;
+        color: #4b5563;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 5rem 1rem;
+        background: white;
+      }
+
+      @media (min-width: 768px) {
+        .services {
+          padding: 5rem 2rem;
+        }
+      }
+
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: bold;
+        color: #111827;
+        margin-bottom: 3rem;
+      }
+
+      @media (min-width: 768px) {
+        .section-title {
+          font-size: 2.25rem;
+        }
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .service-card {
+        position: relative;
+        height: 16rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        cursor: pointer;
+        group: 1;
+      }
+
+      .service-card-gradient {
+        position: absolute;
+        inset: 0;
+      }
+
+      .service-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .service-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+        transition: all 300ms ease;
+      }
+
+      .service-card:hover .service-content {
+        transform: scale(1.05);
+      }
+
+      .service-content h3 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 0.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .service-content h3 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .service-content p {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1rem;
+      }
+
+      .service-btn {
+        background: white;
+        color: #111827;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 200ms ease;
+        width: fit-content;
+      }
+
+      .service-btn:hover {
+        background: #f3f4f6;
+      }
+
+      /* Why Choose Us Section */
+      .why-choose {
+        padding: 5rem 1rem;
+        background: white;
+      }
+
+      @media (min-width: 768px) {
+        .why-choose {
+          padding: 5rem 2rem;
+        }
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .why-image {
+        position: relative;
+        height: 24rem;
+        background: linear-gradient(135deg, #dbeafe, #f0e7fe);
+        border-radius: 1rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .why-image-content {
+        text-align: center;
+      }
+
+      .why-image-emoji {
+        font-size: 4rem;
+        opacity: 0.2;
+        margin-bottom: 1rem;
+      }
+
+      .why-image-text {
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .why-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .why-title {
+        font-size: 1.875rem;
+        font-weight: bold;
+        color: #111827;
+      }
+
+      @media (min-width: 768px) {
+        .why-title {
+          font-size: 2.25rem;
+        }
+      }
+
+      .why-desc {
+        color: #4b5563;
+        font-size: 1.125rem;
+        line-height: 1.6;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .benefits-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .benefit-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: #2563eb;
+        flex-shrink: 0;
+        margin-top: 0.25rem;
+      }
+
+      .benefit-item span {
+        color: #374151;
+        font-weight: 500;
+      }
+
+      .why-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+      }
+
+      @media (min-width: 640px) {
+        .why-buttons {
+          flex-direction: row;
+        }
+      }
+
+      /* Center Banner */
+      .center-banner {
+        padding: 4rem 1rem;
+        background: linear-gradient(135deg, #f3f4f6, #f9fafb);
+      }
+
+      @media (min-width: 768px) {
+        .center-banner {
+          padding: 4rem 2rem;
+        }
+      }
+
+      .banner-box {
+        background: white;
+        border-radius: 1.5rem;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        .banner-box {
+          padding: 4rem;
+        }
+      }
+
+      .banner-text {
+        font-size: 1.875rem;
+        font-weight: bold;
+        color: #111827;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+      }
+
+      @media (min-width: 768px) {
+        .banner-text {
+          font-size: 2.25rem;
+        }
+      }
+
+      .banner-avatars {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        opacity: 0.6;
+      }
+
+      .avatar {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+
+      /* News Section */
+      .news {
+        padding: 5rem 1rem;
+        background: #f9fafb;
+      }
+
+      @media (min-width: 768px) {
+        .news {
+          padding: 5rem 2rem;
+        }
+      }
+
+      .news-header {
+        margin-bottom: 3rem;
+      }
+
+      .news-subtitle {
+        color: #4b5563;
+        margin-top: 0.5rem;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .news-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: all 300ms ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-card:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: scale(1.05);
+      }
+
+      .news-image {
+        height: 12rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        opacity: 0.2;
+      }
+
+      .news-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex-grow: 1;
+      }
+
+      .news-category {
+        display: inline-flex;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        width: fit-content;
+      }
+
+      .news-date {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .news-title {
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #111827;
+      }
+
+      .news-desc {
+        font-size: 0.875rem;
+        color: #4b5563;
+        flex-grow: 1;
+      }
+
+      .news-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #2563eb;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-decoration: none;
+        margin-top: 1rem;
+        transition: color 200ms ease;
+      }
+
+      .news-link:hover {
+        color: #1d4ed8;
+      }
+
+      /* CTA Banner */
+      .cta {
+        padding: 4rem 1rem;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a, #1e1b4b);
+      }
+
+      @media (min-width: 768px) {
+        .cta {
+          padding: 4rem 2rem;
+        }
+      }
+
+      .cta-box {
+        position: relative;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(0.5rem);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 3rem;
+        text-align: center;
+        max-width: 56rem;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 768px) {
+        .cta-box {
+          padding: 4rem;
+        }
+      }
+
+      .cta-decoration {
+        position: absolute;
+        width: 10rem;
+        height: 10rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        filter: blur(3rem);
+      }
+
+      .cta-decoration.top-right {
+        top: 0;
+        right: 0;
+        margin-top: -5rem;
+        margin-right: -5rem;
+      }
+
+      .cta-decoration.bottom-left {
+        bottom: 0;
+        left: 0;
+        margin-bottom: -5rem;
+        margin-left: -5rem;
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      .cta-title {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .cta-title {
+          font-size: 3rem;
+        }
+      }
+
+      .cta-desc {
+        color: #dbeafe;
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+      }
+
+      .cta-btn {
+        background: white;
+        color: #2563eb;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-weight: bold;
+        font-size: 1.125rem;
+        border: none;
+        cursor: pointer;
+        transition: all 200ms ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .cta-btn:hover {
+        background: #f3f4f6;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+      }
+
+      /* Footer */
+      footer {
+        background: #111827;
+        color: #d1d5db;
+      }
+
+      .footer-content {
+        padding: 4rem 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer-content {
+          padding: 4rem 2rem;
+        }
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .footer-section h4 {
+        font-weight: bold;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .footer-section a {
+        color: #d1d5db;
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .footer-section a:hover {
+        color: #60a5fa;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+
+      .footer-brand span {
+        font-weight: bold;
+        font-size: 1.125rem;
+        color: white;
+      }
+
+      .footer-desc {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        margin-bottom: 1rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .social-link {
+        width: 36px;
+        height: 36px;
+        background: #1f2937;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #d1d5db;
+        cursor: pointer;
+        transition: all 200ms ease;
+      }
+
+      .social-link:hover {
+        background: #2563eb;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-divider {
+        border-top: 1px solid #1f2937;
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer-divider {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .footer-copyright {
+        font-size: 0.875rem;
+        color: #9ca3af;
+      }
+
+      .footer-credit {
+        font-size: 0.875rem;
+        color: #9ca3af;
+      }
+
+      .footer-credit a {
+        color: #60a5fa;
+        text-decoration: none;
+      }
+
+      .footer-credit a:hover {
+        text-decoration: underline;
+      }
+
+      /* Icons SVG */
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .feature-icon,
+      .benefit-icon,
+      .news-date svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      .logo-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="navbar">
+      <div class="nav-content">
+        <div class="nav-logo">
+          <div class="logo-icon">CS</div>
+          <span class="logo-text">CariSolusi</span>
+        </div>
+
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#category">Category</a></li>
+          <li><a href="#news">News</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <button class="search-btn">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+          <button class="cta-btn">Hubungi Kami</button>
+          <button class="mobile-menu-btn" id="menuBtn">
+            <svg
+              id="menuIcon"
+              viewBox="0 0 24 24"
+              style="width: 1.5rem; height: 1.5rem"
+            >
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#category">Category</a>
+        <a href="#news">News</a>
+        <button class="cta-btn">Hubungi Kami</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-badge">
+              <span>⚡</span>
+              Solusi Digital Terpercaya
+            </div>
+
+            <h1 class="hero-title">
+              Wujudkan Bisnis Digital Anda Bersama
+              <span class="gradient-text">CariSolusi</span>
+            </h1>
+
+            <p class="hero-desc">
+              Platform lengkap untuk website, digital marketing, dan jasa
+              profesional. Kami membantu bisnis Anda berkembang dengan teknologi
+              modern dan strategi yang terbukti efektif.
+            </p>
+
+            <div class="hero-buttons">
+              <button class="btn btn-primary">
+                Mulai Sekarang
+                <span>→</span>
+              </button>
+              <button class="btn btn-secondary">Tonton Demo</button>
+            </div>
+
+            <div class="hero-badges">
+              <div class="badge-item">
+                <strong>5000+</strong>
+                <span>Klien Puas</span>
+              </div>
+              <div class="badge-divider"></div>
+              <div class="badge-item">
+                <strong>99%</strong>
+                <span>Rating</span>
+              </div>
+              <div class="badge-divider"></div>
+              <div class="badge-item">
+                <strong>24/7</strong>
+                <span>Support</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="hero-illustration"></div>
+            <div class="hero-box">
+              <div class="hero-box-content">
+                <div class="hero-emoji">🚀</div>
+                <p class="hero-box-text">Inovasi Digital Dimulai Di Sini</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <div>
+              <h3>100% Terverifikasi</h3>
+              <p>Semua layanan telah terverifikasi</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+            <div>
+              <h3>Cepat & Tepat</h3>
+              <p>Proses yang efisien dan akurat</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24">
+              <path d="M12 1v22"></path>
+              <path
+                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path>
+            </svg>
+            <div>
+              <h3>Harga Transparan</h3>
+              <p>Tidak ada biaya tersembunyi</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+            <div>
+              <h3>Dukungan 24/7</h3>
+              <p>Siap membantu kapan saja</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="category">
+      <div class="container">
+        <h2 class="section-title">
+          Layanan Website Digital & Jasa Profesional Pilihan
+        </h2>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div
+              class="service-card-gradient"
+              style="background: linear-gradient(135deg, #2563eb, #1e3a8a)"
+            ></div>
+            <div class="service-overlay"></div>
+            <div class="service-content">
+              <h3>Produk Pilihan Minggu Ini</h3>
+              <p>Solusi terbaik untuk kebutuhan Anda</p>
+              <button class="service-btn">Cek Sekarang</button>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div
+              class="service-card-gradient"
+              style="background: linear-gradient(135deg, #a855f7, #6d28d9)"
+            ></div>
+            <div class="service-overlay"></div>
+            <div class="service-content">
+              <h3>Tim Ahli untuk Proyek Anda</h3>
+              <p>Professional & berpengalaman</p>
+              <button class="service-btn">Cek Sekarang</button>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div
+              class="service-card-gradient"
+              style="background: linear-gradient(135deg, #16a34a, #166534)"
+            ></div>
+            <div class="service-overlay"></div>
+            <div class="service-content">
+              <h3>Belajar Coding Landing Page</h3>
+              <p>Master skills terbaru</p>
+              <button class="service-btn">Cek Sekarang</button>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div
+              class="service-card-gradient"
+              style="background: linear-gradient(135deg, #ea580c, #7c2d12)"
+            ></div>
+            <div class="service-overlay"></div>
+            <div class="service-content">
+              <h3>Belajar Digital Marketing</h3>
+              <p>Strategi yang terbukti efektif</p>
+              <button class="service-btn">Cek Sekarang</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose" id="about">
+      <div class="container">
+        <div class="why-grid">
+          <div class="why-image">
+            <div class="why-image-content">
+              <div class="why-image-emoji">💻</div>
+              <p class="why-image-text">Dashboard / Design Preview</p>
+            </div>
+          </div>
+
+          <div class="why-content">
+            <h2 class="why-title">
+              Kenapa Memilih Jasa SEO, Website & Digital Marketing dari
+              CariSolusi?
+            </h2>
+            <p class="why-desc">
+              Kami menyediakan solusi digital yang komprehensif untuk
+              mengembangkan bisnis Anda. Tim profesional kami siap membantu Anda
+              mencapai target pasar dengan strategi yang terbukti efektif dan
+              hasil yang terukur.
+            </p>
+
+            <div class="benefits-grid">
+              <div class="benefit-item">
+                <svg class="benefit-icon" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Fokus pada hasil</span>
+              </div>
+              <div class="benefit-item">
+                <svg class="benefit-icon" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Cocok untuk UMKM</span>
+              </div>
+              <div class="benefit-item">
+                <svg class="benefit-icon" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Layanan lengkap</span>
+              </div>
+              <div class="benefit-item">
+                <svg class="benefit-icon" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Harga transparan</span>
+              </div>
+            </div>
+
+            <div class="why-buttons">
+              <button class="btn btn-primary">Jelajahi Kategori</button>
+              <button class="btn btn-secondary">Tanya Tim Kami</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Banner -->
+    <section class="center-banner">
+      <div class="container">
+        <div class="banner-box">
+          <h2 class="banner-text">
+            Dengan pendekatan modern,<br />
+            kami jadikan kebutuhan Anda pusat dari segalanya.
+          </h2>
+
+          <div class="banner-avatars">
+            <div
+              class="avatar"
+              style="background: linear-gradient(135deg, #60a5fa, #2563eb)"
+            ></div>
+            <div
+              class="avatar"
+              style="background: linear-gradient(135deg, #a78bfa, #a855f7)"
+            ></div>
+            <div
+              class="avatar"
+              style="background: linear-gradient(135deg, #f472b6, #ec4899)"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news" id="news">
+      <div class="container">
+        <div class="news-header">
+          <h2 class="section-title">Kabar Terbaru dari CariSolusi</h2>
+          <p class="news-subtitle">
+            Artikel dan tips terkini untuk membantu mengembangkan bisnis Anda.
+          </p>
+        </div>
+
+        <div class="news-grid">
+          <div class="news-card">
+            <div
+              class="news-image"
+              style="background: linear-gradient(135deg, #2563eb, #1e3a8a)"
+            >
+              📰
+            </div>
+            <div class="news-body">
+              <span
+                class="news-category"
+                style="background: linear-gradient(135deg, #2563eb, #1e3a8a)"
+                >Tutorial</span
+              >
+              <div class="news-date">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>15 April 2024</span>
+              </div>
+              <h3 class="news-title">
+                Cara Membuat Landing Page yang Menarik untuk Startup
+              </h3>
+              <p class="news-desc">
+                Pelajari tips dan trik membuat landing page yang tidak hanya
+                menarik secara visual, tetapi juga efektif dalam mengkonversi
+                pengunjung menjadi pelanggan.
+              </p>
+              <a href="#" class="news-link">
+                Baca selengkapnya
+                <svg viewBox="0 0 24 24">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div
+              class="news-image"
+              style="background: linear-gradient(135deg, #a855f7, #6d28d9)"
+            >
+              📰
+            </div>
+            <div class="news-body">
+              <span
+                class="news-category"
+                style="background: linear-gradient(135deg, #a855f7, #6d28d9)"
+                >Tips Bisnis</span
+              >
+              <div class="news-date">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>12 April 2024</span>
+              </div>
+              <h3 class="news-title">
+                Digital Marketing Trends 2024 yang Perlu Anda Ketahui
+              </h3>
+              <p class="news-desc">
+                Transformasi digital semakin cepat. Temukan tren terbaru dalam
+                dunia digital marketing yang akan membawa bisnis Anda ke level
+                selanjutnya.
+              </p>
+              <a href="#" class="news-link">
+                Baca selengkapnya
+                <svg viewBox="0 0 24 24">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div
+              class="news-image"
+              style="background: linear-gradient(135deg, #16a34a, #166534)"
+            >
+              📰
+            </div>
+            <div class="news-body">
+              <span
+                class="news-category"
+                style="background: linear-gradient(135deg, #16a34a, #166534)"
+                >Update</span
+              >
+              <div class="news-date">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>10 April 2024</span>
+              </div>
+              <h3 class="news-title">
+                Platform CariSolusi Kini Lebih Powerful dengan Fitur Baru
+              </h3>
+              <p class="news-desc">
+                Kami bangga mengumumkan peluncuran fitur-fitur terbaru yang
+                dirancang khusus untuk meningkatkan produktivitas dan hasil
+                kerja Anda.
+              </p>
+              <a href="#" class="news-link">
+                Baca selengkapnya
+                <svg viewBox="0 0 24 24">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-decoration top-right"></div>
+          <div class="cta-decoration bottom-left"></div>
+
+          <div class="cta-content">
+            <h2 class="cta-title">Konsultasi Gratis Sekarang</h2>
+            <p class="cta-desc">
+              Dapatkan strategi terbaik untuk bisnis Anda bersama tim
+              profesional.
+            </p>
+            <button class="cta-btn">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+              Chat WhatsApp Sekarang
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <div class="footer-brand">
+                <div class="footer-logo">CS</div>
+                <span>CariSolusi</span>
+              </div>
+              <p class="footer-desc">
+                Platform solusi digital terpercaya untuk mengembangkan bisnis
+                Anda dengan teknologi terkini.
+              </p>
+              <div class="social-links">
+                <button class="social-link">f</button>
+                <button class="social-link">𝕏</button>
+                <button class="social-link">📷</button>
+                <button class="social-link">in</button>
+              </div>
+            </div>
+
+            <div class="footer-section">
+              <h4>Navigasi</h4>
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#category">Category</a></li>
+                <li><a href="#news">News</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Layanan</h4>
+              <ul>
+                <li><a href="#">Jasa Coding</a></li>
+                <li><a href="#">Digital Marketing</a></li>
+                <li><a href="#">Produk Unggulan</a></li>
+                <li><a href="#">Edukasi</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4>Kontak</h4>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Jl. Merdeka No. 123, Jakarta, Indonesia</span>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <a href="mailto:info@carisolu.id">info@carisolu.id</a>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+                <a href="tel:+6212345678">+62 123 456 78</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-divider">
+            <p class="footer-copyright">
+              &copy; 2024 CariSolusi. All rights reserved.
+            </p>
+            <p class="footer-credit">
+              Created with <span style="color: #ef4444">❤️</span> by
+              <a href="#">CariSolusi Team</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking on links
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+
+      // Service card hover effect
+      const serviceCards = document.querySelectorAll('.service-card');
+      serviceCards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'scale(1.05)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'scale(1)';
+        });
+      });
+
+      // News card hover effect
+      const newsCards = document.querySelectorAll('.news-card');
+      newsCards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'scale(1.05)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'scale(1)';
+        });
+      });
+
+      // Feature card hover effect
+      const featureCards = document.querySelectorAll('.feature-card');
+      featureCards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'scale(1.05)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'scale(1)';
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -92,11 +92,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
 
-    <!-- CEPETIN RENDER -->
+    <!-- PRECONNECT -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <link rel="preconnect" href="https://unpkg.com" />
 
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -133,6 +132,14 @@
           },
         },
       };
+    </script>
+
+    <!-- LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.lucide) lucide.createIcons();
+      });
     </script>
 
     <style>

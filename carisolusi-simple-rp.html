@@ -73,6 +73,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- OPTIMASI FONT -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+
     <!-- FONT -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
@@ -84,8 +91,19 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CEPETIN RENDER -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+
+    <!-- OPTIMASI LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        lucide.createIcons();
+      });
+    </script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -121,6 +139,11 @@
         },
       };
     </script>
+
+    <script
+      src="https://cdn.tailwindcss.com?plugins=forms,typography"
+      defer
+    ></script>
 
     <style>
       html {

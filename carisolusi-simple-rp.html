@@ -340,6 +340,31 @@
       .img-zoom:hover img {
         transform: scale(1.06);
       }
+
+      /* ===== Green Indicator Soft Pulse Animation ===== */
+      @keyframes softPulse {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        75%,
+        100% {
+          opacity: 0.5;
+        }
+      }
+
+      .news-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: #10b981;
+        border-radius: 50%;
+        margin-left: 6px;
+        animation: softPulse 2.5s ease-in-out infinite;
+        position: relative;
+        top: -3px;
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      }
     </style>
   </head>
   <body class="bg-white antialiased">
@@ -383,7 +408,14 @@
           <li><a href="#home" class="navlink active">Home</a></li>
           <li><a href="#about" class="navlink">About</a></li>
           <li><a href="#category" class="navlink">Category</a></li>
-          <li><a href="#news" class="navlink">News</a></li>
+          <li>
+            <a href="#news" class="navlink"
+              >News<span
+                class="news-indicator"
+                title="Update terbaru tersedia"
+              ></span
+            ></a>
+          </li>
         </ul>
 
         <div class="flex items-center gap-2">
@@ -445,8 +477,11 @@
             <a
               href="#news"
               class="block px-3 py-2 rounded-lg hover:bg-slate-100"
-              >News</a
-            >
+              >News<span
+                class="news-indicator"
+                title="Update terbaru tersedia"
+              ></span
+            ></a>
           </li>
         </ul>
       </div>
@@ -787,7 +822,7 @@
                   <i data-lucide="users"></i>
                 </div>
                 <div>
-                  <div class="font-display font-extrabold text-xl">12K+</div>
+                  <div class="font-display font-extrabold text-xl">210+</div>
                   <div class="text-xs text-slate-500">Pelanggan puas</div>
                 </div>
               </div>
@@ -1276,7 +1311,7 @@
             </li>
             <li>
               <a
-                href="https://carisolusi.biz.id/produk/44/website-seo-praktis-wsp-ini-bisa-datangkan-customer-tiap-hari"
+                href="https://carisolusi.biz.id/produk/49/website-seo-praktis-wsp-untuk-umkm-depok-yang-datangkan-customer-tiap-hari-tanpa-iklan"
                 class="hover:text-white"
                 >Produk Unggulan</a
               >

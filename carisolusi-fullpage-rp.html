@@ -1517,7 +1517,14 @@
               link = BASE + link;
             }
 
-            const desc = article.querySelector('p')?.innerText || '';
+            let rawDesc = article.querySelector('p')?.innerText || '';
+
+            let desc = rawDesc;
+
+            if (rawDesc.length > 120) {
+              desc = rawDesc.substring(0, 120);
+              desc = desc.substring(0, desc.lastIndexOf(' ')) + '...';
+            }
             const date = article.querySelector('small')?.innerText || '';
 
             data.push({

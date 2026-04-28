@@ -1503,7 +1503,14 @@
             }
 
             const titleEl = article.querySelector('h4 a');
-            const title = titleEl?.innerText || 'Tanpa Judul';
+            let rawTitle = titleEl?.innerText || 'Tanpa Judul';
+
+            let title = rawTitle;
+
+            if (rawTitle.length > 60) {
+              title = rawTitle.substring(0, 60);
+              title = title.substring(0, title.lastIndexOf(' ')) + '...';
+            }
             let link = titleEl?.getAttribute('href') || '#';
 
             if (!link.startsWith('http')) {

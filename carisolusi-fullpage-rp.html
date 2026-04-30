@@ -1045,6 +1045,7 @@
           id="productGrid"
           class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5"
         >
+          <div id="errorMsg" class="text-center text-red-500 mt-4"></div>
           <!-- products injected by JS -->
         </div>
 
@@ -1363,135 +1364,209 @@
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-      // ===== Products =====
-      const IDR = (n) => 'Rp ' + n.toLocaleString('id-ID');
-      const products = [
-        {
-          cat: 'bisnis',
-          title: 'Konsultasi Strategi UMKM',
-          vendor: 'Mitra Bisnis ID',
-          price: 299000,
-          old: 399000,
-          rating: 4.9,
-          img: 'https://carisolusi.biz.id/gambarbebas/20260426-093052_niko-azhari-hidayat-a-FfDhFOcdU-unsplash.jpg',
-        },
-        {
-          cat: 'teknologi',
-          title: 'Pembuatan Website Profesional',
-          vendor: 'Diamant Digital',
-          price: 2500000,
-          old: 3500000,
-          rating: 5.0,
-          img: 'https://carisolusi.biz.id/gambarbebas/20260426-093740_ux-indonesia-qC2n6RQU4Vw-unsplash.jpg',
-        },
-        {
-          cat: 'edukasi',
-          title: 'Kursus Digital Marketing',
-          vendor: 'Akademi Solusi',
-          price: 499000,
-          old: 799000,
-          rating: 4.8,
-          img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'kesehatan',
-          title: 'Konsultasi Gizi Online',
-          vendor: 'NutriCare',
-          price: 150000,
-          old: 225000,
-          rating: 4.7,
-          img: 'https://carisolusi.biz.id/gambarbebas/20260430-114017_healthy-egg-food.jpg',
-        },
-        {
-          cat: 'properti',
-          title: 'Jasa Bersih Rumah Profesional',
-          vendor: 'CleanPro',
-          price: 175000,
-          old: 250000,
-          rating: 4.8,
-          img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'kreatif',
-          title: 'Desain Logo & Branding',
-          vendor: 'Studio Visual',
-          price: 850000,
-          old: 1200000,
-          rating: 4.9,
-          img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'teknologi',
-          title: 'Audit Keamanan IT',
-          vendor: 'CyberGuard',
-          price: 1750000,
-          old: 2250000,
-          rating: 4.9,
-          img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'bisnis',
-          title: 'Pendaftaran Legalitas Usaha',
-          vendor: 'LegalKu',
-          price: 1200000,
-          old: 1500000,
-          rating: 4.8,
-          img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
-        },
-      ];
+      // PRODUCTS FETCH
 
-      const grid = document.getElementById('productGrid');
-      function renderProducts(filter = 'all') {
-        const list =
-          filter === 'all'
-            ? products
-            : products.filter((p) => p.cat === filter);
-        grid.innerHTML = list
+      /* =========================
+   CONFIG (EDIT DI SINI SAJA)
+========================= */
+      const CONFIG = {
+        url: 'https://carisolusi.biz.id/kategori/',
+        limit: 8,
+
+        selectors: {
+          card: '.product-item',
+          title: '.product_name a',
+          priceWrap: '.product_price',
+          img: '.product-thumb',
+          link: '.product_name a',
+          sold: '.fa-eye',
+        },
+      };
+
+      /* =========================
+   UTILITIES
+========================= */
+
+      // Format Rupiah
+      function IDR(num) {
+        return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
+      }
+
+      // Random rating 4.0 - 5.0
+      function randomRating() {
+        return (Math.random() * 1 + 4).toFixed(1);
+      }
+
+      // Random sold
+      function randomSold() {
+        return Math.floor(Math.random() * 900 + 100) + '+';
+      }
+
+      // Truncate text rapi
+      function truncate(text, max) {
+        if (!text) return '';
+        if (text.length <= max) return text;
+
+        let cut = text.substring(0, max);
+        return cut.substring(0, cut.lastIndexOf(' ')) + '...';
+      }
+
+      // Extract number dari string harga
+      function extractPrice(text) {
+        if (!text) return 0;
+        return text.replace(/[^\d]/g, '');
+      }
+
+      /* =========================
+   FETCH & PARSE
+========================= */
+
+      async function fetchProducts() {
+        try {
+          const res = await fetch(CONFIG.url);
+          if (!res.ok) throw new Error('Fetch gagal');
+
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+
+          const items = doc.querySelectorAll(CONFIG.selectors.card);
+
+          let products = [];
+
+          items.forEach((el, i) => {
+            if (i >= CONFIG.limit) return;
+
+            const imgEl = el.querySelector(CONFIG.selectors.img);
+            const titleEl = el.querySelector(CONFIG.selectors.title);
+            const priceEl = el.querySelector(CONFIG.selectors.price);
+            const oldEl = el.querySelector(CONFIG.selectors.old);
+            const linkEl = el.querySelector(CONFIG.selectors.link);
+            const soldEl = el.querySelector(CONFIG.selectors.sold);
+
+            let sold = '0';
+
+            if (soldEl) {
+              sold = soldEl.parentElement.innerText.replace(/[^\d]/g, '');
+            }
+
+            let imgStyle = imgEl?.getAttribute('style') || '';
+
+            // extract url dari background-image
+            let img = '';
+            const match = imgStyle.match(/url\(['"]?(.*?)['"]?\)/);
+
+            if (match && match[1]) {
+              img = match[1];
+            }
+            let title = truncate(titleEl?.innerText || 'Produk', 60);
+            const priceWrap = el.querySelector(CONFIG.selectors.priceWrap);
+
+            let price = 0;
+            let old = 0;
+
+            if (priceWrap) {
+              const priceText = priceWrap.childNodes[0]?.textContent || '';
+              const oldText = priceWrap.querySelector('span')?.innerText || '';
+
+              price = extractPrice(priceText);
+              old = extractPrice(oldText) || price * 1.3;
+            }
+            let link = linkEl?.href || '#';
+
+            // kategori dari ALT
+            let cat = imgEl?.alt || 'Produk';
+
+            // fix path relatif
+            if (img && !img.startsWith('http')) {
+              img = 'https://carisolusi.biz.id' + img;
+            }
+
+            products.push({
+              img,
+              title,
+              price,
+              old,
+              link,
+              cat,
+              rating: randomRating(),
+              sold: randomSold(),
+            });
+          });
+
+          renderProducts(products);
+        } catch (err) {
+          document.getElementById('errorMsg').innerText = 'Gagal memuat data';
+          console.error(err);
+        }
+      }
+
+      /* =========================
+   RENDER UI
+========================= */
+
+      function renderProducts(products) {
+        const grid = document.getElementById('productGrid');
+
+        grid.innerHTML = products
           .map(
             (p) => `
-      <article class="group bg-white rounded-2xl overflow-hidden border border-slate-100 card-hover">
-        <div class="relative img-zoom overflow-hidden">
-          <img src="${p.img}" alt="${p.title}" class="w-full h-40 sm:h-48 object-cover" />
-          <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft" aria-label="Wishlist">
-            <i class="fa-solid fa-heart" aria-hidden="true"></i>
-          </button>
-          <span class="absolute top-3 left-3 text-[10px] font-bold uppercase bg-accent-500 text-white px-2 py-1 rounded-full">${Math.round((1 - p.price / p.old) * 100)}% OFF</span>
+    <article class="group bg-white rounded-2xl overflow-hidden border border-slate-100 card-hover">
+      <div class="relative img-zoom overflow-hidden">
+        <img src="${p.img}" alt="${p.title}" class="w-full h-40 sm:h-48 object-cover"/>
+
+        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+
+        <span class="absolute top-3 left-3 text-[10px] font-bold uppercase bg-accent-500 text-white px-2 py-1 rounded-full">
+          ${Math.round((1 - p.price / p.old) * 100)}% OFF
+        </span>
+      </div>
+
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">
+          ${p.cat}
         </div>
-        <div class="p-4">
-          <div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${p.vendor}</div>
-          <h3 class="font-semibold text-sm sm:text-base text-ink mt-1 line-clamp-2 min-h-[2.6rem]">${p.title}</h3>
-          <div class="flex items-center gap-1 text-xs text-slate-500 mt-1">
-            <i class="fa-solid fa-star text-yellow-500"></i> ${p.rating} <span class="text-slate-300">·</span> Terjual 1k+
-          </div>
-          <div class="mt-2 flex items-end justify-between">
-            <div>
-              <div class="text-brand-700 font-extrabold text-sm sm:text-base">${IDR(p.price)}</div>
-              <div class="text-[11px] text-slate-400 line-through">${IDR(p.old)}</div>
+
+        <h3 class="font-semibold text-sm sm:text-base text-ink mt-1 line-clamp-2 min-h-[2.6rem]">
+          ${p.title}
+        </h3>
+
+        <div class="flex items-center gap-1 text-xs text-slate-500 mt-1">
+          <i class="fa-solid fa-star text-yellow-500"></i>
+          ${p.rating}
+          <span class="text-slate-300">·</span>
+          Terjual ${p.sold}
+        </div>
+
+        <div class="mt-2 flex items-end justify-between">
+          <div>
+            <div class="text-brand-700 font-extrabold text-sm sm:text-base">
+              ${IDR(p.price)}
             </div>
-            <a href="https://wa.me/6281384072641?text=Halo,%20saya%20tertarik%20dengan%20produk/layanan%20ini,%20apakah%20masih%20tersedia?"
-          target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white" aria-label="Beli">
-              <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
-            </a>
+            <div class="text-[11px] text-slate-400 line-through">
+              ${IDR(p.old)}
+            </div>
           </div>
+
+          <a href="https://wa.me/6281384072641?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(p.title)}"
+            target="_blank"
+            class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </a>
         </div>
-      </article>
-    `
+      </div>
+    </article>
+  `
           )
           .join('');
       }
-      renderProducts();
 
-      document.querySelectorAll('.cat-chip').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.cat-chip').forEach((b) => {
-            b.classList.remove('active', 'bg-ink', 'text-white');
-            b.classList.add('bg-slate-100', 'text-slate-700');
-          });
-          btn.classList.add('active', 'bg-ink', 'text-white');
-          btn.classList.remove('bg-slate-100', 'text-slate-700');
-          renderProducts(btn.dataset.cat);
-        });
-      });
+      /* =========================
+   INIT
+========================= */
+
+      fetchProducts();
 
       const system_id = 'CariSolusi-vetabiz-wsp-2026';
     </script>

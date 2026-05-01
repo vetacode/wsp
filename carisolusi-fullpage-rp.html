@@ -89,13 +89,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- OPTIMASI FONT RENDER -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
-
     <!-- FONT -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
@@ -1530,7 +1523,7 @@
       <div class="relative img-zoom overflow-hidden">
         <img src="${p.img}" alt="${p.title}" class="w-full h-40 sm:h-48 object-cover"/>
 
-        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft">
+        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft" aria-label="Wishlist">
           <i class="fa-solid fa-heart"></i>
         </button>
 
@@ -1570,7 +1563,7 @@
           <a href="https://wa.me/6281384072641?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(p.title)}"
           onclick="event.stopPropagation()"
             target="_blank"
-            class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white">
+            class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white" aria-label="Beli">
             <i class="fa-solid fa-bag-shopping"></i>
           </a>
         </div>

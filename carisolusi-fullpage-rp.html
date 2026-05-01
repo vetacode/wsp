@@ -1512,7 +1512,7 @@
             const label =
               p.price > 0 && p.old > 0
                 ? `${Math.round((1 - p.price / p.old) * 100)}% OFF`
-                : 'SPECIAL';
+                : 'SALE';
             return `
   <article onclick="window.open('${p.link}','_blank')"
     class="group bg-white rounded-2xl overflow-hidden border border-slate-100 card-hover cursor-pointer">

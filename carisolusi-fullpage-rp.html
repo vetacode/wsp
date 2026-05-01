@@ -1364,10 +1364,10 @@
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-      <!-- PRODUCTS FETCH -->
+      // PRODUCTS FETCH
 
       /* =========================
-   CONFIG (EDIT DI SINI SAJA)
+   CONFIG (EDIT DI SINI SAJA) 
 ========================= */
       const CONFIG = {
         url: 'https://carisolusi.biz.id/kategori/',
@@ -1379,7 +1379,7 @@
           priceWrap: '.product_price',
           img: '.product-thumb',
           link: '.product_name a',
-          sold: '.fa-eye',
+          sold: '.product-footer span',
         },
       };
 
@@ -1397,11 +1397,6 @@
         return (Math.random() * 1 + 4).toFixed(1);
       }
 
-      // Random sold
-      function randomSold() {
-        return Math.floor(Math.random() * 900 + 100) + '+';
-      }
-
       // Truncate text rapi
       function truncate(text, max) {
         if (!text) return '';
@@ -1415,6 +1410,22 @@
       function extractPrice(text) {
         if (!text) return 0;
         return text.replace(/[^\d]/g, '');
+      }
+
+      // Format sold jadi marketplace style
+      function formatSold(num) {
+        num = Number(num || 0);
+
+        if (num >= 1000) {
+          let k = (num / 1000).toFixed(1);
+
+          // hapus .0 (misal 1.0k → 1k)
+          k = k.replace('.0', '');
+
+          return k + 'k+';
+        }
+
+        return num + '+';
       }
 
       /* =========================
@@ -1489,7 +1500,7 @@
               link,
               cat,
               rating: randomRating(),
-              sold: randomSold(),
+              sold: formatSold(sold),
             });
           });
 

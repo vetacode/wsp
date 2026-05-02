@@ -64,11 +64,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
-    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
@@ -77,7 +72,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-    <link rel="preconnect" href="https://unpkg.com" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -110,12 +104,6 @@
           },
         },
       };
-    </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        if (window.lucide) lucide.createIcons();
-      });
     </script>
     <style>
       html {
@@ -320,7 +308,10 @@
       <div
         class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-center gap-2 text-center"
       >
-        <i data-lucide="sparkles" class="w-4 h-4 text-accent-500"></i
+        <i
+          class="fa-solid fa-wand-magic-sparkles text-accent-500"
+          aria-hidden="true"
+        ></i
         ><span
           >Promo spesial bulan ini — diskon hingga
           <b class="text-accent-500">40%</b> untuk layanan pilihan.</span
@@ -366,8 +357,8 @@
               aria-label="Cari"
             >
               <i
-                data-lucide="search"
-                class="w-5 h-5 text-slate-700"
+                class="fa-solid fa-magnifying-glass text-slate-700"
+                aria-hidden="true"
               ></i></button></a
           ><a
             href="https://wa.me/6281384072641?text=Halo,%20saya%20ingin%20menghubungi%20CariSolusi%20untuk%20informasi%20lebih%20lanjut"
@@ -381,7 +372,7 @@
             class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-slate-100"
             aria-label="Menu"
           >
-            <i data-lucide="menu" class="w-6 h-6 text-ink"></i>
+            <i class="fa-solid fa-bars text-xl text-ink" aria-hidden="true"></i>
           </button>
         </div>
       </nav>
@@ -448,8 +439,8 @@
               <span
                 class="hero-badge inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold"
                 ><i
-                  data-lucide="badge-check"
-                  class="w-4 h-4 text-accent-500"
+                  class="fa-solid fa-circle-check text-accent-500"
+                  aria-hidden="true"
                 ></i>
                 Marketplace Jasa, Digital & Solusi Bisnis
               </span>
@@ -473,7 +464,7 @@
                   class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-3 rounded-full shadow-soft"
                 >
                   Lihat Layanan
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i></a
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a
                 ><a
                   href="https://wa.me/6281384072641?text=Halo,%20saya%20ingin%20konsultasi%20gratis%20tentang%20solusi%20yang%20tepat%20untuk%20kebutuhan%20saya"
                   target="_blank"
@@ -524,7 +515,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
-              <i data-lucide="shield-check"></i>
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
             </div>
             <div>
               <div class="font-semibold text-sm">100% Terverifikasi</div>
@@ -537,7 +528,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
-              <i data-lucide="truck"></i>
+              <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
             </div>
             <div>
               <div class="font-semibold text-sm">Cepat & Tepat</div>
@@ -550,7 +541,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
-              <i data-lucide="wallet"></i>
+              <i class="fa-solid fa-wallet" aria-hidden="true"></i>
             </div>
             <div>
               <div class="font-semibold text-sm">Harga Transparan</div>
@@ -563,7 +554,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center"
             >
-              <i data-lucide="headset"></i>
+              <i class="fa-solid fa-headset" aria-hidden="true"></i>
             </div>
             <div>
               <div class="font-semibold text-sm">Dukungan 24/7</div>
@@ -590,7 +581,8 @@
             href="#category"
             class="text-sm font-semibold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1"
           >
-            Lihat semua <i data-lucide="arrow-right" class="w-4 h-4"></i
+            Lihat semua
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
           ></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
@@ -619,7 +611,10 @@
               class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
             >
               CEK SEKARANG
-              <i data-lucide="arrow-right" class="w-4 h-4"></i></div></a
+              <i
+                class="fa-solid fa-arrow-right"
+                aria-hidden="true"
+              ></i></div></a
           ><a
             href="https://carisolusi.biz.id/kategori/"
             class="group relative img-zoom rounded-2xl overflow-hidden card-hover bg-slate-100"
@@ -644,7 +639,10 @@
               class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
             >
               CEK SEKARANG
-              <i data-lucide="arrow-right" class="w-4 h-4"></i></div></a
+              <i
+                class="fa-solid fa-arrow-right"
+                aria-hidden="true"
+              ></i></div></a
           ><a
             href="https://carisolusi.biz.id/produk/46/belajar-coding-digital-marketing-dari-nol-sampai-bisa-bikin-project-nyata-bukan-sekedar-teori"
             alt="Coding Landing Page"
@@ -670,7 +668,10 @@
               class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
             >
               CEK SEKARANG
-              <i data-lucide="arrow-right" class="w-4 h-4"></i></div></a
+              <i
+                class="fa-solid fa-arrow-right"
+                aria-hidden="true"
+              ></i></div></a
           ><a
             href="https://carisolusi.biz.id/produk/41/komunitas-belajar-digital-marketing-dibimbing-satu-tahun-200x-pertemuan-termurah"
             alt="Digital Marketing"
@@ -696,7 +697,7 @@
               class="absolute left-5 bottom-5 inline-flex items-center gap-2 text-white text-xs font-semibold"
             >
               CEK SEKARANG
-              <i data-lucide="arrow-right" class="w-4 h-4"></i></div
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div
           ></a>
         </div>
       </section>
@@ -718,7 +719,7 @@
                 <div
                   class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center"
                 >
-                  <i data-lucide="users"></i>
+                  <i class="fa-solid fa-users" aria-hidden="true"></i>
                 </div>
                 <div>
                   <div class="font-display font-extrabold text-xl">210+</div>
@@ -763,8 +764,7 @@
                   >
                     <div class="shrink-0">
                       <i
-                        data-lucide="check-circle-2"
-                        class="w-6 h-6 text-brand-600"
+                        class="fa-solid fa-circle-check text-xl text-brand-600"
                         aria-hidden="true"
                       ></i>
                     </div>
@@ -783,8 +783,7 @@
                   >
                     <div class="shrink-0">
                       <i
-                        data-lucide="check-circle-2"
-                        class="w-6 h-6 text-brand-600"
+                        class="fa-solid fa-circle-check text-xl text-brand-600"
                         aria-hidden="true"
                       ></i>
                     </div>
@@ -805,8 +804,7 @@
                   >
                     <div class="shrink-0">
                       <i
-                        data-lucide="check-circle-2"
-                        class="w-6 h-6 text-brand-600"
+                        class="fa-solid fa-circle-check text-xl text-brand-600"
                         aria-hidden="true"
                       ></i>
                     </div>
@@ -826,8 +824,7 @@
                   >
                     <div class="shrink-0">
                       <i
-                        data-lucide="check-circle-2"
-                        class="w-6 h-6 text-brand-600"
+                        class="fa-solid fa-circle-check text-xl text-brand-600"
                         aria-hidden="true"
                       ></i>
                     </div>
@@ -850,7 +847,7 @@
                 class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-3 rounded-full"
               >
                 Jelajahi Kategori
-                <i data-lucide="arrow-right" class="w-4 h-4"></i></a
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a
               ><a
                 href="https://wa.me/6281384072641?text=Halo,%20saya%20punya%20beberapa%20pertanyaan%20tentang%20layanan%20dan%20produk%20CariSolusi,%20bisa%20dibantu?"
                 target="_blank"
@@ -907,10 +904,10 @@
           >
             Kesehatan</button
           ><button
-            data-cat="rumah"
+            data-cat="properti"
             class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
           >
-            Rumah</button
+            Properti</button
           ><button
             data-cat="kreatif"
             class="cat-chip whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -921,14 +918,17 @@
         <div
           id="productGrid"
           class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5"
-        ></div>
+        >
+          <div id="errorMsg" class="text-center text-red-500 mt-4"></div>
+        </div>
         <div class="text-center mt-8">
           <a
             href="https://carisolusi.biz.id/kategori/"
             target="_blank"
             class="inline-flex items-center gap-2 border border-ink/10 hover:border-brand-600 hover:text-brand-700 text-slate-800 font-semibold px-6 py-3 rounded-full"
           >
-            Muat Lebih Banyak <i data-lucide="chevron-down" class="w-4 h-4"></i
+            Muat Lebih Banyak
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i
           ></a>
         </div>
       </section>
@@ -976,7 +976,8 @@
             target="_blank"
             class="hidden sm:inline-flex text-sm font-semibold text-brand-600 hover:text-brand-700 items-center gap-1"
           >
-            Semua artikel <i data-lucide="arrow-right" class="w-4 h-4"></i
+            Semua artikel
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
           ></a>
         </div>
         <div id="news-wrapper"></div>
@@ -1109,13 +1110,16 @@
           <ul class="space-y-3 text-sm">
             <li class="flex items-start gap-2">
               <i
-                data-lucide="map-pin"
-                class="w-4 h-4 mt-0.5 text-accent-500"
+                class="fa-solid fa-location-dot mt-0.5 text-accent-500"
+                aria-hidden="true"
               ></i>
               Jakarta, Indonesia
             </li>
             <li class="flex items-start gap-2">
-              <i data-lucide="mail" class="w-4 h-4 mt-0.5 text-accent-500"></i>
+              <i
+                class="fa-solid fa-envelope mt-0.5 text-accent-500"
+                aria-hidden="true"
+              ></i>
               carisolusibisnis@gmail.com
             </li>
             <li class="flex items-start gap-2">
@@ -1152,10 +1156,9 @@
       rel="noopener"
       class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-card transition active:scale-95"
       aria-label="WhatsApp"
-      ><i class="fa-brands fa-whatsapp text-2xl"></i
+      ><i class="fa-brands fa-whatsapp text-3xl"></i
     ></a>
     <script>
-      lucide.createIcons();
       const menuBtn = document.getElementById('menuBtn');
       const mobileMenu = document.getElementById('mobileMenu');
       menuBtn?.addEventListener('click', () =>
@@ -1201,107 +1204,114 @@
         { threshold: 0.12 }
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-      const IDR = (n) => 'Rp ' + n.toLocaleString('id-ID');
-      const products = [
-        {
-          cat: 'bisnis',
-          title: 'Konsultasi Strategi UMKM',
-          vendor: 'Mitra Bisnis ID',
-          price: 299000,
-          old: 399000,
-          rating: 4.9,
-          img: 'https://carisolusi.biz.id/gambarbebas/20260426-093052_niko-azhari-hidayat-a-FfDhFOcdU-unsplash.jpg',
+      const CONFIG = {
+        url: 'https://carisolusi.biz.id/kategori/',
+        limit: 8,
+        selectors: {
+          card: '.product-item',
+          title: '.product_name a',
+          priceWrap: '.product_price',
+          img: '.product-thumb',
+          link: '.product_name a',
+          sold: '.product-footer span',
         },
-        {
-          cat: 'teknologi',
-          title: 'Pembuatan Website Profesional',
-          vendor: 'Diamant Digital',
-          price: 2500000,
-          old: 3500000,
-          rating: 5.0,
-          img: 'https://carisolusi.biz.id/gambarbebas/20260426-093740_ux-indonesia-qC2n6RQU4Vw-unsplash.jpg',
-        },
-        {
-          cat: 'edukasi',
-          title: 'Kursus Digital Marketing',
-          vendor: 'Akademi Solusi',
-          price: 499000,
-          old: 799000,
-          rating: 4.8,
-          img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'kesehatan',
-          title: 'Konsultasi Gizi Online',
-          vendor: 'NutriCare',
-          price: 150000,
-          old: 225000,
-          rating: 4.7,
-          img: 'https://carisolusi.biz.id/gambarbebas/20260430-114017_healthy-egg-food.jpg',
-        },
-        {
-          cat: 'rumah',
-          title: 'Jasa Bersih Rumah Profesional',
-          vendor: 'CleanPro',
-          price: 175000,
-          old: 250000,
-          rating: 4.8,
-          img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'kreatif',
-          title: 'Desain Logo & Branding',
-          vendor: 'Studio Visual',
-          price: 850000,
-          old: 1200000,
-          rating: 4.9,
-          img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'teknologi',
-          title: 'Audit Keamanan IT',
-          vendor: 'CyberGuard',
-          price: 1750000,
-          old: 2250000,
-          rating: 4.9,
-          img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-        },
-        {
-          cat: 'bisnis',
-          title: 'Pendaftaran Legalitas Usaha',
-          vendor: 'LegalKu',
-          price: 1200000,
-          old: 1500000,
-          rating: 4.8,
-          img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
-        },
-      ];
-      const grid = document.getElementById('productGrid');
-      function renderProducts(filter = 'all') {
-        const list =
-          filter === 'all'
-            ? products
-            : products.filter((p) => p.cat === filter);
-        grid.innerHTML = list
-          .map(
-            (p) =>
-              ` <article class="group bg-white rounded-2xl overflow-hidden border border-slate-100 card-hover"><div class="relative img-zoom overflow-hidden"><img src="${p.img}" alt="${p.title}" class="w-full h-40 sm:h-48 object-cover" /><button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft" aria-label="Wishlist"><i data-lucide="heart" class="w-4 h-4"></i></button><span class="absolute top-3 left-3 text-[10px] font-bold uppercase bg-accent-500 text-white px-2 py-1 rounded-full">${Math.round((1 - p.price / p.old) * 100)}% OFF</span></div><div class="p-4"><div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${p.vendor}</div><h3 class="font-semibold text-sm sm:text-base text-ink mt-1 line-clamp-2 min-h-[2.6rem]">${p.title}</h3><div class="flex items-center gap-1 text-xs text-slate-500 mt-1"><i class="fa-solid fa-star text-yellow-500"></i> ${p.rating} <span class="text-slate-300">·</span> Terjual 1k+ </div><div class="mt-2 flex items-end justify-between"><div><div class="text-brand-700 font-extrabold text-sm sm:text-base">${IDR(p.price)}</div><div class="text-[11px] text-slate-400 line-through">${IDR(p.old)}</div></div><a href="https://wa.me/6281384072641?text=Halo,%20saya%20tertarik%20dengan%20produk/layanan%20ini,%20apakah%20masih%20tersedia?" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white" aria-label="Beli"><i data-lucide="shopping-bag" class="w-4 h-4"></i></a></div></div></article> `
-          )
-          .join('');
-        lucide.createIcons();
+      };
+      function IDR(num) {
+        return 'Rp ' + Number(num || 0).toLocaleString('id-ID');
       }
-      renderProducts();
-      document.querySelectorAll('.cat-chip').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.cat-chip').forEach((b) => {
-            b.classList.remove('active', 'bg-ink', 'text-white');
-            b.classList.add('bg-slate-100', 'text-slate-700');
+      function randomRating() {
+        return (Math.random() * 1 + 4).toFixed(1);
+      }
+      function truncate(text, max) {
+        if (!text) return '';
+        if (text.length <= max) return text;
+        let cut = text.substring(0, max);
+        return cut.substring(0, cut.lastIndexOf(' ')) + '...';
+      }
+      function extractPrice(text) {
+        if (!text) return 0;
+        return text.replace(/[^\d]/g, '');
+      }
+      function formatSold(num) {
+        num = Number(num || 0);
+        if (num >= 1000) {
+          let k = (num / 1000).toFixed(1);
+          k = k.replace('.0', '');
+          return k + 'k+';
+        }
+        return num + '+';
+      }
+      async function fetchProducts() {
+        try {
+          const res = await fetch(CONFIG.url);
+          if (!res.ok) throw new Error('Fetch gagal');
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const items = doc.querySelectorAll(CONFIG.selectors.card);
+          let products = [];
+          items.forEach((el, i) => {
+            if (i >= CONFIG.limit) return;
+            const imgEl = el.querySelector(CONFIG.selectors.img);
+            const titleEl = el.querySelector(CONFIG.selectors.title);
+            const priceEl = el.querySelector(CONFIG.selectors.price);
+            const oldEl = el.querySelector(CONFIG.selectors.old);
+            const linkEl = el.querySelector(CONFIG.selectors.link);
+            const soldEl = el.querySelector(CONFIG.selectors.sold);
+            let sold = '0';
+            if (soldEl) {
+              sold = soldEl.parentElement.innerText.replace(/[^\d]/g, '');
+            }
+            let imgStyle = imgEl?.getAttribute('style') || '';
+            let img = '';
+            const match = imgStyle.match(/url\(['"]?(.*?)['"]?\)/);
+            if (match && match[1]) {
+              img = match[1];
+            }
+            let title = truncate(titleEl?.innerText || 'Produk', 60);
+            const priceWrap = el.querySelector(CONFIG.selectors.priceWrap);
+            let price = 0;
+            let old = 0;
+            if (priceWrap) {
+              const priceText = priceWrap.childNodes[0]?.textContent || '';
+              const oldText = priceWrap.querySelector('span')?.innerText || '';
+              price = extractPrice(priceText);
+              old = extractPrice(oldText) || price * 1.3;
+            }
+            let link = linkEl?.href || '#';
+            let cat = 'Produk/Jasa';
+            if (img && !img.startsWith('http')) {
+              img = 'https://carisolusi.biz.id' + img;
+            }
+            products.push({
+              img,
+              title,
+              price,
+              old,
+              link,
+              cat,
+              rating: randomRating(),
+              sold: formatSold(sold),
+            });
           });
-          btn.classList.add('active', 'bg-ink', 'text-white');
-          btn.classList.remove('bg-slate-100', 'text-slate-700');
-          renderProducts(btn.dataset.cat);
-        });
-      });
+          renderProducts(products);
+        } catch (err) {
+          document.getElementById('errorMsg').innerText = 'Gagal memuat data';
+          console.error(err);
+        }
+      }
+      function renderProducts(products) {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = products
+          .map((p) => {
+            const label =
+              p.price > 0 && p.old > 0
+                ? `${Math.round((1 - p.price / p.old) * 100)}% OFF`
+                : 'SALE';
+            return ` <article onclick="window.open('${p.link}','_blank')" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 card-hover cursor-pointer"><div class="relative img-zoom overflow-hidden"><img src="${p.img}" alt="${p.title}" class="w-full h-40 sm:h-48 object-cover"/><button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500 flex items-center justify-center shadow-soft" aria-label="Wishlist"><i class="fa-solid fa-heart"></i></button><span class="absolute top-3 left-3 text-[10px] font-bold uppercase bg-accent-500 text-white px-2 py-1 rounded-full"> ${label} </span></div><div class="p-4"><div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold"> ${p.cat} </div><h3 class="font-semibold text-sm sm:text-base text-ink mt-1 line-clamp-2 min-h-[2.6rem]"><a href="${p.link}" target="_blank" class="hover:text-brand-600"> ${p.title} </a></h3><div class="flex items-center gap-1 text-xs text-slate-500 mt-1"><i class="fa-solid fa-star text-yellow-500"></i> ${p.rating} <span class="text-slate-300">·</span> Terjual ${p.sold} </div><div class="mt-2 flex items-end justify-between"><div><div class="text-brand-700 font-extrabold text-sm sm:text-base"> ${IDR(p.price)} </div><div class="text-[11px] text-slate-400 line-through"> ${IDR(p.old)} </div></div><a href="https://wa.me/6281384072641?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(p.title)}" onclick="event.stopPropagation()" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 hover:bg-brand-700 text-white" aria-label="Beli"><i class="fa-solid fa-bag-shopping"></i></a></div></div></article> `;
+          })
+          .join('');
+      }
+      fetchProducts();
       const system_id = 'CariSolusi-vetabiz-wsp-2026';
     </script>
     <script>
@@ -1360,7 +1370,7 @@
         return ` <div class="grid md:grid-cols-3 gap-5 ${mt ? 'mt-8' : ''}"> ${items.map((item) => buildCard(item)).join('')} </div> `;
       }
       function buildCard(item) {
-        return ` <article class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom"><div class="overflow-hidden"><img src="${item.img}" class="w-full h-52 object-cover" alt="${item.alt}"></div><div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500"><span class="px-2 py-1 rounded-full bg-brand-50 text-brand-700 font-semibold"> ${item.alt} </span><span>· ${item.date}</span></div><h3 class="font-display font-bold text-lg mt-3 leading-snug"> ${item.title} </h3><p class="text-sm text-slate-500 mt-2"> ${item.desc} </p><a href="${item.link}" target="_blank" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600"> Baca selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i></a></div></article> `;
+        return ` <article class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom"><div class="overflow-hidden"><img src="${item.img}" class="w-full h-52 object-cover" alt="${item.alt}"></div><div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500"><span class="px-2 py-1 rounded-full bg-brand-50 text-brand-700 font-semibold"> ${item.alt} </span><span>· ${item.date}</span></div><h3 class="font-display font-bold text-lg mt-3 leading-snug"> ${item.title} </h3><p class="text-sm text-slate-500 mt-2"> ${item.desc} </p><a href="${item.link}" target="_blank" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600"> Baca selengkapnya <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article> `;
       }
       loadNews();
     </script>

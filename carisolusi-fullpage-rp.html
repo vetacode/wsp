@@ -1679,7 +1679,9 @@
         return `
     <article class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom">
       <div class="overflow-hidden">
-        <img src="${item.img}" class="w-full h-52 object-cover" alt="${item.alt}">
+         <a href="${item.link}" target="_blank">
+    <img src="${item.img}" class="w-full h-52 object-cover" alt="${item.alt}">
+  </a>
       </div>
       <div class="p-5">
         <div class="flex items-center gap-2 text-xs text-slate-500">

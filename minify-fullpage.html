@@ -454,9 +454,9 @@
               <p
                 class="hero-paragraph mt-4 text-white/85 text-sm sm:text-base max-w-md"
               >
-                Mulai dari pembuatan landing page, optimasi google SEO, hingga
-                konsultasi bisnis untuk membantu meningkatkan traffic, leads,
-                dan penjualan Anda.
+                Mulai dari pembuatan landing page siap jual, optimasi google
+                SEO, hingga konsultasi bisnis untuk membantu meningkatkan
+                traffic, leads, dan penjualan Anda.
               </p>
               <div class="hero-button-group mt-6 flex flex-wrap gap-3">
                 <a
@@ -1214,6 +1214,7 @@
           img: '.product-thumb',
           link: '.product_name a',
           sold: '.product-footer span',
+          categoryTitle: '.page-header h1',
         },
       };
       function IDR(num) {
@@ -1241,59 +1242,80 @@
         }
         return num + '+';
       }
+      CONFIG.urls = [
+        'https://carisolusi.biz.id/kategori/23/edukasi',
+        'https://carisolusi.biz.id/kategori/21/jasa-bengkel-las-panggilan',
+        'https://carisolusi.biz.id/kategori/20/bisnis-digital',
+        'https://carisolusi.biz.id/kategori/22/website-seo-depok',
+        'https://carisolusi.biz.id/kategori/9/edukasi-dan-kelas-digital',
+        'https://carisolusi.biz.id/kategori/5/script-html-css-js',
+      ];
       async function fetchProducts() {
         try {
-          const res = await fetch(CONFIG.url);
-          if (!res.ok) throw new Error('Fetch gagal');
-          const html = await res.text();
-          const doc = new DOMParser().parseFromString(html, 'text/html');
-          const items = doc.querySelectorAll(CONFIG.selectors.card);
-          let products = [];
-          items.forEach((el, i) => {
-            if (i >= CONFIG.limit) return;
-            const imgEl = el.querySelector(CONFIG.selectors.img);
-            const titleEl = el.querySelector(CONFIG.selectors.title);
-            const priceEl = el.querySelector(CONFIG.selectors.price);
-            const oldEl = el.querySelector(CONFIG.selectors.old);
-            const linkEl = el.querySelector(CONFIG.selectors.link);
-            const soldEl = el.querySelector(CONFIG.selectors.sold);
-            let sold = '0';
-            if (soldEl) {
-              sold = soldEl.parentElement.innerText.replace(/[^\d]/g, '');
+          const MAX_TOTAL = 8;
+          let allProducts = [];
+          for (const url of CONFIG.urls) {
+            if (allProducts.length >= MAX_TOTAL) break;
+            const res = await fetch(url);
+            if (!res.ok) continue;
+            const html = await res.text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            let categoryName = 'Produk/Jasa';
+            const header = doc.querySelector('header.page-header h1');
+            if (header) {
+              categoryName = header.textContent.trim();
             }
-            let imgStyle = imgEl?.getAttribute('style') || '';
-            let img = '';
-            const match = imgStyle.match(/url\(['"]?(.*?)['"]?\)/);
-            if (match && match[1]) {
-              img = match[1];
-            }
-            let title = truncate(titleEl?.innerText || 'Produk', 60);
-            const priceWrap = el.querySelector(CONFIG.selectors.priceWrap);
-            let price = 0;
-            let old = 0;
-            if (priceWrap) {
-              const priceText = priceWrap.childNodes[0]?.textContent || '';
-              const oldText = priceWrap.querySelector('span')?.innerText || '';
-              price = extractPrice(priceText);
-              old = extractPrice(oldText) || price * 1.3;
-            }
-            let link = linkEl?.href || '#';
-            let cat = 'Produk/Jasa';
-            if (img && !img.startsWith('http')) {
-              img = 'https://carisolusi.biz.id' + img;
-            }
-            products.push({
-              img,
-              title,
-              price,
-              old,
-              link,
-              cat,
-              rating: randomRating(),
-              sold: formatSold(sold),
+            console.log('CATEGORY:', categoryName, '| URL:', url);
+            const items = doc.querySelectorAll(CONFIG.selectors.card);
+            items.forEach((el, i) => {
+              if (allProducts.length >= MAX_TOTAL) return;
+              function formatCategory(text) {
+                return text
+                  .toLowerCase()
+                  .replace(/\b\w/g, (c) => c.toUpperCase());
+              }
+              const imgEl = el.querySelector(CONFIG.selectors.img);
+              const titleEl = el.querySelector(CONFIG.selectors.title);
+              const linkEl = el.querySelector(CONFIG.selectors.link);
+              const soldEl = el.querySelector(CONFIG.selectors.sold);
+              let sold = '0';
+              if (soldEl) {
+                sold = soldEl.parentElement.innerText.replace(/[^\d]/g, '');
+              }
+              let imgStyle = imgEl?.getAttribute('style') || '';
+              let img = '';
+              const match = imgStyle.match(/url\(['"]?(.*?)['"]?\)/);
+              if (match && match[1]) {
+                img = match[1];
+              }
+              let title = truncate(titleEl?.innerText || 'Produk', 60);
+              const priceWrap = el.querySelector(CONFIG.selectors.priceWrap);
+              let price = 0;
+              let old = 0;
+              if (priceWrap) {
+                const priceText = priceWrap.childNodes[0]?.textContent || '';
+                const oldText =
+                  priceWrap.querySelector('span')?.innerText || '';
+                price = extractPrice(priceText);
+                old = extractPrice(oldText) || price * 1.3;
+              }
+              let link = linkEl?.href || '#';
+              if (img && !img.startsWith('http')) {
+                img = 'https://carisolusi.biz.id' + img;
+              }
+              allProducts.push({
+                img,
+                title,
+                price,
+                old,
+                link,
+                cat: formatCategory(categoryName),
+                rating: randomRating(),
+                sold: formatSold(sold),
+              });
             });
-          });
-          renderProducts(products);
+          }
+          renderProducts(allProducts);
         } catch (err) {
           document.getElementById('errorMsg').innerText = 'Gagal memuat data';
           console.error(err);
@@ -1373,6 +1395,43 @@
         return ` <article class="rounded-2xl overflow-hidden bg-white shadow-soft card-hover img-zoom"><div class="overflow-hidden"><a href="${item.link}" target="_blank"><img src="${item.img}" class="w-full h-52 object-cover" alt="${item.alt}"></a></div><div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500"><span class="px-2 py-1 rounded-full bg-brand-50 text-brand-700 font-semibold"> ${item.alt} </span><span>· ${item.date}</span></div><h3 class="font-display font-bold text-lg mt-3 leading-snug"> ${item.title} </h3><p class="text-sm text-slate-500 mt-2"> ${item.desc} </p><a href="${item.link}" target="_blank" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600"> Baca selengkapnya <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article> `;
       }
       loadNews();
+    </script>
+    <script>
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key === 'u') {
+          e.preventDefault();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+          e.preventDefault();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+          e.preventDefault();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+          e.preventDefault();
+        }
+        F12;
+        if (e.key === 'F12') {
+          e.preventDefault();
+        }
+      });
+    </script>
+    <script>
+      function detectDevTools() {
+        let threshold = 160;
+        setInterval(function () {
+          if (
+            window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold
+          ) {
+            document.body.innerHTML = ` <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif"><h1>Akses ditolak</h1></div> `;
+          }
+        }, 1000);
+      }
+      detectDevTools();
     </script>
   </body>
 </html>

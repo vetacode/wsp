@@ -1711,5 +1711,59 @@
 
       loadNews();
     </script>
+    <script>
+      // Disable klik kanan
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      // Disable shortcut umum
+      document.addEventListener('keydown', function (e) {
+        // Ctrl + U
+        if (e.ctrlKey && e.key === 'u') {
+          e.preventDefault();
+        }
+
+        // Ctrl + Shift + I (DevTools)
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+          e.preventDefault();
+        }
+
+        // Ctrl + Shift + J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+          e.preventDefault();
+        }
+
+        // Ctrl + Shift + C (Inspect Element)
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+          e.preventDefault();
+        }
+
+        // F12
+        if (e.key === 'F12') {
+          e.preventDefault();
+        }
+      });
+    </script>
+    <script>
+      function detectDevTools() {
+        let threshold = 160;
+
+        setInterval(function () {
+          if (
+            window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold
+          ) {
+            document.body.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif">
+            <h1>Akses ditolak</h1>
+          </div>
+        `;
+          }
+        }, 1000);
+      }
+
+      detectDevTools();
+    </script>
   </body>
 </html>

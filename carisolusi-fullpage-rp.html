@@ -1437,9 +1437,12 @@
 
       async function fetchProducts() {
         try {
+          const MAX_TOTAL = 8;
           let allProducts = [];
 
           for (const url of CONFIG.urls) {
+            if (allProducts.length >= MAX_TOTAL) break;
+
             const res = await fetch(url);
             if (!res.ok) continue;
 
@@ -1459,7 +1462,7 @@
             const items = doc.querySelectorAll(CONFIG.selectors.card);
 
             items.forEach((el, i) => {
-              if (i >= CONFIG.limit) return;
+              if (allProducts.length >= MAX_TOTAL) return;
 
               function formatCategory(text) {
                 return text

@@ -1466,8 +1466,10 @@
 
               function formatCategory(text) {
                 return text
-                  .toLowerCase()
-                  .replace(/\b\w/g, (c) => c.toUpperCase());
+                  .trim()
+                  .replace(/\s+/g, ' ')
+                  .split(' ')[0]
+                  .toUpperCase();
               }
 
               const imgEl = el.querySelector(CONFIG.selectors.img);
@@ -1522,6 +1524,9 @@
               });
             });
           }
+
+          allProducts = allProducts.sort(() => 0.5 - Math.random());
+          allProducts = allProducts.slice(0, 8);
 
           renderProducts(allProducts);
         } catch (err) {

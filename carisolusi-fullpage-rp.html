@@ -71,6 +71,9 @@
       content="https://carisolusi.biz.id/gambarbebas/20260423-093506_og-carisolusi.jpg"
     />
 
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
     <!-- BRAND & AUTHOR -->
     <meta name="author" content="CariSolusi" />
     <meta name="theme-color" content="#0064e0" />
@@ -140,6 +143,103 @@
           },
         },
       };
+    </script>
+
+    <!-- JSON+LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://carisolusi.biz.id/#organization",
+            "name": "CariSolusi",
+            "url": "https://carisolusi.biz.id/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://carisolusi.biz.id/uploads/favicon54.png"
+            },
+            "sameAs": []
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://carisolusi.biz.id/#website",
+            "url": "https://carisolusi.biz.id/",
+            "name": "CariSolusi",
+            "publisher": { "@id": "https://carisolusi.biz.id/#organization" },
+            "inLanguage": "id-ID"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://carisolusi.biz.id/#service",
+            "name": "Jasa SEO, Digital Marketing & Pembuatan Website",
+            "image": "https://carisolusi.biz.id/gambarbebas/20260423-093506_og-carisolusi.jpg",
+            "url": "https://carisolusi.biz.id/",
+            "telephone": "+6281384072641",
+            "areaServed": { "@type": "Country", "name": "Indonesia" },
+            "description": "CariSolusi menyediakan jasa SEO, pembuatan website, dan digital marketing untuk UMKM di Indonesia.",
+            "provider": { "@id": "https://carisolusi.biz.id/#organization" }
+          },
+          {
+            "@type": "OfferCatalog",
+            "@id": "https://carisolusi.biz.id/#catalog",
+            "name": "Marketplace Solusi Bisnis CariSolusi",
+            "url": "https://carisolusi.biz.id/",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Jasa Digital Marketing",
+                "url": "https://carisolusi.biz.id/"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Jasa Panggilan & Lokal",
+                "url": "https://carisolusi.biz.id/kategori/21/jasa-bengkel-las-panggilan"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Produk Digital & Tools",
+                "url": "https://carisolusi.biz.id/kategori/20/bisnis-digital"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Supplier & Produk Fisik",
+                "url": "https://carisolusi.biz.id/kategori/3/supplier-telur-ayam-coklat"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://carisolusi.biz.id/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Apa itu jasa digital marketing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Jasa digital marketing adalah layanan pemasaran online untuk meningkatkan visibilitas dan penjualan bisnis melalui internet."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Berapa lama hasil SEO terlihat?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Hasil SEO biasanya mulai terlihat dalam 3 hingga 6 bulan tergantung kompetisi dan kondisi website."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Apakah layanan cocok untuk UMKM?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ya, layanan kami dirancang khusus untuk UMKM agar bisa meningkatkan traffic dan penjualan secara efektif."
+                }
+              }
+            ]
+          }
+        ]
+      }
     </script>
 
     <style>

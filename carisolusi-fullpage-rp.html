@@ -209,6 +209,7 @@
             ]
           },
           {
+            "@context": "https://schema.org",
             "@type": "FAQPage",
             "@id": "https://carisolusi.biz.id/#faq",
             "mainEntity": [
@@ -217,23 +218,63 @@
                 "name": "Apa itu jasa digital marketing?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Jasa digital marketing adalah layanan pemasaran online untuk meningkatkan visibilitas dan penjualan bisnis melalui internet."
+                  "text": "Jasa digital marketing adalah layanan pemasaran online untuk meningkatkan visibilitas, traffic, dan penjualan bisnis melalui internet."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Berapa lama hasil SEO terlihat?",
+                "name": "Apakah menyediakan jasa pembuatan website profesional?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Hasil SEO biasanya mulai terlihat dalam 3 hingga 6 bulan tergantung kompetisi dan kondisi website."
+                  "text": "Ya, kami menyediakan jasa pembuatan website profesional dengan desain clean, modern, mobile responsive, dan sesuai kebutuhan bisnis maupun branding perusahaan."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Apakah layanan cocok untuk UMKM?",
+                "name": "Apakah website sudah SEO friendly?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Ya, layanan kami dirancang khusus untuk UMKM agar bisa meningkatkan traffic dan penjualan secara efektif."
+                  "text": "Website dirancang dengan struktur SEO friendly mulai dari kecepatan loading, heading, meta tag, schema markup, hingga struktur halaman agar lebih mudah terindex Google."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Apakah website yang dibuat mobile responsive?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ya, seluruh website dibuat mobile responsive sehingga tampil optimal di smartphone, tablet, maupun desktop."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Berapa harga jasa pembuatan website?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Harga jasa pembuatan website menyesuaikan jenis website, fitur, jumlah halaman, dan kebutuhan desain. Tersedia pilihan paket fleksibel untuk UMKM maupun bisnis profesional."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Berapa lama proses pembuatan website?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Durasi pengerjaan website umumnya sekitar 3 hingga 14 hari tergantung tingkat kompleksitas desain dan fitur website."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Apakah tersedia revisi dan support setelah website selesai?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ya, tersedia revisi dan support teknis untuk membantu memastikan website berjalan optimal sesuai kebutuhan bisnis."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Apakah desain website bisa custom sesuai bisnis?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tentu. Desain website dapat dibuat custom sesuai branding, target market, konsep bisnis, hingga kebutuhan fitur tertentu agar tampil lebih profesional dan terpercaya."
                 }
               }
             ]
@@ -1883,24 +1924,43 @@
       });
     </script>
     <script>
-      function detectDevTools() {
-        let threshold = 160;
+      function isMobile() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
 
-        setInterval(function () {
-          if (
+      if (!isMobile()) {
+        const threshold = 160;
+
+        setInterval(() => {
+          const devtoolsOpen =
             window.outerWidth - window.innerWidth > threshold ||
-            window.outerHeight - window.innerHeight > threshold
-          ) {
-            document.body.innerHTML = `
-          <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif">
-            <h1>Akses ditolak</h1>
-          </div>
-        `;
+            window.outerHeight - window.innerHeight > threshold;
+
+          const blocker = document.getElementById('devtools-blocker');
+
+          if (devtoolsOpen) {
+            blocker.style.display = 'flex';
+          } else {
+            blocker.style.display = 'none';
           }
         }, 1000);
       }
-
-      detectDevTools();
     </script>
+
+    <div
+      id="devtools-blocker"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: white;
+        z-index: 999999;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+      "
+    >
+      <h1>Akses ditolak</h1>
+    </div>
   </body>
 </html>

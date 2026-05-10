@@ -1515,12 +1515,12 @@
       const menuBtn = document.getElementById('menuBtn');
       const mobileMenu = document.getElementById('mobileMenu');
       menuBtn?.addEventListener('click', () =>
-        mobileMenu.classList.toggle('hidden')
+        mobileMenu.classList.toggle('hidden'),
       );
       mobileMenu
         ?.querySelectorAll('a')
         .forEach((a) =>
-          a.addEventListener('click', () => mobileMenu.classList.add('hidden'))
+          a.addEventListener('click', () => mobileMenu.classList.add('hidden')),
         );
       const navbar = document.getElementById('navbar');
       let lastY = window.scrollY;
@@ -1542,8 +1542,8 @@
               .forEach((l) =>
                 l.classList.toggle(
                   'active',
-                  l.getAttribute('href') === '#' + id
-                )
+                  l.getAttribute('href') === '#' + id,
+                ),
               );
           }
         });
@@ -1554,7 +1554,7 @@
             if (e.isIntersecting) e.target.classList.add('visible');
           });
         },
-        { threshold: 0.12 }
+        { threshold: 0.12 },
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
       const CONFIG = {
@@ -1819,7 +1819,7 @@
         font-family: sans-serif;
       "
     >
-      <h1>Akses ditolak</h1>
+      <h2>Akses ditolak</h2>
     </div>
   </body>
 </html>

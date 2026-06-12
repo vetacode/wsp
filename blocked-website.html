@@ -1,0 +1,1759 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAFIS Master Prompt Generator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      :root {
+        --bg: #07070d;
+        --card: rgba(14, 14, 24, 0.85);
+        --card-solid: #0e0e18;
+        --accent: #c8a850;
+        --accent-light: #e8d48b;
+        --accent-dim: rgba(200, 168, 80, 0.15);
+        --accent-glow: rgba(200, 168, 80, 0.25);
+        --text: #e8e4dc;
+        --text-muted: #7a7668;
+        --input-bg: rgba(10, 10, 20, 0.7);
+        --input-border: rgba(200, 168, 80, 0.12);
+        --danger: #e85454;
+        --success: #4ade80;
+        --info: #60a5fa;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .form-input,
+      .form-textarea {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
+
+      #particleCanvas {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .bg-blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .bg-blob-1 {
+        width: 500px;
+        height: 500px;
+        background: rgba(200, 168, 80, 0.06);
+        top: -150px;
+        right: -150px;
+        animation: blobFloat 22s ease-in-out infinite;
+      }
+      .bg-blob-2 {
+        width: 350px;
+        height: 350px;
+        background: rgba(200, 168, 80, 0.04);
+        bottom: -100px;
+        left: -80px;
+        animation: blobFloat 28s ease-in-out infinite reverse;
+      }
+      .bg-blob-3 {
+        width: 250px;
+        height: 250px;
+        background: rgba(232, 212, 139, 0.03);
+        top: 40%;
+        left: 50%;
+        animation: blobFloat 18s ease-in-out infinite 5s;
+      }
+      @keyframes blobFloat {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(40px, -30px) scale(1.05);
+        }
+        66% {
+          transform: translate(-30px, 25px) scale(0.95);
+        }
+      }
+
+      #toastContainer {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .toast {
+        padding: 14px 22px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        animation:
+          toastIn 0.4s ease,
+          toastOut 0.4s ease 2.6s forwards;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+      .toast-success {
+        background: rgba(74, 222, 128, 0.15);
+        color: var(--success);
+        border-color: rgba(74, 222, 128, 0.2);
+      }
+      .toast-error {
+        background: rgba(232, 84, 84, 0.15);
+        color: var(--danger);
+        border-color: rgba(232, 84, 84, 0.2);
+      }
+      .toast-info {
+        background: rgba(96, 165, 250, 0.15);
+        color: var(--info);
+        border-color: rgba(96, 165, 250, 0.2);
+      }
+      .toast-warning {
+        background: rgba(200, 168, 80, 0.15);
+        color: var(--accent-light);
+        border-color: rgba(200, 168, 80, 0.2);
+      }
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateX(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes toastOut {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(60px);
+        }
+      }
+
+      .main-wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 24px 20px 60px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .main-wrapper.app-active {
+        align-items: flex-start;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 420px;
+        background: var(--card);
+        backdrop-filter: blur(24px);
+        border: 1px solid var(--accent-dim);
+        border-radius: 20px;
+        padding: 48px 40px;
+        text-align: center;
+        animation: cardEnter 0.8s ease;
+        box-shadow:
+          0 0 60px rgba(200, 168, 80, 0.06),
+          0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+      @keyframes cardEnter {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .login-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 20px;
+        border-radius: 16px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(200, 168, 80, 0.25);
+        animation: iconPulse 3s ease-in-out infinite;
+        padding: 8px;
+        overflow: hidden;
+      }
+      .login-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        -webkit-user-drag: none;
+      }
+      @keyframes iconPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 40px rgba(200, 168, 80, 0.25);
+        }
+        50% {
+          box-shadow: 0 0 60px rgba(200, 168, 80, 0.4);
+        }
+      }
+
+      .login-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--accent-light);
+        margin-bottom: 4px;
+        letter-spacing: 2px;
+      }
+      .login-subtitle {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 32px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+        text-align: left;
+      }
+      .form-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .form-label i {
+        font-size: 12px;
+        opacity: 0.7;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: rgba(200, 168, 80, 0.25);
+      }
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: rgba(200, 168, 80, 0.45);
+        box-shadow: 0 0 24px rgba(200, 168, 80, 0.08);
+      }
+      .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8A850' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 36px;
+        cursor: pointer;
+      }
+      .form-select option {
+        background: #12121e;
+        color: var(--text);
+      }
+      .form-textarea {
+        min-height: 90px;
+        resize: vertical;
+        line-height: 1.6;
+      }
+
+      .field-highlight {
+        animation: fieldGlow 0.8s ease;
+      }
+      @keyframes fieldGlow {
+        0% {
+          box-shadow: 0 0 0 rgba(200, 168, 80, 0);
+          border-color: var(--input-border);
+        }
+        30% {
+          box-shadow: 0 0 20px rgba(200, 168, 80, 0.2);
+          border-color: rgba(200, 168, 80, 0.6);
+        }
+        100% {
+          box-shadow: 0 0 0 rgba(200, 168, 80, 0);
+          border-color: var(--input-border);
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 13px 20px;
+        border: none;
+        border-radius: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.3px;
+      }
+      .btn::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+      .btn:hover::after {
+        transform: translateX(100%);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+
+      .btn-login {
+        width: 100%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        color: var(--bg);
+        font-size: 15px;
+        font-weight: 700;
+        padding: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .btn-login:hover {
+        box-shadow: 0 0 30px rgba(200, 168, 80, 0.3);
+      }
+
+      .btn-generate {
+        width: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent-light),
+          var(--accent)
+        );
+        background-size: 200% 100%;
+        color: var(--bg);
+        font-size: 16px;
+        font-weight: 700;
+        padding: 16px;
+        letter-spacing: 1px;
+        animation: shimmer 3s linear infinite;
+      }
+      .btn-generate:hover {
+        box-shadow: 0 0 40px rgba(200, 168, 80, 0.35);
+        transform: translateY(-1px);
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .btn-copy {
+        background: rgba(74, 222, 128, 0.15);
+        color: var(--success);
+        border: 1px solid rgba(74, 222, 128, 0.2);
+      }
+      .btn-copy:hover {
+        background: rgba(74, 222, 128, 0.25);
+        box-shadow: 0 0 20px rgba(74, 222, 128, 0.15);
+      }
+      .btn-wa {
+        background: rgba(37, 211, 102, 0.15);
+        color: #25d366;
+        border: 1px solid rgba(37, 211, 102, 0.2);
+      }
+      .btn-wa:hover {
+        background: rgba(37, 211, 102, 0.25);
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.15);
+      }
+      .btn-save {
+        background: rgba(96, 165, 250, 0.15);
+        color: var(--info);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+      }
+      .btn-save:hover {
+        background: rgba(96, 165, 250, 0.25);
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+      }
+      .btn-pdf {
+        background: rgba(232, 84, 84, 0.15);
+        color: var(--danger);
+        border: 1px solid rgba(232, 84, 84, 0.2);
+      }
+      .btn-pdf:hover {
+        background: rgba(232, 84, 84, 0.25);
+        box-shadow: 0 0 20px rgba(232, 84, 84, 0.15);
+      }
+      .btn-word {
+        background: rgba(168, 85, 247, 0.15);
+        color: #a855f7;
+        border: 1px solid rgba(168, 85, 247, 0.2);
+      }
+      .btn-word:hover {
+        background: rgba(168, 85, 247, 0.25);
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+      }
+      .btn-logout {
+        background: transparent;
+        border: 1px solid rgba(200, 168, 80, 0.2);
+        color: var(--accent);
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+      .btn-logout:hover {
+        background: rgba(200, 168, 80, 0.1);
+      }
+
+      .app-section {
+        width: 100%;
+        animation: appEnter 0.6s ease;
+      }
+      @keyframes appEnter {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--accent-dim);
+      }
+      .app-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .app-brand-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 24px rgba(200, 168, 80, 0.2);
+        overflow: hidden;
+        padding: 4px;
+      }
+      .app-brand-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        -webkit-user-drag: none;
+      }
+      .app-brand-text h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--accent-light);
+        letter-spacing: 1px;
+        line-height: 1.1;
+      }
+      .app-brand-text span {
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+
+      .form-card {
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--accent-dim);
+        border-radius: 16px;
+        padding: 32px;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 24px;
+      }
+      .form-grid .full-width {
+        grid-column: 1 / -1;
+      }
+
+      @media (max-width: 640px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-card {
+          padding: 20px;
+        }
+        .login-card {
+          padding: 32px 24px;
+        }
+        .action-grid {
+          grid-template-columns: 1fr 1fr !important;
+        }
+        .app-header {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+      }
+
+      .result-card {
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--accent-dim);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+        transition: border-color 0.5s ease;
+      }
+      .result-card.has-content {
+        border-color: rgba(200, 168, 80, 0.3);
+      }
+      .result-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        background: rgba(200, 168, 80, 0.04);
+        border-bottom: 1px solid var(--accent-dim);
+      }
+      .result-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--accent);
+      }
+      .result-header-left .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        opacity: 0.4;
+        transition: opacity 0.3s;
+      }
+      .result-card.has-content .result-header-left .dot {
+        opacity: 1;
+      }
+      .result-word-count {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .result-body {
+        padding: 20px;
+        min-height: 120px;
+        font-size: 14px;
+        line-height: 1.8;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: var(--text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      .result-body.empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-style: italic;
+        font-size: 13px;
+      }
+
+      .typing-dots {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .typing-dots span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: dotBounce 1.2s ease-in-out infinite;
+      }
+      .typing-dots span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .typing-dots span:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      @keyframes dotBounce {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.3;
+        }
+        30% {
+          transform: translateY(-8px);
+          opacity: 1;
+        }
+      }
+
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .shake {
+        animation: shakeAnim 0.5s ease;
+      }
+      @keyframes shakeAnim {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        20% {
+          transform: translateX(-12px);
+        }
+        40% {
+          transform: translateX(12px);
+        }
+        60% {
+          transform: translateX(-8px);
+        }
+        80% {
+          transform: translateX(8px);
+        }
+      }
+      .section-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0 20px;
+      }
+      .section-divider span {
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+      .section-divider::before,
+      .section-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent-dim),
+          transparent
+        );
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(200, 168, 80, 0.2);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(200, 168, 80, 0.35);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+    <div id="toastContainer"></div>
+
+    <div class="main-wrapper" id="mainWrapper">
+      <!-- ===== LOGIN ===== -->
+      <div class="login-card" id="loginBox">
+        <div class="login-icon">
+          <img
+            src="https://dafisejahtera.com/gambarbebas/20260311-043021_Logo%20PT%20warna26.jpg"
+            alt="Logo DAFIS"
+            draggable="false"
+          />
+        </div>
+        <div class="login-title">DAFIS</div>
+        <div class="login-subtitle">Master Prompt Generator</div>
+        <div class="form-group">
+          <label class="form-label"><i class="fas fa-user"></i> Username</label>
+          <input
+            class="form-input"
+            id="user"
+            placeholder="Masukkan username"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label"><i class="fas fa-lock"></i> Password</label>
+          <input
+            class="form-input"
+            id="pass"
+            type="password"
+            placeholder="Masukkan password"
+          />
+        </div>
+        <button class="btn btn-login" onclick="login()">
+          <i class="fas fa-arrow-right"></i> Masuk
+        </button>
+      </div>
+
+      <!-- ===== APP ===== -->
+      <div id="app" class="hidden app-section" style="width: 100%">
+        <header class="app-header">
+          <div class="app-brand">
+            <div class="app-brand-icon">
+              <img
+                src="https://dafisejahtera.com/gambarbebas/20260311-043021_Logo%20PT%20warna26.jpg"
+                alt="Logo DAFIS"
+                draggable="false"
+              />
+            </div>
+            <div class="app-brand-text">
+              <h1>DAFIS</h1>
+              <span>Master Prompt Generator</span>
+            </div>
+          </div>
+          <button class="btn btn-logout" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Keluar
+          </button>
+        </header>
+
+        <div class="form-card">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label"
+                ><i class="fas fa-layer-group"></i> Template</label
+              >
+              <select class="form-select" id="template" onchange="autoFill()">
+                <option value="copy">Copywriting (AIDA + PAS + CTA)</option>
+                <option value="landing">Landing Page</option>
+                <option value="seo">Artikel SEO</option>
+                <option value="coding">Coding / App</option>
+                <option value="wa">Broadcast WhatsApp</option>
+                <option value="ebook">Ebook</option>
+                <option value="ads">Iklan FB / IG</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"
+                ><i class="fas fa-user-tie"></i> Role</label
+              >
+              <select class="form-select" id="role" onchange="autoFill()">
+                <option>Copywriter Profesional</option>
+                <option>Digital Marketing Expert</option>
+                <option>Web Developer</option>
+                <option>SEO Specialist</option>
+                <option>Content Creator</option>
+                <option>AI Engineer</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-heading"></i> Judul Prompt</label
+              >
+              <input
+                class="form-input"
+                id="judul"
+                placeholder="Masukkan judul untuk prompt Anda secara manual..."
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-comment-dots"></i> Konteks</label
+              >
+              <textarea
+                class="form-textarea"
+                id="context"
+                placeholder="Deskripsikan konteks atau latar belakang..."
+              ></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-bullseye"></i> Tugas</label
+              >
+              <textarea
+                class="form-textarea"
+                id="task"
+                placeholder="Jelaskan tugas yang harus dilakukan..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"
+                ><i class="fas fa-users"></i> Target Audiens</label
+              >
+              <input
+                class="form-input"
+                id="target"
+                placeholder="Siapa target audiens Anda?"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"
+                ><i class="fas fa-palette"></i> Gaya Bahasa</label
+              >
+              <select class="form-select" id="style">
+                <option>Persuasif</option>
+                <option>Emosional</option>
+                <option>Formal</option>
+                <option>Santai</option>
+                <option>Storytelling</option>
+                <option>Authoritative</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-window-maximize"></i> Header</label
+              >
+              <input
+                class="form-input"
+                id="headerInput"
+                placeholder="Contoh: PT DAFIS SEJAHTERA — Solusi Digital Terdepan"
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-map-marker-alt"></i> Alamat</label
+              >
+              <input
+                class="form-input"
+                id="alamatInput"
+                placeholder="Contoh: Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan"
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-shoe-prints"></i> Footer</label
+              >
+              <input
+                class="form-input"
+                id="footerInput"
+                placeholder="Contoh: Hak Cipta 2024 PT DAFIS SEJAHTERA. All rights reserved."
+              />
+            </div>
+
+            <!-- KOLOM BARU: URL FAVICON -->
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-image"></i> URL Favicon</label
+              >
+              <input
+                class="form-input"
+                id="faviconUrl"
+                placeholder="Contoh: https://dafisejahtera.com/favicon.ico"
+              />
+            </div>
+
+            <!-- KOLOM BARU: GALERI GAMBAR & VIDEO -->
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fas fa-photo-film"></i> Galeri (Link
+                Gambar/Video)</label
+              >
+              <textarea
+                class="form-textarea"
+                id="galleryLinks"
+                placeholder="Masukkan link gambar atau video, pisahkan dengan baris baru..."
+              ></textarea>
+            </div>
+
+            <!-- KOLOM BARU: RATING BINTANG -->
+            <div class="form-group">
+              <label class="form-label"
+                ><i class="fas fa-star"></i> Rating Bintang</label
+              >
+              <select class="form-select" id="starRating">
+                <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                <option value="4">⭐⭐⭐⭐ (4)</option>
+                <option value="3">⭐⭐⭐ (3)</option>
+                <option value="2">⭐⭐ (2)</option>
+                <option value="1">⭐ (1)</option>
+              </select>
+            </div>
+
+            <!-- KOLOM BARU: LINK URL WEBSITE ONLINE -->
+            <div class="form-group">
+              <label class="form-label"
+                ><i class="fas fa-globe"></i> Link URL Website Online</label
+              >
+              <input
+                class="form-input"
+                id="websiteUrl"
+                placeholder="Contoh: https://dafisejahtera.com"
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label"
+                ><i class="fab fa-whatsapp"></i> Nomor WhatsApp (tanpa +)</label
+              >
+              <input class="form-input" id="wa" placeholder="6281234567890" />
+            </div>
+          </div>
+
+          <div class="section-divider"><span>Generate</span></div>
+
+          <button
+            class="btn btn-generate"
+            onclick="generate()"
+            id="btnGenerate"
+          >
+            <i class="fas fa-bolt"></i> Generate Prompt
+          </button>
+        </div>
+
+        <div class="result-card" id="resultCard">
+          <div class="result-header">
+            <div class="result-header-left">
+              <span class="dot"></span> Output Prompt
+            </div>
+            <span class="result-word-count" id="wordCount">0 kata</span>
+          </div>
+          <div class="result-body empty" id="result">
+            Prompt akan muncul di sini...
+          </div>
+        </div>
+
+        <div class="action-grid">
+          <button class="btn btn-copy" onclick="copyResult()">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+          <button class="btn btn-wa" onclick="sendWA()">
+            <i class="fab fa-whatsapp"></i> Kirim WA
+          </button>
+          <button class="btn btn-save" onclick="saveOnline()">
+            <i class="fas fa-cloud-arrow-up"></i> Simpan
+          </button>
+          <button class="btn btn-pdf" onclick="exportPDF()">
+            <i class="fas fa-file-pdf"></i> Export PDF
+          </button>
+          <button class="btn btn-word" onclick="exportWord()">
+            <i class="fas fa-file-word"></i> Export Word
+          </button>
+          <button
+            class="btn btn-logout"
+            onclick="clearResult()"
+            style="border-color: rgba(232, 84, 84, 0.2); color: var(--danger)"
+          >
+            <i class="fas fa-trash-alt"></i> Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ================================================
+   KEAMANAN & ANTI-INSPEKSI
+   ================================================ */
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        showToast('Klik kanan dinonaktifkan untuk keamanan.', 'warning');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12') {
+          e.preventDefault();
+          showToast('F12 diblokir!', 'error');
+          return false;
+        }
+        if (
+          e.ctrlKey &&
+          !e.shiftKey &&
+          (e.key === 'u' ||
+            e.key === 'U' ||
+            e.key === 's' ||
+            e.key === 'S' ||
+            e.key === 'p' ||
+            e.key === 'P')
+        ) {
+          e.preventDefault();
+          showToast('Shortcut ini diblokir untuk keamanan!', 'error');
+          return false;
+        }
+        if (
+          e.ctrlKey &&
+          e.shiftKey &&
+          (e.key === 'I' ||
+            e.key === 'i' ||
+            e.key === 'J' ||
+            e.key === 'j' ||
+            e.key === 'C' ||
+            e.key === 'c')
+        ) {
+          e.preventDefault();
+          showToast('Inspect Element diblokir!', 'error');
+          return false;
+        }
+      });
+      document.addEventListener('dragstart', function (e) {
+        e.preventDefault();
+      });
+
+      /* ================================================
+   DATA PRESET
+   ================================================ */
+      const TEMPLATE_DATA = {
+        copy: {
+          context:
+            'Membuat copywriting persuasif untuk meningkatkan konversi penjualan produk/jasa secara signifikan. Fokus pada penyampaian value proposition yang jelas dan membangun kepercayaan calon pembeli.',
+          task: 'Buat headline yang memukau dan menghentikan scroll, body copy yang menggugah emosi dengan storytelling, serta call-to-action yang tidak bisa ditolak menggunakan framework AIDA (Attention-Interest-Desire-Action) dan PAS (Problem-Agitate-Solution). Sertakan minimal 3 variasi headline.',
+          target:
+            'Calon pembeli usia 25-50 tahun yang sedang mempertimbangkan kebutuhan akan produk/jasa tersebut',
+          header: 'PT DAFIS SEJAHTERA — Penawaran Spesial',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer: 'Hak Cipta 2024 PT DAFIS SEJAHTERA. All rights reserved.',
+          faviconUrl: 'https://dafisejahtera.com/favicon.ico',
+          galleryLinks:
+            'https://via.placeholder.com/800x400\nhttps://via.placeholder.com/400x400',
+          starRating: '5',
+          websiteUrl: 'https://dafisejahtera.com',
+        },
+        landing: {
+          context:
+            'Membuat landing page yang dirancang untuk memaksimalkan konversi pengunjung menjadi leads atau pembeli. Halaman harus memuat semua informasi penting di atas fold dan menghilangkan distraksi.',
+          task: 'Desain dan susun struktur landing page HTML lengkap dengan: hero section (headline + subheadline + CTA), section benefit, social proof/testimonial, FAQ, dan CTA WhatsApp yang kuat. Gunakan desain modern dan responsive.',
+          target:
+            'Pengunjung website yang perlu diyakinkan dalam hitungan detik untuk mengambil tindakan',
+          header: 'PT DAFIS SEJAHTERA — Landing Page Resmi',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer: 'PT DAFIS SEJAHTERA — Solusi Digital Terdepan',
+          faviconUrl: 'https://dafisejahtera.com/favicon.ico',
+          galleryLinks: 'https://via.placeholder.com/800x400',
+          starRating: '5',
+          websiteUrl: 'https://dafisejahtera.com',
+        },
+        seo: {
+          context:
+            'Menulis artikel SEO-friendly yang mendapatkan peringkat tinggi di mesin pencari Google sekaligus memberikan nilai nyata bagi pembaca. Artikel harus memenuhi intent pencarian dan memiliki depth yang baik.',
+          task: 'Buat artikel lengkap 1500-2500 kata dengan struktur heading (H1-H3) yang proper, keyword placement optimal di title/meta/heading/body, paragraf pembuka yang hook, konten informatif dengan data/fakta, internal link suggestion, dan meta description yang menggugah klik.',
+          target:
+            'Pembaca online yang mencari solusi/informasi dan algoritma mesin pencari Google',
+          header: 'PT DAFIS SEJAHTERA — Artikel & Insight',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer: 'Baca artikel lainnya di dafisejahtera.com',
+          faviconUrl: 'https://dafisejahtera.com/favicon.ico',
+          galleryLinks: '',
+          starRating: '5',
+          websiteUrl: 'https://dafisejahtera.com/blog',
+        },
+        coding: {
+          context:
+            'Membangun aplikasi atau fitur kode yang modern, bersih, maintainable, dan siap production. Kode harus mengikuti standar industri dan best practice terkini.',
+          task: 'Tulis kode lengkap yang rapi, well-documented dengan komentar jelas, mengikuti prinsip DRY dan SOLID, responsive design, accessible, dan siap diintegrasikan ke proyek existing. Sertakan penjelasan singkat implementasinya.',
+          target:
+            'Developer dan tim teknis yang akan menggunakan atau melanjutkan pengembangan kode',
+          header: 'PT DAFIS SEJAHTERA — Dev Center',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer: 'DAFIS Engineering Team — Build with Excellence',
+          faviconUrl: 'https://dafisejahtera.com/favicon.ico',
+          galleryLinks: '',
+          starRating: '5',
+          websiteUrl: 'https://dafisejahtera.com',
+        },
+        wa: {
+          context:
+            'Membuat pesan broadcast WhatsApp yang efektif untuk menjangkau dan mengkonversi audiens secara personal namun masif. Pesan harus terasa personal bukan spam.',
+          task: 'Buat pesan WA dengan hook yang kuat di baris pertama (maks 65 karakter), isi yang ringkas dan relevan dengan skema masalah-solusi, serta closing yang mendorong balasan langsung. Sertakan 3 variasi hook pembuka.',
+          target:
+            'Kontak WA yang perlu di-hook dalam 3 detik pertama agar membaca seluruh pesan dan mengambil tindakan',
+          header: 'Pesan Resmi PT DAFIS SEJAHTERA',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer: 'Balas "INFO" untuk konsultasi gratis',
+          faviconUrl: '',
+          galleryLinks: '',
+          starRating: '5',
+          websiteUrl: 'https://wa.me/6281234567890',
+        },
+        ebook: {
+          context:
+            'Menyusun konten ebook yang komprehensif, terstruktur rapi, dan memberikan nilai tinggi bagi pembaca. Ebook harus memposisikan brand sebagai otoritas di bidangnya.',
+          task: 'Buat outline lengkap ebook (judul, daftar isi, 5-8 bab) dan isi setiap bab dengan penjelasan mendalam, contoh nyata, case study, dan takeaway yang actionable. Sertakan juga intro dan penutup yang powerful.',
+          target:
+            'Pembaca yang ingin belajar mendalam tentang topik tertentu secara sistematis dan mendapatkan insight praktis',
+          header: 'eBook by PT DAFIS SEJAHTERA',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer:
+            'Hak Cipta 2024 PT DAFIS SEJAHTERA. Dilarang memperbanyak tanpa izin.',
+          faviconUrl: 'https://dafisejahtera.com/favicon.ico',
+          galleryLinks: 'https://via.placeholder.com/600x800',
+          starRating: '5',
+          websiteUrl: 'https://dafisejahtera.com/ebook',
+        },
+        ads: {
+          context:
+            'Membuat iklan Facebook/Instagram yang scroll-stopping dan menghasilkan konversi tinggi dengan budget efisien. Iklan harus stand out di feed yang penuh kompetisi.',
+          task: 'Buat 3 variasi iklan lengkap meliputi: headline iklan (maks 40 karakter), primary text (maks 125 karakter untuk above-fold), deskripsi, CTA button recommendation, dan suggestion untuk creative/image. Format sesuai Meta Ads.',
+          target:
+            'Scroller media sosial yang perlu distop dalam 1 detik dan dialihkan ke landing page',
+          header: 'PT DAFIS SEJAHTERA — Iklan Digital',
+          alamat: 'Jl. Raya Kebayoran Lama No. 123, Jakarta Selatan',
+          footer: 'PT DAFIS SEJAHTERA — Iklan & Promosi',
+          faviconUrl: '',
+          galleryLinks:
+            'https://via.placeholder.com/1080x1080\nhttps://via.placeholder.com/1080x1920',
+          starRating: '5',
+          websiteUrl: 'https://dafisejahtera.com',
+        },
+      };
+
+      const ROLE_MODIFIERS = {
+        'Copywriter Profesional': {
+          contextSuffix:
+            ' Gunakan teknik copywriting tingkat lanjut dan psychological triggers (scarcity, social proof, reciprocity).',
+          taskSuffix:
+            ' Terapkan power words, storytelling yang emosional, dan formula copywriting yang terbukti efektif.',
+          targetSuffix:
+            ' dengan pendekatan emosional dan rasional yang seimbang',
+        },
+        'Digital Marketing Expert': {
+          contextSuffix:
+            ' Fokus pada metrik konversi, CTR, dan ROI kampanye. Setiap kata harus terukur dan teroptimasi.',
+          taskSuffix:
+            ' Optimalkan untuk platform digital, sertakan A/B testing suggestion, dan pastikan CTA mengarah pada conversion funnel.',
+          targetSuffix:
+            ' berdasarkan data demografis, behavior, dan segmentasi pasar yang spesifik',
+        },
+        'Web Developer': {
+          contextSuffix:
+            ' Implementasi teknis dengan standar industri web modern. Pertimbangkan performance, accessibility, dan scalability.',
+          taskSuffix:
+            ' Pastikan kode responsive, accessible (WCAG), performant (Core Web Vitals), dan mudah di-maintain.',
+          targetSuffix:
+            ' dengan pengalaman pengguna (UX) dan developer experience (DX) sebagai prioritas',
+        },
+        'SEO Specialist': {
+          contextSuffix:
+            ' Optimasi untuk peringkat mesin pencari dan traffic organik jangka panjang. Fokus pada search intent dan E-E-A-T.',
+          taskSuffix:
+            ' Sertakan strategi keyword (primary, secondary, LSI), internal linking, schema markup suggestion, dan optimasi teknis SEO.',
+          targetSuffix:
+            ' sesuai search intent (informational, navigational, transactional, atau commercial investigation)',
+        },
+        'Content Creator': {
+          contextSuffix:
+            ' Konten yang shareable, engaging, dan membangun komunitas. Harus bisa viral dan menghasilkan interaksi organic.',
+          taskSuffix:
+            ' Buat konten yang mudah dikonsumsi, visual-friendly, mendorong interaksi (comment, share, save), dan konsisten brand voice.',
+          targetSuffix:
+            ' yang aktif di media sosial dan menyukai konten yang entertain sekaligus informatif',
+        },
+        'AI Engineer': {
+          contextSuffix:
+            ' Integrasi AI dan automation untuk efisiensi maksimal. Manfaatkan kemampuan AI untuk scaling dan personalisasi.',
+          taskSuffix:
+            ' Terapkan pendekatan AI-driven, prompt engineering optimal, dan sertakan suggestion untuk automation workflow.',
+          targetSuffix:
+            ' dengan memanfaatkan teknologi AI terkini untuk personalisasi dan scaling',
+        },
+      };
+
+      /* ================================================
+   PARTIKEL
+   ================================================ */
+      const canvas = document.getElementById('particleCanvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      function createParticle(randomY) {
+        return {
+          x: Math.random() * canvas.width,
+          y: randomY
+            ? Math.random() * canvas.height
+            : canvas.height + Math.random() * 20,
+          size: Math.random() * 1.8 + 0.4,
+          speedY: Math.random() * 0.4 + 0.15,
+          speedX: (Math.random() - 0.5) * 0.2,
+          opacity: Math.random() * 0.35 + 0.05,
+          pulse: Math.random() * Math.PI * 2,
+        };
+      }
+      function initParticles() {
+        particles = [];
+        const count = Math.min(
+          100,
+          Math.floor((canvas.width * canvas.height) / 12000),
+        );
+        for (let i = 0; i < count; i++) {
+          particles.push(createParticle(true));
+        }
+      }
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.y -= p.speedY;
+          p.x += p.speedX;
+          p.pulse += 0.02;
+          const alpha = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
+          if (p.y < -10 || p.x < -10 || p.x > canvas.width + 10) {
+            Object.assign(p, createParticle(false));
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(200,168,80,${alpha})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      resizeCanvas();
+      initParticles();
+      animateParticles();
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles();
+      });
+
+      /* ================================================
+   TOAST
+   ================================================ */
+      function showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        const icons = {
+          success: 'fa-check-circle',
+          error: 'fa-exclamation-circle',
+          info: 'fa-info-circle',
+          warning: 'fa-shield-halved',
+        };
+        toast.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i> ${message}`;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.remove();
+        }, 3200);
+      }
+
+      /* ================================================
+   LOGIN & LOGOUT
+   ================================================ */
+      function login() {
+        const u = document.getElementById('user').value.trim();
+        const p = document.getElementById('pass').value;
+        if (u === 'admin' && p === '579135') {
+          document.getElementById('loginBox').classList.add('hidden');
+          document.getElementById('app').classList.remove('hidden');
+          document.getElementById('mainWrapper').classList.add('app-active');
+          showToast('Selamat datang, Admin!', 'success');
+          autoFill();
+        } else {
+          const loginBox = document.getElementById('loginBox');
+          loginBox.classList.add('shake');
+          setTimeout(() => loginBox.classList.remove('shake'), 500);
+          showToast('Username atau password salah!', 'error');
+        }
+      }
+      document.getElementById('pass').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') login();
+      });
+      document.getElementById('user').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('pass').focus();
+      });
+      function logout() {
+        document.getElementById('app').classList.add('hidden');
+        document.getElementById('loginBox').classList.remove('hidden');
+        document.getElementById('mainWrapper').classList.remove('app-active');
+        document.getElementById('user').value = '';
+        document.getElementById('pass').value = '';
+        showToast('Berhasil keluar', 'info');
+      }
+
+      /* ================================================
+   AUTO-FILL & FORM
+   ================================================ */
+      function autoFill() {
+        const template = document.getElementById('template').value;
+        const role = document.getElementById('role').value;
+        const tData = TEMPLATE_DATA[template];
+        const rMod = ROLE_MODIFIERS[role] || {};
+        fillField('context', tData.context + (rMod.contextSuffix || ''));
+        fillField('task', tData.task + (rMod.taskSuffix || ''));
+        fillField('target', tData.target + (rMod.targetSuffix || ''));
+        fillField('headerInput', tData.header || '');
+        fillField('alamatInput', tData.alamat || '');
+        fillField('footerInput', tData.footer || '');
+        fillField('faviconUrl', tData.faviconUrl || '');
+        fillField('galleryLinks', tData.galleryLinks || '');
+        fillField('starRating', tData.starRating || '5');
+        fillField('websiteUrl', tData.websiteUrl || '');
+      }
+      function fillField(id, text) {
+        const el = document.getElementById(id);
+        el.value = text;
+        el.classList.remove('field-highlight');
+        void el.offsetWidth;
+        el.classList.add('field-highlight');
+      }
+
+      /* ================================================
+   GENERATE
+   ================================================ */
+      function generate() {
+        const role = document.getElementById('role').value;
+        const judul = document.getElementById('judul').value.trim();
+        const context = document.getElementById('context').value.trim();
+        const task = document.getElementById('task').value.trim();
+        const target = document.getElementById('target').value.trim();
+        const style = document.getElementById('style').value;
+        const template = document.getElementById('template').value;
+        const headerVal = document.getElementById('headerInput').value.trim();
+        const alamatVal = document.getElementById('alamatInput').value.trim();
+        const footerVal = document.getElementById('footerInput').value.trim();
+        const faviconUrl = document.getElementById('faviconUrl').value.trim();
+        const galleryLinks = document
+          .getElementById('galleryLinks')
+          .value.trim();
+        const starRating = document.getElementById('starRating').value;
+        const websiteUrl = document.getElementById('websiteUrl').value.trim();
+
+        if (!context && !task) {
+          showToast('Isi konteks atau tugas terlebih dahulu!', 'error');
+          return;
+        }
+
+        const resultEl = document.getElementById('result');
+        const resultCard = document.getElementById('resultCard');
+        resultEl.classList.remove('empty');
+        resultEl.innerHTML =
+          '<div class="typing-dots"><span></span><span></span><span></span></div> Membuat prompt...';
+
+        setTimeout(() => {
+          let extra = '';
+          if (template === 'copy')
+            extra =
+              'Gunakan framework AIDA + PAS + CTA yang kuat dan persuasif.';
+          if (template === 'landing')
+            extra =
+              'Buat struktur landing page HTML lengkap + CTA WhatsApp yang menonjol.';
+          if (template === 'seo')
+            extra =
+              'SEO Friendly: heading terstruktur, keyword optimal, meta description.';
+          if (template === 'coding')
+            extra =
+              'Kode rapi, modern, well-documented, siap pakai di production.';
+          if (template === 'wa')
+            extra = 'Hook kuat di baris pertama + closing cepat dan personal.';
+          if (template === 'ebook')
+            extra =
+              'Outline lengkap + isi mendalam per bab + takeaway actionable.';
+          if (template === 'ads')
+            extra =
+              'Format sesuai Meta Ads: headline, primary text, deskripsi, CTA.';
+
+          /* Bangun bagian Header/Alamat/Footer jika diisi */
+          let headerSection = '';
+          if (headerVal || alamatVal) {
+            headerSection = `HEADER:\n${headerVal || '-'}\nALAMAT:\n${alamatVal || '-'}\n\n`;
+          }
+
+          let footerSection = '';
+          if (footerVal) {
+            footerSection = `\nFOOTER:\n${footerVal}`;
+          }
+
+          /* Bangun bagian Favicon, Gallery, Rating, Website URL */
+          let faviconSection = '';
+          if (faviconUrl) {
+            faviconSection = `\nFAVICON URL:\n${faviconUrl}`;
+          }
+
+          let gallerySection = '';
+          if (galleryLinks) {
+            gallerySection = `\nGALERI (GAMBAR/VIDEO):\n${galleryLinks}`;
+          }
+
+          let ratingSection = '';
+          if (starRating) {
+            const starEmojis = '⭐'.repeat(parseInt(starRating));
+            ratingSection = `\nRATING:\n${starEmojis} (${starRating}/5)`;
+          }
+
+          let websiteSection = '';
+          if (websiteUrl) {
+            websiteSection = `\nWEBSITE ONLINE:\n${websiteUrl}`;
+          }
+
+          /* Bangun FAQ otomatis berdasarkan Judul dan Konteks */
+          let faqSection = '';
+          const faqTitle = judul || 'Prompt Ini';
+          const faqContext = context || 'proyek ini';
+          const faqTarget = target || 'audiens yang ditentukan';
+          faqSection = `\nFAQ:\n1. Apa tujuan utama dari ${faqTitle}?\n   Tujuan utama adalah untuk menghasilkan output yang berfokus pada ${faqContext.substring(0, 80)}..., sehingga bisa diterapkan secara langsung.\n2. Siapa target utama yang akan terpengaruh oleh hasil ${faqTitle}?\n   Target utama adalah ${faqTarget}. Hasil yang dibuat akan disesuaikan dengan kebutuhan dan karakteristik spesifik dari kelompok tersebut.\n3. Bagaimana cara kerja prompt ini menghasilkan output terbaik?\n   Prompt ini menggunakan kombinasi struktur konteks, tugas yang jelas, dan gaya bahasa yang spesifik sehingga AI dapat memahami instruksi secara mendalam dan memberikan jawaban yang akurat serta siap pakai.\n4. Apakah konteks pada ${faqTitle} bisa disesuaikan untuk kebutuhan lain?\n   Ya, Anda dapat memodifikasi bagian konteks dan tugas pada form generator untuk menyesuaikan output dengan proyek atau industri lain, selama struktur dasar prompt tetap dipertahankan.`;
+
+          const prompt = `${judul ? 'JUDUL: ' + judul + '\n\n' : ''}${headerSection}Anda adalah ${role}.
+
+KONTEKS:
+ ${context || '-'}
+
+TUGAS:
+ ${task || '-'}
+
+TARGET AUDIENS:
+ ${target || '-'}
+
+GAYA BAHASA:
+ ${style}
+
+INSTRUKSI TAMBAHAN:
+ ${extra}
+
+ATURAN:
+1. Gunakan Bahasa Indonesia yang baik dan benar
+2. Hasil harus siap pakai tanpa revisi besar
+3. Menarik, profesional, dan konsisten
+4. Sertakan contoh atau variasi jika memungkinkan
+5. Hindari kalimat generik dan filler
+6. Fokus pada outcome dan hasil nyata${faviconSection}${websiteSection}${ratingSection}${gallerySection}${faqSection}${footerSection}`;
+
+          resultEl.innerText = prompt;
+          resultCard.classList.add('has-content');
+          updateWordCount();
+          showToast('Prompt berhasil dibuat!', 'success');
+        }, 700);
+      }
+
+      function updateWordCount() {
+        const text = document.getElementById('result').innerText || '';
+        const count = text.trim() ? text.trim().split(/\s+/).length : 0;
+        document.getElementById('wordCount').textContent = count + ' kata';
+      }
+
+      function clearResult() {
+        const resultEl = document.getElementById('result');
+        resultEl.innerText = '';
+        resultEl.classList.add('empty');
+        resultEl.textContent = 'Prompt akan muncul di sini...';
+        document.getElementById('resultCard').classList.remove('has-content');
+        document.getElementById('wordCount').textContent = '0 kata';
+        showToast('Output dihapus', 'info');
+      }
+
+      /* ================================================
+   COPY
+   ================================================ */
+      function copyResult() {
+        const text = document.getElementById('result').innerText;
+        if (!text || text === 'Prompt akan muncul di sini...') {
+          showToast('Tidak ada prompt untuk disalin', 'error');
+          return;
+        }
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            showToast('Prompt berhasil disalin ke clipboard!', 'success');
+          })
+          .catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('Prompt berhasil disalin!', 'success');
+          });
+      }
+
+      /* ================================================
+   WHATSAPP
+   ================================================ */
+      function sendWA() {
+        const text = document.getElementById('result').innerText;
+        if (!text || text === 'Prompt akan muncul di sini...') {
+          showToast('Tidak ada prompt untuk dikirim', 'error');
+          return;
+        }
+        const wa = document.getElementById('wa').value.trim();
+        if (!wa) {
+          showToast('Masukkan nomor WhatsApp terlebih dahulu!', 'error');
+          document.getElementById('wa').focus();
+          return;
+        }
+        const cleanWa = wa.replace(/[^0-9]/g, '');
+        const encoded = encodeURIComponent(text);
+        window.open(`https://wa.me/${cleanWa}?text=${encoded}`, '_blank');
+        showToast('Membuka WhatsApp...', 'success');
+      }
+
+      /* ================================================
+   SIMPAN
+   ================================================ */
+      function saveOnline() {
+        const text = document.getElementById('result').innerText;
+        if (!text || text === 'Prompt akan muncul di sini...') {
+          showToast('Tidak ada prompt untuk disimpan', 'error');
+          return;
+        }
+        const history = JSON.parse(
+          localStorage.getItem('dafis_prompts') || '[]',
+        );
+        history.unshift({
+          judul: document.getElementById('judul').value.trim() || 'Tanpa Judul',
+          prompt: text,
+          template: document.getElementById('template').value,
+          role: document.getElementById('role').value,
+          style: document.getElementById('style').value,
+          date: new Date().toISOString(),
+        });
+        if (history.length > 50) history.length = 50;
+        try {
+          localStorage.setItem('dafis_prompts', JSON.stringify(history));
+          showToast(
+            `Prompt disimpan! (${history.length} prompt tersimpan)`,
+            'success',
+          );
+        } catch (e) {
+          showToast('Gagal menyimpan — storage penuh', 'error');
+        }
+      }
+
+      /* ================================================
+   EXPORT PDF
+   ================================================ */
+      function exportPDF() {
+        const text = document.getElementById('result').innerText;
+        if (!text || text === 'Prompt akan muncul di sini...') {
+          showToast('Tidak ada prompt untuk di-export', 'error');
+          return;
+        }
+        try {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4',
+          });
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const pageHeight = doc.internal.pageSize.getHeight();
+          const margin = 20;
+          const usableWidth = pageWidth - margin * 2;
+          const logoUrl =
+            'https://dafisejahtera.com/gambarbebas/20260311-043021_Logo%20PT%20warna26.jpg';
+          try {
+            doc.addImage(logoUrl, 'JPG', margin, 12, 16, 16);
+          } catch (e) {}
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(20);
+          doc.setTextColor(139, 117, 48);
+          doc.text('DAFIS', margin + 20, 21);
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(10);
+          doc.setTextColor(140, 140, 140);
+          doc.text('Master Prompt Generator', margin + 20, 27);
+          const judul = document.getElementById('judul').value.trim();
+          let y = 38;
+          if (judul) {
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(40, 40, 40);
+            const judulLines = doc.splitTextToSize(judul, usableWidth);
+            doc.text(judulLines, margin, y);
+            y += judulLines.length * 7 + 4;
+          }
+          doc.setDrawColor(200, 168, 80);
+          doc.setLineWidth(0.5);
+          doc.line(margin, y, pageWidth - margin, y);
+          y += 8;
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(11);
+          doc.setTextColor(40, 40, 40);
+          const lines = doc.splitTextToSize(text, usableWidth);
+          const lineHeight = 5.5;
+          const bottomMargin = 20;
+          lines.forEach((line) => {
+            if (y + lineHeight > pageHeight - bottomMargin) {
+              doc.addPage();
+              y = margin;
+            }
+            doc.text(line, margin, y);
+            y += lineHeight;
+          });
+          const totalPages = doc.internal.getNumberOfPages();
+          const dateStr = new Date().toLocaleString('id-ID', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+          for (let i = 1; i <= totalPages; i++) {
+            doc.setPage(i);
+            doc.setFontSize(8);
+            doc.setTextColor(180, 180, 180);
+            doc.text(
+              `DAFIS Prompt Generator  |  ${dateStr}  |  Halaman ${i} / ${totalPages}`,
+              pageWidth / 2,
+              pageHeight - 10,
+              { align: 'center' },
+            );
+          }
+          const fileName = judul
+            ? `DAFIS-${judul.replace(/\s+/g, '-').substring(0, 30)}.pdf`
+            : `DAFIS-Prompt-${Date.now()}.pdf`;
+          doc.save(fileName);
+          showToast('PDF berhasil di-export!', 'success');
+        } catch (e) {
+          console.error('PDF export error:', e);
+          showToast('Gagal export PDF — coba lagi', 'error');
+        }
+      }
+
+      /* ================================================
+   EXPORT WORD
+   ================================================ */
+      function exportWord() {
+        const text = document.getElementById('result').innerText;
+        if (!text || text === 'Prompt akan muncul di sini...') {
+          showToast('Tidak ada prompt untuk di-export', 'error');
+          return;
+        }
+        const dateStr = new Date().toLocaleString('id-ID', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        const safeText = text
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        const judul =
+          document.getElementById('judul').value.trim() || 'Master Prompt';
+        const safeJudul = judul
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        const paragraphs = safeText
+          .split('\n')
+          .map((line) => {
+            if (line.trim() === '')
+              return '<p style="margin:4px 0;">&nbsp;</p>';
+            if (/^[A-Z][A-Z\s]+:$/.test(line.trim())) {
+              return `<p style="margin:12px 0 4px;font-weight:bold;color:#8B7530;font-size:13pt;">${line}</p>`;
+            }
+            return `<p style="margin:4px 0;line-height:1.6;">${line}</p>`;
+          })
+          .join('');
+        const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>${safeJudul}</title><style>body{font-family:Calibri,sans-serif;font-size:11pt;color:#222;margin:40px;}</style></head><body><div style="border-bottom:2px solid #C8A850;padding-bottom:12px;margin-bottom:20px;display:flex;align-items:center;gap:16px;"><img src="https://dafisejahtera.com/gambarbebas/20260311-043021_Logo%20PT%20warna26.jpg" width="40" height="40" style="object-fit:contain;"><div><h1 style="color:#8B7530;font-size:22pt;margin:0;">DAFIS</h1><p style="color:#888;font-size:9pt;margin:4px 0 0;">Master Prompt Generator &mdash; ${dateStr}</p></div></div><h2 style="color:#333;font-size:16pt;margin-bottom:16px;">${safeJudul}</h2>${paragraphs}<div style="border-top:1px solid #ddd;margin-top:30px;padding-top:8px;"><p style="color:#aaa;font-size:8pt;">Generated by DAFIS Master Prompt Generator</p></div></body></html>`;
+        const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        const fileName = judul
+          ? `DAFIS-${judul.replace(/\s+/g, '-').substring(0, 30)}.doc`
+          : `DAFIS-Prompt-${Date.now()}.doc`;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+        showToast('Word berhasil di-export!', 'success');
+      }
+    </script>
+  </body>
+</html>
